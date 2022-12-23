@@ -1,4 +1,5 @@
 # xiaoye-plugin
+[![访问量](https://profile-counter.glitch.me/xiaoye-plugin/count.svg)](https://gitee.com/xiaoye12123/xiaoye-plugin.git)
 
 #### 介绍
 这是一个- [Yunzai-Bot V3](https://gitee.com/Le-niao/Yunzai-Bot)的插件,提供模拟刷圣遗物功能
@@ -13,16 +14,22 @@ git clone https://gitee.com/xiaoye12123/xiaoye-plugin.git ./plugins/xiaoye-plug
 ```
 进行安装。建议使用上述命令进行安装，以便于后续更新。 管理员发送`#小叶更新`即可自动更新
 
+#### 自定义概率
+
+在xiaoye-plugin/config/config.yaml文件中修改,修改后重启生效
+
 #### 使用说明
 
 1.  刷圣遗物绝缘   刷圣遗物草套
 2.  强化圣遗物
-3.  给我来个双爆绝缘  给我来个双爆草套
-4.  更新中
+3.  更新中
 
 #### 预计更新
 
-各种概率自定义
+1.强化+4
+2.保存圣遗物到本地
+3.查看所有保存的圣遗物
+4.自定义圣遗物别名
 
 #### 免责声明
 

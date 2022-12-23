@@ -1,10 +1,7 @@
 import plugin from '../../../lib/plugins/plugin.js'
 import puppeteer from "../../../lib/puppeteer/puppeteer.js";
 import { segment } from "oicq";
-import syw from "../model/readConfig.js";
 import util from "../model/util.js"
-
-let GayCD = {};
 
 export class ssyw extends plugin {
     constructor() {
@@ -22,14 +19,6 @@ export class ssyw extends plugin {
                     {
                         reg: '^#*强化圣遗物$',
                         fnc: 'qianghua'
-                    },
-                    {
-                        reg: '^#*查看圣遗物$',
-                        fnc: 'chakan'
-                    },
-                    {
-                        reg: '^#*给我来个双(暴|爆).*$',
-                        fnc: 'shuangbao'
                     }
                 ]
             }
@@ -38,67 +27,37 @@ export class ssyw extends plugin {
 
     //刷圣遗物
     async chuhuoba(e) {
-        if (!e.isMaster) {
-            if (GayCD[e.user_id]) {
-                e.reply("1分钟cd");
-                return true;
-            }
-
-            GayCD[e.user_id] = true;
-
-            GayCD[e.user_id] = setTimeout(() => {
-                if (GayCD[e.user_id]) {
-                    delete GayCD[e.user_id];
-                }
-            }, 60000);
+        let cd = await util.getGayCD(e)
+        if (cd > 0) {
+            e.reply(`cd中,请${cd}秒后使用`)
+            return true
         }
-        let shengyiwu
+
         let fuben = e.msg.replace(/#|刷圣遗物/g, "").trim();
-        let buwei = await util.getRandomArrOne(syw.buweis)
-        //确定圣遗物具体部位
-        if (fuben == '火本' || fuben == '魔女' || fuben == '渡火' || fuben == '火套') {
-            shengyiwu = await util.randomShengyiwu(buwei, syw.huoben)
-        } else if (fuben == '冰本' || fuben == '冰套' || fuben == '水本' || fuben == '水套') {
-            shengyiwu = await util.randomShengyiwu(buwei, syw.binben)
-        } else if (fuben == '雷本' || fuben == '平雷' || fuben == '如雷' || fuben == '雷套') {
-            shengyiwu = await util.randomShengyiwu(buwei, syw.leiben)
-        } else if (fuben == '风本' || fuben == '风套' || fuben == '少女') {
-            shengyiwu = await util.randomShengyiwu(buwei, syw.fengben)
-        } else if (fuben == '岩本' || fuben == '磐岩' || fuben == '岩套' || fuben == '逆飞的流星') {
-            shengyiwu = await util.randomShengyiwu(buwei, syw.yanben)
-        } else if (fuben == '宗室' || fuben == '骑士') {
-            shengyiwu = await util.randomShengyiwu(buwei, syw.zongshi)
-        } else if (fuben == '千岩' || fuben == '苍白') {
-            shengyiwu = await util.randomShengyiwu(buwei, syw.qianyan)
-        } else if (fuben == '追忆' || fuben == '绝缘') {
-            shengyiwu = await util.randomShengyiwu(buwei, syw.jueyuan)
-        } else if (fuben == '华馆' || fuben == '海染' || fuben == '华冠' || fuben == '华倌') {
-            shengyiwu = await util.randomShengyiwu(buwei, syw.huaguan)
-        } else if (fuben == '辰砂' || fuben == '来歆' || fuben == '余响') {
-            shengyiwu = await util.randomShengyiwu(buwei, syw.chensha)
-        } else if (fuben == '草本' || fuben == '草套' || fuben == '饰金') {
-            shengyiwu = await util.randomShengyiwu(buwei, syw.caoben)
-        } else if (fuben == '乐团' || fuben == '角斗士') {
-            shengyiwu = await util.randomShengyiwu(buwei, syw.qita)
-        } else if (fuben == '楼阁' || fuben == '乐园' || fuben == '沙上楼阁史话' || fuben == '乐园遗落之花') {
-            shengyiwu = await util.randomShengyiwu(buwei, syw.louge)
-        }
-        else {
-            e.reply('没有这个圣遗物')
+        //获得一个部位
+        let buwei = await util.getBuwei()
+
+        //圣遗物名字
+        let shengyiwu = await util.shengyiwu(buwei, fuben)
+        if (!shengyiwu) {
+            e.reply("没有这个圣遗物")
             return true
         }
 
         //确定主词条
-        let zhucitiao = await util.randomZhucitiao(buwei)
+        let zhucitiao = await util.getZhucitiao(buwei)
 
         //给主词条加初始值
         let zhucitiaoData = await util.zhucitiaoAddData(zhucitiao, buwei)
 
         //确定副词条
-        let fucitiao = await util.randomFucitiao(zhucitiao, buwei)
+        let fucitiao = await util.getFucitiao(zhucitiao, buwei)
 
         //给副词条加初始值
-        let fucitiaoData = await util.fucitiaoAddData(fucitiao)
+        let fucitiaoData = await util.getFucitiaoData(fucitiao)
+
+        //加个符号%
+        fucitiaoData = await util.fucitiaoAddfuhao(fucitiao, fucitiaoData)
 
         let level = '0'
 
@@ -117,118 +76,16 @@ export class ssyw extends plugin {
             level: level
         }
         await redis.set('xiaoye:syw:qq:' + e.user_id, JSON.stringify(data), { EX: 86400 })
-        let img = await puppeteer.screenshot("test", data);
+        await util.setGayCD(e)
+        let img = await puppeteer.screenshot("syw", data);
         let msg = [segment.at(e.user_id), img]
         e.reply(msg)
         return true;
 
-    }
-
-    //来个双爆圣遗物
-    async shuangbao(e) {
-        if (!e.isMaster) {
-            if (GayCD[e.user_id]) {
-                e.reply("1分钟cd");
-                return true;
-            }
-
-            GayCD[e.user_id] = true;
-
-            GayCD[e.user_id] = setTimeout(() => {
-                if (GayCD[e.user_id]) {
-                    delete GayCD[e.user_id];
-                }
-            }, 60000);
-        }
-        let shengyiwu
-        let fuben = e.msg.replace(/#|给我来个双暴|给我来个双爆/g, "").trim();
-        let buwei = await util.getRandomArrOne(syw.buweis)
-        //确定圣遗物具体部位
-        if (fuben == '火本' || fuben == '魔女' || fuben == '渡火' || fuben == '火套') {
-            shengyiwu = await util.randomShengyiwu(buwei, syw.huoben)
-        } else if (fuben == '冰本' || fuben == '冰套' || fuben == '水本' || fuben == '水套') {
-            shengyiwu = await util.randomShengyiwu(buwei, syw.binben)
-        } else if (fuben == '雷本' || fuben == '平雷' || fuben == '如雷' || fuben == '雷套') {
-            shengyiwu = await util.randomShengyiwu(buwei, syw.leiben)
-        } else if (fuben == '风本' || fuben == '风套' || fuben == '少女') {
-            shengyiwu = await util.randomShengyiwu(buwei, syw.fengben)
-        } else if (fuben == '岩本' || fuben == '磐岩' || fuben == '岩套' || fuben == '逆飞的流星') {
-            shengyiwu = await util.randomShengyiwu(buwei, syw.yanben)
-        } else if (fuben == '宗室' || fuben == '骑士') {
-            shengyiwu = await util.randomShengyiwu(buwei, syw.zongshi)
-        } else if (fuben == '千岩' || fuben == '苍白') {
-            shengyiwu = await util.randomShengyiwu(buwei, syw.qianyan)
-        } else if (fuben == '追忆' || fuben == '绝缘') {
-            shengyiwu = await util.randomShengyiwu(buwei, syw.jueyuan)
-        } else if (fuben == '华馆' || fuben == '海染' || fuben == '华冠' || fuben == '华倌') {
-            shengyiwu = await util.randomShengyiwu(buwei, syw.huaguan)
-        } else if (fuben == '辰砂' || fuben == '来歆' || fuben == '余响') {
-            shengyiwu = await util.randomShengyiwu(buwei, syw.chensha)
-        } else if (fuben == '草本' || fuben == '草套' || fuben == '饰金') {
-            shengyiwu = await util.randomShengyiwu(buwei, syw.caoben)
-        } else if (fuben == '乐团' || fuben == '角斗士') {
-            shengyiwu = await util.randomShengyiwu(buwei, syw.qita)
-        } else if (fuben == '楼阁' || fuben == '乐园' || fuben == '沙上楼阁史话' || fuben == '乐园遗落之花') {
-            shengyiwu = await util.randomShengyiwu(buwei, syw.louge)
-        }
-        else {
-            e.reply('没有这个圣遗物')
-            return true
-        }
-
-        //确定主词条
-        let zhucitiao = await util.NBZhucitiao(buwei)
-
-        //给主词条加初始值
-        let zhucitiaoData = await util.zhucitiaoAddData(zhucitiao, buwei)
-
-        //确定副词条
-        let fucitiao = await util.NBFucitiao(zhucitiao, buwei)
-
-        //给副词条加初始值
-        let fucitiaoData = await util.fucitiaoAddData(fucitiao)
-
-        let level = '0'
-
-
-
-        this._path = process.cwd().replace(/\\/g, "/");
-        let data = {
-            tplFile: './plugins/xiaoye-plugin/resources/html/index.html',
-            pluResPath: `${this._path}`,
-            fucitiao: fucitiao,
-            fucitiaoData: fucitiaoData,
-            shengyiwu: shengyiwu,
-            buwei: buwei,
-            zhucitiao: zhucitiao,
-            zhucitiaoData: zhucitiaoData,
-            level: level
-        }
-        await redis.set('xiaoye:syw:qq:' + e.user_id, JSON.stringify(data), { EX: 86400 })
-        let img = await puppeteer.screenshot("test", data);
-        let msg = [segment.at(e.user_id), img]
-        e.reply(msg)
-        return true;
     }
 
     //强化
     async qianghua(e) {
-
-        /* if (!e.isMaster) {
-            if (GayCD[e.user_id]) {
-                e.reply("该命令有1分钟cd");
-                return true;
-            }
-
-            GayCD[e.user_id] = true;
-
-            GayCD[e.user_id] = setTimeout(() => {
-                if (GayCD[e.user_id]) {
-                    delete GayCD[e.user_id];
-                }
-            }, 60000);
-        } */
-
         //要强化的圣遗物数据
         let data = await redis.get('xiaoye:syw:qq:' + e.user_id)
         data = JSON.parse(data)
@@ -265,9 +122,9 @@ export class ssyw extends plugin {
             //循环五次强化
             for (let k = 0; k < 5; k++) {
                 //随机获得强化的词条
-                let benci = await util.getRandomArrOne(fucitiao)
+                let benci = await util.getQianghuacitiao(fucitiao)
                 //获得强化的数值
-                let fucitiaoUpData = await util.fucitiaoUpData(benci)
+                let fucitiaoUpData = await util.getQianghuashuzhi(benci)
                 //循环数值相加
                 for (let j = 0; j < fucitiao.length; j++) {
                     if (fucitiao[j] == benci) {
@@ -280,16 +137,16 @@ export class ssyw extends plugin {
             }
         } else if (fucitiao[2] && level != '20') {
             //加个词条
-            let newCitiao = await util.randomFucitiao4(zhucitiao, fucitiao, buwei)
+            let newCitiao = await util.getOneFucitiao(zhucitiao, fucitiao, buwei)
             fucitiao.push(newCitiao)
-            let newShuzhi = await util.fucitiao4AddData(newCitiao)
+            let newShuzhi = await util.getOnefucitiaoData(newCitiao)
             fucitiaoData.push(newShuzhi)
             //循环四次强化
             for (let k = 0; k < 4; k++) {
                 //获得强化的词条
-                let benci = await util.getRandomArrOne(fucitiao)
+                let benci = await util.getQianghuacitiao(fucitiao)
                 //获得强化的数值
-                let fucitiaoUpData = await util.fucitiaoUpData(benci)
+                let fucitiaoUpData = await util.getQianghuashuzhi(benci)
                 //循环数值相加
                 for (let j = 0; j < fucitiao.length; j++) {
                     if (fucitiao[j] == benci) {
@@ -301,10 +158,8 @@ export class ssyw extends plugin {
                 }
             }
         }
-        //加上%
-        for (let i = 0; i < fucitiaoData.length; i++) {
-            fucitiaoData[i] = await util.fucitiaoAddfuhao(fucitiao[i], fucitiaoData[i])
-        }
+        //加个符号%
+        fucitiaoData = await util.fucitiaoAddfuhao(fucitiao, fucitiaoData)
         //等级设置为20
         level = '20'
         //设置主词条+20数据
@@ -322,25 +177,10 @@ export class ssyw extends plugin {
             level: level
         }
         await redis.set('xiaoye:syw:qq:' + e.user_id, JSON.stringify(newData), { EX: 86400 })
-        let img = await puppeteer.screenshot("test", newData);
+        let img = await puppeteer.screenshot("syw", newData);
         let msg = [segment.at(e.user_id), img]
         e.reply(msg)
         return true;
     }
-
-    //查看
-    async chakan(e) {
-        let data = await redis.get('xiaoye:syw:qq:' + e.user_id)
-        data = JSON.parse(data)
-        if (data == null) {
-            e.reply('当前没有圣遗物')
-            return false
-        }
-        let img = await puppeteer.screenshot("test", data);
-        let msg = [segment.at(e.user_id), img]
-        e.reply(msg)
-        return true
-    }
-
 
 }
