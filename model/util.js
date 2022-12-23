@@ -45,12 +45,12 @@ let util = {
             zhucitiao = syw.shizhishazhucitiaoList[i]
         } else if (buwei == syw.buweiList[3]) {//空之杯
             //空之杯主词条的概率
-            probability = config.shizhisha
+            probability = config.kongzhibei
             let i = await this.randomGetOne(probability)
             zhucitiao = syw.kongzhibeizhucitiaoList[i]
         } else if (buwei == syw.buweiList[4]) {//理之冠
             //理之冠主词条的概率
-            probability = config.shizhisha
+            probability = config.lizhiguan
             let i = await this.randomGetOne(probability)
             zhucitiao = syw.lizhiguanzhucitiaoList[i]
         }
@@ -363,7 +363,7 @@ let util = {
     //确定圣遗物具体部位名字
     async shengyiwu(buwei, fuben) {
         let shengyiwu
-        
+
         if (fuben == '火本' || fuben == '魔女' || fuben == '渡火' || fuben == '火套') {
             shengyiwu = await this.randomShengyiwu(buwei, syw.huoben)
         } else if (fuben == '冰本' || fuben == '冰套' || fuben == '水本' || fuben == '水套') {
