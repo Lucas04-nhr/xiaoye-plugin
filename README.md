@@ -26,10 +26,11 @@ git clone https://gitee.com/xiaoye12123/xiaoye-plugin.git ./plugins/xiaoye-plug
 
 #### 预计更新
 
-1.强化+4
-2.保存圣遗物到本地
-3.查看所有保存的圣遗物
-4.自定义圣遗物别名
+
+1.  强化+4
+2.  保存圣遗物到本地,查看所有保存的圣遗物
+3.  自定义圣遗物别名
+
 
 #### 免责声明
 
