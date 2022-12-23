@@ -17,7 +17,7 @@ git clone https://gitee.com/xiaoye12123/xiaoye-plugin.git ./plugins/xiaoye-plug
 
 1.  刷圣遗物绝缘   刷圣遗物草套
 2.  强化圣遗物
-3.  给我一个双爆绝缘  给我一个双爆草套
+3.  给我来个双爆绝缘  给我来个双爆草套
 4.  更新中
 
 #### 预计更新
