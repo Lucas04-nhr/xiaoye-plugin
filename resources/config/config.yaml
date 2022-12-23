@@ -1,0 +1,134 @@
+buweis : ['生之花', '死之羽', '时之沙', '空之杯', '理之冠']
+
+shizhishazhucitiaos : ['攻击力', '充能', '精通', '防御力', '生命值']
+
+kongzhibeizhucitiaos : ['攻击力', '精通', '防御力', '生命值', '草元素伤害加成', '雷元素伤害加成', '风元素伤害加成', '岩元素伤害加成', '火元素伤害加成', '水元素伤害加成', '冰元素伤害加成']
+
+lizhiguanzhucitiaos : ['攻击力', '精通', '防御力', '生命值', '暴击率', '暴击伤害', '治疗加成']
+
+fucitiaos : ['小攻击', '攻击力', '暴击率', '暴击伤害', '精通', '小生命', '生命值', '小防御', '防御力', '充能']
+
+baojishanghai : ['5.4', '6.2', '7.0', '7.8']
+
+baojilv : ['2.7', '3.1', '3.5', '3.9']
+
+gongjili : ['4.1', '4.7', '5.3', '5.8']
+
+xiaogongji : ['14', '16', '18', '19']
+
+shengmingzhi : ['4.1', '4.7', '5.3', '5.8']
+
+xiaoshengming : ['209', '239', '269', '299']
+
+fangyuli : ['5.1', '5.8', '6.6', '7.3']
+
+xiaofangyu : ['16', '19', '21', '23']
+
+chongneng : ['4.5', '5.2', '5.8', '6.5']
+
+jingtong : ['16', '19', '21', '23']
+
+
+huoben : {
+    '生之花': [['魔女的炎之花', 'plugins/xiaoye-plugin/resources/img/炽烈的炎之魔女/1.png'], ['渡火着的决绝', 'plugins/xiaoye-plugin/resources/img/渡过烈火的贤人/1.png']],
+    '死之羽': [['魔女常燃之羽', 'plugins/xiaoye-plugin/resources/img/炽烈的炎之魔女/2.png'], ['渡火者的解脱', 'plugins/xiaoye-plugin/resources/img/渡过烈火的贤人/2.png']],
+    '时之沙': [['魔女破灭之时', 'plugins/xiaoye-plugin/resources/img/炽烈的炎之魔女/3.png'], ['渡火者的煎熬', 'plugins/xiaoye-plugin/resources/img/渡过烈火的贤人/3.png']],
+    '空之杯': [['魔女的心之火', 'plugins/xiaoye-plugin/resources/img/炽烈的炎之魔女/4.png'], ['渡火者的醒悟', 'plugins/xiaoye-plugin/resources/img/渡过烈火的贤人/4.png']],
+    '理之冠': [['焦灼的魔女帽', 'plugins/xiaoye-plugin/resources/img/炽烈的炎之魔女/5.png'], ['渡火者的智慧', 'plugins/xiaoye-plugin/resources/img/渡过烈火的贤人/5.png']],
+}
+
+binben : {
+    '生之花': [['历经风雪的思念', 'plugins/xiaoye-plugin/resources/img/冰风迷途的勇士/1.png'], ['饰金胸花', 'plugins/xiaoye-plugin/resources/img/沉沦之心/1.png']],
+    '死之羽': [['摧冰而行的执望', 'plugins/xiaoye-plugin/resources/img/冰风迷途的勇士/2.png'], ['追忆之风', 'plugins/xiaoye-plugin/resources/img/沉沦之心/2.png']],
+    '时之沙': [['冰雪故园的终期', 'plugins/xiaoye-plugin/resources/img/冰风迷途的勇士/3.png'], ['坚铜罗盘', 'plugins/xiaoye-plugin/resources/img/沉沦之心/3.png']],
+    '空之杯': [['遍结寒霜的傲骨', 'plugins/xiaoye-plugin/resources/img/冰风迷途的勇士/4.png'], ['沉波之盏', 'plugins/xiaoye-plugin/resources/img/沉沦之心/4.png']],
+    '理之冠': [['破冰踏雪的回音', 'plugins/xiaoye-plugin/resources/img/冰风迷途的勇士/5.png'], ['酒渍船帽', 'plugins/xiaoye-plugin/resources/img/沉沦之心/5.png']]
+}
+
+leiben : {
+    '生之花': [['雷鸟的怜悯', 'plugins/xiaoye-plugin/resources/img/如雷的盛怒/1.png'], ['平雷之心', 'plugins/xiaoye-plugin/resources/img/平息鸣雷的尊者/1.png']],
+    '死之羽': [['雷灾的孑遗', 'plugins/xiaoye-plugin/resources/img/如雷的盛怒/2.png'], ['平雷之羽', 'plugins/xiaoye-plugin/resources/img/平息鸣雷的尊者/2.png']],
+    '时之沙': [['雷霆的时计', 'plugins/xiaoye-plugin/resources/img/如雷的盛怒/3.png'], ['平雷之刻', 'plugins/xiaoye-plugin/resources/img/平息鸣雷的尊者/3.png']],
+    '空之杯': [['降雷的凶兆', 'plugins/xiaoye-plugin/resources/img/如雷的盛怒/4.png'], ['平雷之器', 'plugins/xiaoye-plugin/resources/img/平息鸣雷的尊者/4.png']],
+    '理之冠': [['唤雷的头冠', 'plugins/xiaoye-plugin/resources/img/如雷的盛怒/5.png'], ['平雷之冠', 'plugins/xiaoye-plugin/resources/img/平息鸣雷的尊者/5.png']]
+}
+
+fengben : {
+    '生之花': [['野花记忆的绿野', 'plugins/xiaoye-plugin/resources/img/翠绿之影/1.png'], ['远方的少女之心', 'plugins/xiaoye-plugin/resources/img/被怜爱的少女/1.png']],
+    '死之羽': [['猎人青翠的箭羽', 'plugins/xiaoye-plugin/resources/img/翠绿之影/2.png'], ['少女飘摇的思念', 'plugins/xiaoye-plugin/resources/img/被怜爱的少女/2.png']],
+    '时之沙': [['翠绿猎人的笃定', 'plugins/xiaoye-plugin/resources/img/翠绿之影/3.png'], ['少女苦短的良辰', 'plugins/xiaoye-plugin/resources/img/被怜爱的少女/3.png']],
+    '空之杯': [['翠绿猎人的容器', 'plugins/xiaoye-plugin/resources/img/翠绿之影/4.png'], ['少女片刻的闲暇', 'plugins/xiaoye-plugin/resources/img/被怜爱的少女/4.png']],
+    '理之冠': [['翠绿的猎人之冠', 'plugins/xiaoye-plugin/resources/img/翠绿之影/5.png'], ['少女易逝的芳颜', 'plugins/xiaoye-plugin/resources/img/被怜爱的少女/5.png']]
+}
+
+yanben : {
+    '生之花': [['磐陀裂生之花', 'plugins/xiaoye-plugin/resources/img/悠古的磐岩/1.png'], ['夏祭之花', 'plugins/xiaoye-plugin/resources/img/逆飞的流星/1.png']],
+    '死之羽': [['嵯峨群峰之翼', 'plugins/xiaoye-plugin/resources/img/悠古的磐岩/2.png'], ['夏祭终末', 'plugins/xiaoye-plugin/resources/img/逆飞的流星/2.png']],
+    '时之沙': [['星罗圭璧之晷', 'plugins/xiaoye-plugin/resources/img/悠古的磐岩/3.png'], ['夏祭之刻', 'plugins/xiaoye-plugin/resources/img/逆飞的流星/3.png']],
+    '空之杯': [['巉岩琢塑之樽', 'plugins/xiaoye-plugin/resources/img/悠古的磐岩/4.png'], ['夏祭水玉', 'plugins/xiaoye-plugin/resources/img/逆飞的流星/4.png']],
+    '理之冠': [['不动玄石之相', 'plugins/xiaoye-plugin/resources/img/悠古的磐岩/5.png'], ['夏祭之面', 'plugins/xiaoye-plugin/resources/img/逆飞的流星/5.png']]
+}
+
+zongshi : {
+    '生之花': [['染血的铁之心', 'plugins/xiaoye-plugin/resources/img/染血的骑士道/1.png'], ['宗室之花', 'plugins/xiaoye-plugin/resources/img/昔日宗室之仪/1.png']],
+    '死之羽': [['染血的黑之羽', 'plugins/xiaoye-plugin/resources/img/染血的骑士道/2.png'], ['宗室之翎', 'plugins/xiaoye-plugin/resources/img/昔日宗室之仪/2.png']],
+    '时之沙': [['骑士染血之时', 'plugins/xiaoye-plugin/resources/img/染血的骑士道/3.png'], ['宗室时计', 'plugins/xiaoye-plugin/resources/img/昔日宗室之仪/3.png']],
+    '空之杯': [['染血骑士之杯', 'plugins/xiaoye-plugin/resources/img/染血的骑士道/4.png'], ['宗室银瓮', 'plugins/xiaoye-plugin/resources/img/昔日宗室之仪/4.png']],
+    '理之冠': [['染血的铁假面', 'plugins/xiaoye-plugin/resources/img/染血的骑士道/5.png'], ['宗室面具', 'plugins/xiaoye-plugin/resources/img/昔日宗室之仪/5.png']]
+}
+
+qianyan : {
+    '生之花': [['勋绩之花', 'plugins/xiaoye-plugin/resources/img/千岩牢固/1.png'], ['无垢之花', 'plugins/xiaoye-plugin/resources/img/苍白之火/1.png']],
+    '死之羽': [['昭武翎羽', 'plugins/xiaoye-plugin/resources/img/千岩牢固/2.png'], ['贤医之羽', 'plugins/xiaoye-plugin/resources/img/苍白之火/2.png']],
+    '时之沙': [['金铜时晷', 'plugins/xiaoye-plugin/resources/img/千岩牢固/3.png'], ['停摆之刻', 'plugins/xiaoye-plugin/resources/img/苍白之火/3.png']],
+    '空之杯': [['盟誓金爵', 'plugins/xiaoye-plugin/resources/img/千岩牢固/4.png'], ['超越之盏', 'plugins/xiaoye-plugin/resources/img/苍白之火/4.png']],
+    '理之冠': [['将帅兜鍪', 'plugins/xiaoye-plugin/resources/img/千岩牢固/5.png'], ['嗤笑之面', 'plugins/xiaoye-plugin/resources/img/苍白之火/5.png']]
+}
+
+jueyuan : {
+    '生之花': [['明威之镡', 'plugins/xiaoye-plugin/resources/img/绝缘之旗印/1.png'], ['羁缠之花', 'plugins/xiaoye-plugin/resources/img/追忆之注连/1.png']],
+    '死之羽': [['切落之羽', 'plugins/xiaoye-plugin/resources/img/绝缘之旗印/2.png'], ['思忆之矢', 'plugins/xiaoye-plugin/resources/img/追忆之注连/2.png']],
+    '时之沙': [['雷云之笼', 'plugins/xiaoye-plugin/resources/img/绝缘之旗印/3.png'], ['朝露之时', 'plugins/xiaoye-plugin/resources/img/追忆之注连/3.png']],
+    '空之杯': [['绯花之壶', 'plugins/xiaoye-plugin/resources/img/绝缘之旗印/4.png'], ['祈望之心', 'plugins/xiaoye-plugin/resources/img/追忆之注连/4.png']],
+    '理之冠': [['华饰之兜', 'plugins/xiaoye-plugin/resources/img/绝缘之旗印/5.png'], ['无常之面', 'plugins/xiaoye-plugin/resources/img/追忆之注连/5.png']]
+}
+
+huaguan : {
+    '生之花': [['荣花之期', 'plugins/xiaoye-plugin/resources/img/华馆梦醒形骸记/1.png'], ['海染之花', 'plugins/xiaoye-plugin/resources/img/海染砗磲/1.png']],
+    '死之羽': [['华馆之羽', 'plugins/xiaoye-plugin/resources/img/华馆梦醒形骸记/2.png'], ['渊宫之羽', 'plugins/xiaoye-plugin/resources/img/海染砗磲/2.png']],
+    '时之沙': [['众生之谣', 'plugins/xiaoye-plugin/resources/img/华馆梦醒形骸记/3.png'], ['离别之贝', 'plugins/xiaoye-plugin/resources/img/海染砗磲/3.png']],
+    '空之杯': [['梦醒之瓢', 'plugins/xiaoye-plugin/resources/img/华馆梦醒形骸记/4.png'], ['真珠之笼', 'plugins/xiaoye-plugin/resources/img/海染砗磲/4.png']],
+    '理之冠': [['形骸之笠', 'plugins/xiaoye-plugin/resources/img/华馆梦醒形骸记/5.png'], ['海祇之冠', 'plugins/xiaoye-plugin/resources/img/海染砗磲/5.png']]
+}
+
+chensha : {
+    '生之花': [['生灵之华', 'plugins/xiaoye-plugin/resources/img/辰砂往生录/1.png'], ['魂香之花', 'plugins/xiaoye-plugin/resources/img/来歆余响/1.png']],
+    '死之羽': [['潜光片羽', 'plugins/xiaoye-plugin/resources/img/辰砂往生录/2.png'], ['垂玉之叶', 'plugins/xiaoye-plugin/resources/img/来歆余响/2.png']],
+    '时之沙': [['阳辔之遗', 'plugins/xiaoye-plugin/resources/img/辰砂往生录/3.png'], ['祝祀之凭', 'plugins/xiaoye-plugin/resources/img/来歆余响/3.png']],
+    '空之杯': [['结契之刻', 'plugins/xiaoye-plugin/resources/img/辰砂往生录/4.png'], ['涌泉之盏', 'plugins/xiaoye-plugin/resources/img/来歆余响/4.png']],
+    '理之冠': [['虺雷之姿', 'plugins/xiaoye-plugin/resources/img/辰砂往生录/5.png'], ['浮溯之珏', 'plugins/xiaoye-plugin/resources/img/来歆余响/5.png']]
+}
+
+caoben : {
+    '生之花': [['迷宫的游人', 'plugins/xiaoye-plugin/resources/img/深林的记忆/1.png'], ['梦中的铁花', 'plugins/xiaoye-plugin/resources/img/饰金之梦/1.png']],
+    '死之羽': [['翠蔓的智者', 'plugins/xiaoye-plugin/resources/img/深林的记忆/2.png'], ['裁断的翎羽', 'plugins/xiaoye-plugin/resources/img/饰金之梦/2.png']],
+    '时之沙': [['贤智的定期', 'plugins/xiaoye-plugin/resources/img/深林的记忆/3.png'], ['沉金的岁月', 'plugins/xiaoye-plugin/resources/img/饰金之梦/3.png']],
+    '空之杯': [['迷误者之灯', 'plugins/xiaoye-plugin/resources/img/深林的记忆/4.png'], ['如蜜的终宴', 'plugins/xiaoye-plugin/resources/img/饰金之梦/4.png']],
+    '理之冠': [['月桂的宝冠', 'plugins/xiaoye-plugin/resources/img/深林的记忆/5.png'], ['沙王的投影', 'plugins/xiaoye-plugin/resources/img/饰金之梦/5.png']]
+}
+
+qita : {
+    '生之花': [['角斗士的留恋', 'plugins/xiaoye-plugin/resources/img/角斗士的终幕礼/1.png'], ['乐团的晨光', 'plugins/xiaoye-plugin/resources/img/流浪大地的乐团/1.png']],
+    '死之羽': [['角斗士的归宿', 'plugins/xiaoye-plugin/resources/img/角斗士的终幕礼/2.png'], ['琴师的箭羽', 'plugins/xiaoye-plugin/resources/img/流浪大地的乐团/2.png']],
+    '时之沙': [['角斗士的希冀', 'plugins/xiaoye-plugin/resources/img/角斗士的终幕礼/3.png'], ['终幕的时计', 'plugins/xiaoye-plugin/resources/img/流浪大地的乐团/3.png']],
+    '空之杯': [['角斗士的酣醉', 'plugins/xiaoye-plugin/resources/img/角斗士的终幕礼/4.png'], ['吟游者之壶', 'plugins/xiaoye-plugin/resources/img/流浪大地的乐团/4.png']],
+    '理之冠': [['角斗士的凯旋', 'plugins/xiaoye-plugin/resources/img/角斗士的终幕礼/5.png'], ['指挥的礼帽', 'plugins/xiaoye-plugin/resources/img/流浪大地的乐团/5.png']]
+}
+
+louge : {
+    '生之花': [['月女的华彩', 'plugins/xiaoye-plugin/resources/img/乐园遗落之花/1.png'], ['众王之都的开端', 'plugins/xiaoye-plugin/resources/img/沙上楼阁史话/1.png']],
+    '死之羽': [['谢落的筵席', 'plugins/xiaoye-plugin/resources/img/乐园遗落之花/2.png'], ['黄金邦国的结末', 'plugins/xiaoye-plugin/resources/img/沙上楼阁史话/2.png']],
+    '时之沙': [['凝结的时刻', 'plugins/xiaoye-plugin/resources/img/乐园遗落之花/3.png'], ['迷醉长梦的守护', 'plugins/xiaoye-plugin/resources/img/沙上楼阁史话/3.png']],
+    '空之杯': [['守秘的魔瓶', 'plugins/xiaoye-plugin/resources/img/乐园遗落之花/4.png'], ['失落迷途的机芯', 'plugins/xiaoye-plugin/resources/img/沙上楼阁史话/4.png']],
+    '理之冠': [['紫晶的花冠', 'plugins/xiaoye-plugin/resources/img/乐园遗落之花/5.png'], ['流沙贵嗣的遗宝', 'plugins/xiaoye-plugin/resources/img/沙上楼阁史话/5.png']]
+}
