@@ -247,6 +247,59 @@ let util = {
         return ret
     },
 
+    //强化
+    async qianghua(fucitiao, fucitiaoData, cishu) {
+        for (let k = 0; k < cishu; k++) {
+            //获得强化的词条
+            let benci = await this.getQianghuacitiao(fucitiao)
+            //获得强化的数值
+            let fucitiaoUpData = await this.getQianghuashuzhi(benci)
+            //循环副词条找到这个副词条然后相加
+            for (let j = 0; j < fucitiao.length; j++) {
+                if (fucitiao[j] == benci) {
+                    fucitiaoData[j] = parseFloat(fucitiaoData[fucitiao.indexOf(benci)]) + parseFloat(fucitiaoUpData)
+                    fucitiaoData[j] =
+                        ((fucitiaoData[j] + '').indexOf('.') != -1) ? fucitiaoData[j].toFixed(1) : fucitiaoData[j]
+                    break
+                }
+            }
+        }
+        return fucitiaoData
+    },
+
+    //获得主词条数值
+    async getZhucitiaodata(zhucitiao, buwei, level) {
+        let ret
+        if (buwei == '生之花') {
+            ret = syw.shengzhihuaupdata[level]
+        } else if (buwei == '死之羽') {
+            ret = syw.sizhiyuupdata[level]
+        } else {
+            if (zhucitiao == '精通') {
+                ret = syw.jingtongupdata[level]
+            } else if (zhucitiao == '攻击力') {
+                ret = syw.gongjiliupdata[level] + '%'
+            } else if (zhucitiao == '防御力') {
+                ret = syw.fangyuliupdata[level] + '%'
+            } else if (zhucitiao == '充能') {
+                ret = syw.chongnengupdata[level] + '%'
+            } else if (zhucitiao == '生命值') {
+                ret = syw.shengmingzhiupdata[level] + '%'
+            } else if (zhucitiao == '暴击率') {
+                ret = syw.baojilvupdata[level] + '%'
+            } else if (zhucitiao == '暴击伤害') {
+                ret = syw.baojishanghaiupdata[level] + '%'
+            } else if (zhucitiao == '治疗加成') {
+                ret = syw.zhiliaoupdata[level] + '%'
+            } else if (zhucitiao == '物理伤害加成') {
+                ret = syw.wulishanghaiupdata[level] + '%'
+            } else {
+                ret = syw.shanghaijiachengupdata[level] + '%'
+            }
+        }
+        return ret
+    },
+
     //发送转发消息
     //输入data一个数组,元素是字符串,每一个元素都是一条消息.
     async ForwardMsg(e, data) {
@@ -274,74 +327,14 @@ let util = {
         for (let i = 0; i < fucitiaoData.length; i++) {
             if (arr.includes(fucitiao[i])) {
                 data[i] = data[i] + '%'
+            } else {
+                data[i] = data[i] + ''
             }
 
         }
         return data
     },
 
-
-    //主词条升级+20
-    async randomUpZhucitiao(zhucitiao, buwei) {
-        let zhucitiaoData
-        if (buwei == '生之花') {
-            zhucitiaoData = '4780'
-        } else if (buwei == '死之羽') {
-            zhucitiaoData = '311'
-        } else {
-            if (zhucitiao == '精通') {
-                zhucitiaoData = '187'
-            } else if (zhucitiao == '攻击力') {
-                zhucitiaoData = '46.6%'
-            } else if (zhucitiao == '防御力') {
-                zhucitiaoData = '58.3%'
-            } else if (zhucitiao == '充能') {
-                zhucitiaoData = '51.8%'
-            } else if (zhucitiao == '生命值') {
-                zhucitiaoData = '46.6%'
-            } else if (zhucitiao == '暴击率') {
-                zhucitiaoData = '31.1%'
-            } else if (zhucitiao == '暴击伤害') {
-                zhucitiaoData = '62.2%'
-            } else if (zhucitiao == '治疗加成') {
-                zhucitiaoData = '35.9%'
-            } else {
-                zhucitiaoData = '46.6%'
-            }
-        }
-        return zhucitiaoData;
-    },
-
-    //给主词条加初始值
-    async zhucitiaoAddData(zhucitiao, buwei) {
-        let zhucitiaoData
-        if (buwei == '生之花') {
-            zhucitiaoData = '717'
-        } else if (buwei == '死之羽') {
-            zhucitiaoData = '47'
-        } else {
-            if (zhucitiao == '精通') {
-                zhucitiaoData = '28'
-            } else if (zhucitiao == '攻击力') {
-                zhucitiaoData = '7.0%'
-            } else if (zhucitiao == '防御力') {
-                zhucitiaoData = '8.7%'
-            } else if (zhucitiao == '充能') {
-                zhucitiaoData = '7.8%'
-            } else if (zhucitiao == '生命值') {
-                zhucitiaoData = '7.0%'
-            } else if (zhucitiao == '暴击率') {
-                zhucitiaoData = '4.7%'
-            } else if (zhucitiao == '暴击伤害') {
-                zhucitiaoData = '9.3%'
-            } else if (zhucitiao == '治疗加成') {
-                zhucitiaoData = '5.4%'
-            } else {
-                zhucitiaoData = '7.0%'
-            }
-        }
-        return zhucitiaoData;
-    },
 
     //随机获得指定位置指定副本的套装之一
     async randomShengyiwu(buwei, fuben) {

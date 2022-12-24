@@ -2,7 +2,7 @@
 [![访问量](https://profile-counter.glitch.me/xiaoye-plugin/count.svg)](https://gitee.com/xiaoye12123/xiaoye-plugin.git)
 
 #### 介绍
-这是一个- [Yunzai-Bot V3](https://gitee.com/Le-niao/Yunzai-Bot)的插件,提供模拟刷圣遗物功能
+这是一个- [Yunzai-Bot V3](https://gitee.com/Le-niao/Yunzai-Bot)的插件,提供模拟刷圣遗物功能,只适配v3
 
 
 #### 安装教程
@@ -20,16 +20,16 @@ git clone https://gitee.com/xiaoye12123/xiaoye-plugin.git ./plugins/xiaoye-plug
 
 #### 使用说明
 
-1.  刷圣遗物绝缘   刷圣遗物草套
-2.  强化圣遗物
+1.  刷圣遗物绝缘  刷圣遗物草套
+2.  强化圣遗物 强化圣遗物4 后面可以接1-20的数字,代表强化多少级
 3.  更新中
 
 #### 预计更新
 
 
-1.  强化+4
-2.  保存圣遗物到本地,查看所有保存的圣遗物
-3.  通过指令设置概率
+1.  通过指令设置概率
+2.  帮助和设置列表
+3.  保存圣遗物到本地,查看所有保存的圣遗物
 
 
 #### 免责声明

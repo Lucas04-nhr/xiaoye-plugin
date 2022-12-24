@@ -36,6 +36,43 @@ let syw = {
     chongneng: data.chongneng,
     //精通成长值
     jingtong: data.jingtong,
+    //生之花主词条成长值
+    shengzhihuaupdata: data.shengzhihuaupdata,
+
+    //死之羽主词条成长值
+    sizhiyuupdata: data.sizhiyuupdata,
+
+    //精通主词条成长值
+    jingtongupdata: data.jingtongupdata,
+
+    //攻击力主词条成长值
+    gongjiliupdata: data.gongjiliupdata,
+
+    //充能主词条成长值
+    chongnengupdata: data.chongnengupdata,
+
+    //防御力主词条成长值
+    fangyuliupdata: data.fangyuliupdata,
+
+    //生命值主词条成长值
+    shengmingzhiupdata: data.shengmingzhiupdata,
+
+    //元素伤害加成主词条成长值
+    shanghaijiachengupdata: data.shanghaijiachengupdata,
+
+    //物理伤害加成主词条成长值
+    wulishanghaiupdata: data.wulishanghaiupdata,
+
+    //暴击率主词条成长值
+    baojilvupdata: data.baojilvupdata,
+
+    //暴击伤害主词条成长值
+    baojishanghaiupdata: data.baojishanghaiupdata,
+
+    //治疗加成主词条成长值
+    zhiliaoupdata: data.zhiliaoupdata,
+
+
     //副本掉落
     //火本
     huoben: data.huoben,

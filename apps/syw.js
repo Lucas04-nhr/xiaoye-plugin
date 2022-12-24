@@ -17,7 +17,7 @@ export class ssyw extends plugin {
                         fnc: 'chuhuoba'
                     },
                     {
-                        reg: '^#*强化圣遗物$',
+                        reg: '^#*强化圣遗物[0-9]*$',
                         fnc: 'qianghua'
                     }
                 ]
@@ -44,11 +44,14 @@ export class ssyw extends plugin {
             return true
         }
 
+        //初始等级0
+        let level = 0
+
         //确定主词条
         let zhucitiao = await util.getZhucitiao(buwei)
 
         //给主词条加初始值
-        let zhucitiaoData = await util.zhucitiaoAddData(zhucitiao, buwei)
+        let zhucitiaoData = await util.getZhucitiaodata(zhucitiao, buwei, level)
 
         //确定副词条
         let fucitiao = await util.getFucitiao(zhucitiao, buwei)
@@ -58,10 +61,6 @@ export class ssyw extends plugin {
 
         //加个符号%
         fucitiaoData = await util.fucitiaoAddfuhao(fucitiao, fucitiaoData)
-
-        let level = '0'
-
-
 
         this._path = process.cwd().replace(/\\/g, "/");
         let data = {
@@ -86,19 +85,35 @@ export class ssyw extends plugin {
 
     //强化
     async qianghua(e) {
+        let up = e.msg.replace(/#|强化圣遗物/g, "").trim();
+        up = parseInt(up)
+        if (up > 20) {
+            up = 20
+        }
+
         //要强化的圣遗物数据
         let data = await redis.get('xiaoye:syw:qq:' + e.user_id)
         data = JSON.parse(data)
         if (data == null) {
             e.reply('当前没有圣遗物')
-            return false
+            return true
         }
         //获得等级
         let level = data.level
+        level = parseInt(level)
+        if (!up) {
+            up = 20 - level
+        }
         if (level == 20) {
             e.reply('当前圣遗物已强化')
-            return
+            return true
+        } else if (level + up > 20) {
+            up = 20 - level
         }
+
+        //根据等级获得强化次数
+        let cishu = parseInt((level % 4 + up) / 4)
+
         //获取圣遗物名字
         let shengyiwu = data.shengyiwu
         //获取部位
@@ -107,63 +122,44 @@ export class ssyw extends plugin {
         let zhucitiao = data.zhucitiao
         //获取主词条数据
         let zhucitiaoData = data.zhucitiaoData
-        zhucitiaoData = zhucitiaoData.replace(/%/g, "").trim()
         //获取副词条
         let fucitiao = data.fucitiao
         //获取副词条数值
         let fucitiaoData = data.fucitiaoData
-        //去掉%
-        for (let i = 0; i < fucitiaoData.length; i++) {
-            fucitiaoData[i] = fucitiaoData[i].replace(/%/g, "").trim()
+
+        //如果强化次数大于0
+        if (cishu > 0) {
+            //去掉%
+            for (let i = 0; i < fucitiaoData.length; i++) {
+                fucitiaoData[i] = fucitiaoData[i].replace(/%/g, "").trim()
+            }
+            //四词条
+            if (fucitiao[3] && level != '20') {
+
+                //强化
+                fucitiaoData = await util.qianghua(fucitiao, fucitiaoData, cishu)
+
+            } else if (fucitiao[2] && level != '20') {
+                //先加个词条
+                let newCitiao = await util.getOneFucitiao(zhucitiao, fucitiao, buwei)
+                fucitiao.push(newCitiao)
+                let newShuzhi = await util.getOnefucitiaoData(newCitiao)
+                fucitiaoData.push(newShuzhi)
+
+                //要次数大于1才强化,不然就只加词条
+                if (cishu > 1) {
+                    //有一次用来加词条了,所以要减1
+                    fucitiaoData = await util.qianghua(fucitiao, fucitiaoData, cishu - 1)
+                }
+            }
+            //加上%
+            fucitiaoData = await util.fucitiaoAddfuhao(fucitiao, fucitiaoData)
         }
 
-        //四词条
-        if (fucitiao[3] && level != '20') {
-            //循环五次强化
-            for (let k = 0; k < 5; k++) {
-                //随机获得强化的词条
-                let benci = await util.getQianghuacitiao(fucitiao)
-                //获得强化的数值
-                let fucitiaoUpData = await util.getQianghuashuzhi(benci)
-                //循环数值相加
-                for (let j = 0; j < fucitiao.length; j++) {
-                    if (fucitiao[j] == benci) {
-                        fucitiaoData[j] = parseFloat(fucitiaoData[fucitiao.indexOf(benci)]) + parseFloat(fucitiaoUpData)
-                        fucitiaoData[j] =
-                            ((fucitiaoData[j] + '').indexOf('.') != -1) ? fucitiaoData[j].toFixed(1) : fucitiaoData[j]
-                        break
-                    }
-                }
-            }
-        } else if (fucitiao[2] && level != '20') {
-            //加个词条
-            let newCitiao = await util.getOneFucitiao(zhucitiao, fucitiao, buwei)
-            fucitiao.push(newCitiao)
-            let newShuzhi = await util.getOnefucitiaoData(newCitiao)
-            fucitiaoData.push(newShuzhi)
-            //循环四次强化
-            for (let k = 0; k < 4; k++) {
-                //获得强化的词条
-                let benci = await util.getQianghuacitiao(fucitiao)
-                //获得强化的数值
-                let fucitiaoUpData = await util.getQianghuashuzhi(benci)
-                //循环数值相加
-                for (let j = 0; j < fucitiao.length; j++) {
-                    if (fucitiao[j] == benci) {
-                        fucitiaoData[j] = parseFloat(fucitiaoData[fucitiao.indexOf(benci)]) + parseFloat(fucitiaoUpData)
-                        fucitiaoData[j] =
-                            ((fucitiaoData[j] + '').indexOf('.') != -1) ? fucitiaoData[j].toFixed(1) : fucitiaoData[j]
-                        break
-                    }
-                }
-            }
-        }
-        //加个符号%
-        fucitiaoData = await util.fucitiaoAddfuhao(fucitiao, fucitiaoData)
-        //等级设置为20
-        level = '20'
-        //设置主词条+20数据
-        zhucitiaoData = await util.randomUpZhucitiao(zhucitiao, buwei)
+        //等级加一下
+        level = level + up
+        //设置主词条数据
+        zhucitiaoData = await util.getZhucitiaodata(zhucitiao, buwei, level)
         this._path = process.cwd().replace(/\\/g, "/");
         let newData = {
             tplFile: './plugins/xiaoye-plugin/resources/html/index.html',
