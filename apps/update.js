@@ -26,7 +26,7 @@ export class update extends plugin {
             priority: 999,
             rule: [
                 {
-                    reg: '^#小叶(强制)?更新$',
+                    reg: '^#小叶(插件)?(强制)?更新$',
                     fnc: 'update'
                 }
             ]

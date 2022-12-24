@@ -1,4 +1,5 @@
 import fs from 'node:fs'
+import './model/init.js'
 
 const files = fs.readdirSync('./plugins/xiaoye-plugin/apps').filter(file => file.endsWith('.js'))
 

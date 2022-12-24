@@ -1,5 +1,5 @@
 import syw from './readData.js'
-import config from './readConfig.js'
+import cfg from './config.js'
 
 let util = {
 
@@ -23,7 +23,7 @@ let util = {
     //获得一个部位
     async getBuwei() {
         //概率数组 [花,毛,沙,杯,头]
-        let probability = config.buwei
+        let probability = cfg.buwei
         let i = await this.randomGetOne(probability)
         return syw.buweiList[i]
     },
@@ -40,17 +40,17 @@ let util = {
             zhucitiao = '攻击力'
         } else if (buwei == syw.buweiList[2]) {//时之沙
             //时之沙主词条的概率
-            probability = config.shizhisha
+            probability = cfg.shizhisha
             let i = await this.randomGetOne(probability)
             zhucitiao = syw.shizhishazhucitiaoList[i]
         } else if (buwei == syw.buweiList[3]) {//空之杯
             //空之杯主词条的概率
-            probability = config.kongzhibei
+            probability = cfg.kongzhibei
             let i = await this.randomGetOne(probability)
             zhucitiao = syw.kongzhibeizhucitiaoList[i]
         } else if (buwei == syw.buweiList[4]) {//理之冠
             //理之冠主词条的概率
-            probability = config.lizhiguan
+            probability = cfg.lizhiguan
             let i = await this.randomGetOne(probability)
             zhucitiao = syw.lizhiguanzhucitiaoList[i]
         }
@@ -60,14 +60,14 @@ let util = {
     //获得副词条
     async getFucitiao(zhucitiao, buwei) {
         //确定是三词条还是四词条  [3,4]
-        let citiaoProbability = config.citiao
+        let citiaoProbability = cfg.citiao
         let citiaoNum = await this.randomGetOne(citiaoProbability) == 0 ? 3 : 4
 
         //副词条列表
         let fucitiaolist = JSON.parse(JSON.stringify(syw.fucitiaoList))
 
         //副词条概率数组
-        let fucitiaoProbability = JSON.parse(JSON.stringify(config.fucitiao))
+        let fucitiaoProbability = JSON.parse(JSON.stringify(cfg.fucitiao))
 
         //把副词条和概率对应起来
         for (let i = 0; i < fucitiaolist.length; i++) {
@@ -114,7 +114,7 @@ let util = {
         for (let i = 0; i < fucitiao.length; i++) {
             //先判断是第几档
             //强化档位概率数组
-            let qianghuadangwei = config.qianghua
+            let qianghuadangwei = cfg.qianghua
             //判断强化第几档 [第一档最高,二,三,第四档最低]
             let j = await this.randomGetOne(qianghuadangwei)
             //然后获取这个圣遗物的强化数值
@@ -127,7 +127,7 @@ let util = {
     async getOnefucitiaoData(fucitiao) {
         //先判断是第几档
         //强化档位概率数组
-        let qianghuadangwei = config.qianghua
+        let qianghuadangwei = cfg.qianghua
         //判断强化第几档 [第一档最高,二,三,第四档最低]
         let i = await this.randomGetOne(qianghuadangwei)
         //然后获取这个圣遗物的强化数值
@@ -141,7 +141,7 @@ let util = {
         let fucitiaolist = JSON.parse(JSON.stringify(syw.fucitiaoList))
 
         //副词条概率数组
-        let fucitiaoProbability = JSON.parse(JSON.stringify(config.fucitiao))
+        let fucitiaoProbability = JSON.parse(JSON.stringify(cfg.fucitiao))
 
         //把副词条和概率对应起来
         for (let i = 0; i < fucitiaolist.length; i++) {
@@ -184,7 +184,7 @@ let util = {
     //获得强化的词条
     async getQianghuacitiao(fucitiao) {
         //强化的副词条概率数组
-        let probability = config.fucitiaoqianghua
+        let probability = cfg.fucitiaoqianghua
         probability = await this.getQianghuagailv(probability, fucitiao)
         //判断强化哪个词条
         let i = await this.randomGetOne(probability)
@@ -194,7 +194,7 @@ let util = {
     //获得强化的数值
     async getQianghuashuzhi(fucitiao) {
         //强化档位概率数组
-        let qianghuadangwei = config.qianghua
+        let qianghuadangwei = cfg.qianghua
         //判断强化第几档 [第一档最高,二,三,第四档最低]
         let i = await this.randomGetOne(qianghuadangwei)
         //然后获取这个圣遗物的强化数值
@@ -423,7 +423,7 @@ let util = {
     },
 
     async getGayCD(e) {
-        if (config.cd > 0) {
+        if (cfg.cd > 0) {
             if (!e.isMaster) {
                 let cd = await redis.ttl('xiaoye:syw:cd:qq:' + e.user_id)
                 return cd
@@ -433,8 +433,8 @@ let util = {
     },
 
     async setGayCD(e) {
-        if (config.cd > 0) {
-            await redis.set('xiaoye:syw:cd:qq:' + e.user_id, JSON.stringify('cd'), { EX: config.cd })
+        if (cfg.cd > 0) {
+            await redis.set('xiaoye:syw:cd:qq:' + e.user_id, JSON.stringify('cd'), { EX: cfg.cd })
         }
     }
 }

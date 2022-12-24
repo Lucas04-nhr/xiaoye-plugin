@@ -12,11 +12,11 @@
 ```base
 git clone https://gitee.com/xiaoye12123/xiaoye-plugin.git ./plugins/xiaoye-plugin/
 ```
-进行安装。建议使用上述命令进行安装，以便于后续更新。 管理员发送`#小叶更新`即可自动更新
+进行安装。建议使用上述命令进行安装，以便于后续更新。 管理员发送`#更新xiaoye-plugin`即可自动更新
 
 #### 自定义概率
 
-在xiaoye-plugin/config/config.yaml文件中修改,修改后重启生效
+在xiaoye-plugin/config/config.yaml文件中修改
 
 #### 使用说明
 
@@ -29,7 +29,7 @@ git clone https://gitee.com/xiaoye12123/xiaoye-plugin.git ./plugins/xiaoye-plug
 
 1.  强化+4
 2.  保存圣遗物到本地,查看所有保存的圣遗物
-3.  自定义圣遗物别名
+3.  通过指令设置概率
 
 
 #### 免责声明
