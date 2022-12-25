@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <title>帮助</title>
+    <link rel="stylesheet" type="text/css" href="{{pluResPath}}/plugins/xiaoye-plugin/resources/help/help.css" />
+</head>
+
+<body>
+    <div class="container" id="container">
+        <div class="head_box">
+            <h1 class="day_text">小叶帮助</h1>
+            <div class="plugin">xiaoye-plugin</div>
+        </div>
+
+        <div class="help">
+
+            <div class="title">
+                <h2>{{helpList[0].group}}</h2>
+            </div>
+            <div class="help-text">
+                {{each helpList[0].list list}}
+                <div class="help-div">
+                    <div>
+                        <div class="img-div">
+                            <img src="{{pluResPath}}/plugins/xiaoye-plugin/resources/help/img/{{list.icon}}.png">
+                        </div>
+                        <div class="text-div">
+                            <b class="text-title-div">
+                                {{list.title}}
+                            </b>
+                            <div>
+                                {{list.desc}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{/each}}
+
+            </div>
+        </div>
+
+        <div class="help">
+            <div class="title">
+                <h2>{{helpList[1].group}}</h2>
+            </div>
+            <div class="help-text">
+                {{each helpList[1].list list}}
+                <div class="help-div2">
+                    <div>
+                        <div class="img-div">
+                            <img src="{{pluResPath}}/plugins/xiaoye-plugin/resources/help/img/{{list.icon}}.png">
+                        </div>
+                        <div class="text-div">
+                            <b class="text-title-div">
+                                {{list.title}}
+                            </b>
+                            <div>
+                                {{list.desc}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{/each}}
+                <!-- <div class="help-div2">
+                    <div>
+                        <div class="img-div">
+                            <img src="./img/04.png">
+                        </div>
+                        <div class="text-div">
+                            <b class="text-title-div">
+                                各个部位掉落概率
+                            </b>
+                            <div>
+                                生之花:25,死之羽:25,时之沙:25,空之杯:25,理之冠:25
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+
+            </div>
+        </div>
+
+        <h3 class="logo">Created By Yunzai-Bot & xiaoye-plugin</h3>
+    </div>
+</body>
+
+</html>
