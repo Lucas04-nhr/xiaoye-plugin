@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <title>帮助</title>
+    <link rel="preload" href="{{pluResPath}}/plugins/xiaoye-plugin/resources/font/genshin.ttf" as="font">
+    <link rel="stylesheet" type="text/css" href="{{pluResPath}}/plugins/xiaoye-plugin/resources/html/help/help.css" />
+</head>
+
+<body>
+    <div class="container" id="container">
+        <div class="head_box">
+            <h1 class="day_text">小叶帮助</h1>
+            <div class="plugin">xiaoye-plugin</div>
+        </div>
+
+        <div class="help">
+
+            <div class="title">
+                <h2>{{helpList[0].group}}</h2>
+            </div>
+            <div class="help-text">
+                {{each helpList[0].list list}}
+                <div class="help-div">
+                    <div>
+                        <div class="img-div">
+                            <img src="{{pluResPath}}/plugins/xiaoye-plugin/resources/html/help/img/{{list.icon}}.png">
+                        </div>
+                        <div class="text-div">
+                            <b class="text-title-div">
+                                {{list.title}}
+                            </b>
+                            <div>
+                                {{list.desc}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{/each}}
+
+            </div>
+        </div>
+
+        <div class="help">
+            <div class="title">
+                <h2>{{helpList[1].group}}</h2>
+            </div>
+            <div class="help-text">
+                {{each helpList[1].list list}}
+                <div class="help-div2">
+                    <div>
+                        <div class="img-div">
+                            <img src="{{pluResPath}}/plugins/xiaoye-plugin/resources/html/help/img/{{list.icon}}.png">
+                        </div>
+                        <div class="text-div">
+                            <b class="text-title-div">
+                                {{list.title}}
+                            </b>
+                            <div>
+                                {{list.desc}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+
+        <h3 class="logo">Created By Yunzai-Bot & xiaoye-plugin</h3>
+    </div>
+</body>
+
+</html>

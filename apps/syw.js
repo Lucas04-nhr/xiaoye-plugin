@@ -64,7 +64,7 @@ export class ssyw extends plugin {
 
         this._path = process.cwd().replace(/\\/g, "/");
         let data = {
-            tplFile: './plugins/xiaoye-plugin/resources/html/index.html',
+            tplFile: './plugins/xiaoye-plugin/resources/html/syw/syw.html',
             pluResPath: this._path,
             fucitiao: fucitiao,
             fucitiaoData: fucitiaoData,
@@ -163,7 +163,7 @@ export class ssyw extends plugin {
         zhucitiaoData = await util.getZhucitiaodata(zhucitiao, buwei, level)
         this._path = process.cwd().replace(/\\/g, "/");
         let newData = {
-            tplFile: './plugins/xiaoye-plugin/resources/html/index.html',
+            tplFile: './plugins/xiaoye-plugin/resources/html//syw/syw.html',
             pluResPath: `${this._path}`,
             fucitiao: fucitiao,
             fucitiaoData: fucitiaoData,

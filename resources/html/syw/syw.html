@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <title></title>
+    <link rel="preload" href="{{pluResPath}}/plugins/xiaoye-plugin/resources/font/genshin.ttf" as="font">
+    <link rel="stylesheet" type="text/css" href="{{pluResPath}}/plugins/xiaoye-plugin/resources/html/syw/syw.css" />
+</head>
+
+<body>
+    <div class="body">
+        <div class="name">{{shengyiwu[0]}}</div>
+        <div class="img"><img src="{{pluResPath}}/{{shengyiwu[1]}}"></div>
+        <div class="buwei">{{buwei}}</div>
+        <div class="zhucitiao">{{zhucitiao}}</div>
+        <div class="zhucitiaoData">{{zhucitiaoData}}</div>
+        <div class="level">+{{level}}</div>
+        {{if fucitiao[3]}}
+        <div class="fucitiao">
+            <ul class="ul">
+                <li>{{fucitiao[0]}}+{{fucitiaoData[0]}}</li>
+                <li>{{fucitiao[1]}}+{{fucitiaoData[1]}}</li>
+                <li>{{fucitiao[2]}}+{{fucitiaoData[2]}}</li>
+                <li>{{fucitiao[3]}}+{{fucitiaoData[3]}}</li>
+            </ul>
+        </div>
+        {{else}}
+        <div>
+            <ul class="ul">
+                <li>{{fucitiao[0]}}+{{fucitiaoData[0]}}</li>
+                <li>{{fucitiao[1]}}+{{fucitiaoData[1]}}</li>
+                <li>{{fucitiao[2]}}+{{fucitiaoData[2]}}</li>
+
+            </ul>
+        </div>
+        {{/if}}
+    </div>
+</body>
+
+</html>

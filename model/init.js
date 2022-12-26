@@ -10,7 +10,7 @@ async function init() {
   let pathDef = configPath + 'def/'
   const files = fs.readdirSync(pathDef).filter(file => file.endsWith('.yaml'))
   for (let file of files) {
-    if (file == 'help.yaml') {
+    if (file == 'help.yaml' || file == 'set.yaml') {
       continue
     }
     if (!fs.existsSync(`${path}${file}`)) {
