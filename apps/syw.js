@@ -78,7 +78,8 @@ export class ssyw extends plugin {
         await util.setGayCD(e)
         let img = await puppeteer.screenshot("syw", data);
         let msg = [segment.at(e.user_id), img]
-        e.reply(msg)
+        let msgRes = await e.reply(msg);
+        await util.recall(msgRes, e)
         return true;
 
     }
@@ -175,7 +176,8 @@ export class ssyw extends plugin {
         await redis.set('xiaoye:syw:qq:' + e.user_id, JSON.stringify(newData), { EX: 86400 })
         let img = await puppeteer.screenshot("syw", newData);
         let msg = [segment.at(e.user_id), img]
-        e.reply(msg)
+        let msgRes = await e.reply(msg);
+        await util.recall(msgRes, e)
         return true;
     }
 

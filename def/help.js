@@ -62,6 +62,11 @@ const helpList = [
         "title": "cd,单位为秒",
         "desc": "",
       },
+      {
+        "icon": 12,
+        "title": "撤回时间,单位为秒,为0则不撤回",
+        "desc": "",
+      },
     ],
   }
 ]

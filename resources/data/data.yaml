@@ -75,7 +75,7 @@ baojishanghaiupdata :  ["9.3", "11.9", "14.6", "17.2", "19.9", "22.5", "25.2", "
 zhiliaoupdata : ["5.4", "6.9", "8.5", "10.0", "11.5", "13.0", "14.6", "16.1", "17.6", "19.1", "20.6", "22.2", "23.7", "25.2", "26.7", "28.3", "29.8", "31.3", "32.8", "34.4", "35.9"]
 
 huoben : {
-    '生之花': [['魔女的炎之花', 'plugins/xiaoye-plugin/resources/img/炽烈的炎之魔女/1.png'], ['渡火着的决绝', 'plugins/xiaoye-plugin/resources/img/渡过烈火的贤人/1.png']],
+    '生之花': [['魔女的炎之花', 'plugins/xiaoye-plugin/resources/img/炽烈的炎之魔女/1.png'], ['渡火者的决绝', 'plugins/xiaoye-plugin/resources/img/渡过烈火的贤人/1.png']],
     '死之羽': [['魔女常燃之羽', 'plugins/xiaoye-plugin/resources/img/炽烈的炎之魔女/2.png'], ['渡火者的解脱', 'plugins/xiaoye-plugin/resources/img/渡过烈火的贤人/2.png']],
     '时之沙': [['魔女破灭之时', 'plugins/xiaoye-plugin/resources/img/炽烈的炎之魔女/3.png'], ['渡火者的煎熬', 'plugins/xiaoye-plugin/resources/img/渡过烈火的贤人/3.png']],
     '空之杯': [['魔女的心之火', 'plugins/xiaoye-plugin/resources/img/炽烈的炎之魔女/4.png'], ['渡火者的醒悟', 'plugins/xiaoye-plugin/resources/img/渡过烈火的贤人/4.png']],

@@ -59,6 +59,15 @@ class Cfg {
   }
 
 
+  /** 撤回时间 */
+  get recall() {
+    let recall = this.getConfig('config').recall
+    if (!recall) {
+      recall = 0
+    }
+    return recall
+  }
+
   /** 用户配置 */
   getConfig(name) {
     return this.getYaml('config', name)

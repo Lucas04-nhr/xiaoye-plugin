@@ -23,6 +23,8 @@ let helpUtil = {
         let fucitiaoqianghua = cfg.fucitiaoqianghua
         //cd
         let cd = cfg.cd
+        //撤回时间
+        let recall = cfg.recall
 
         let config = [citiao, buwei, shizhisha, kongzhibei, lizhiguan, fucitiao, qianghua, fucitiaoqianghua]
 
@@ -44,7 +46,7 @@ let helpUtil = {
         let data = [citiaoList, buweiList, shizhishazhucitiaoList, kongzhibeizhucitiaoList, lizhiguanzhucitiaoList, fucitiaoList, qianghuaList, fucitiaoList]
 
         //九次循环把desc替换成指定样式
-        for (let i = 0; i < helpList[1].list.length - 1; i++) {
+        for (let i = 0; i < helpList[1].list.length - 2; i++) {
             let ret = ""
             for (let k = 0; k < config[i].length; k++) {
                 ret = ret + data[i][k] + ":" + config[i][k] + " "
@@ -54,6 +56,7 @@ let helpUtil = {
 
         }
         helpList[1].list[8].desc = 'cd:' + cd
+        helpList[1].list[9].desc = '撤回时间:' + recall
         return helpList
     }
 }
