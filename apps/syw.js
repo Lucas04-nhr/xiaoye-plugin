@@ -1,7 +1,7 @@
 import plugin from '../../../lib/plugins/plugin.js'
 import puppeteer from "../../../lib/puppeteer/puppeteer.js";
 import { segment } from "oicq";
-import util from "../model/util.js"
+import util from "../model/sywUtil.js"
 
 export class ssyw extends plugin {
     constructor() {

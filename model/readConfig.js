@@ -82,7 +82,6 @@ class Cfg {
     const configPath = process.cwd().replace(/\\/g, "/") + '/plugins/xiaoye-plugin/'
     let file = configPath + `${type}/${name}.yaml`
     let key = `${type}.${name}`
-    if (this.config[key]) return this.config[key]
 
     this.config[key] = YAML.parse(
       fs.readFileSync(file, 'utf8')
@@ -91,6 +90,21 @@ class Cfg {
     this.watch(file, name, type)
 
     return this.config[key]
+  }
+
+  /**
+   * 修改配置yaml
+   */
+  setYaml(type, name, data) {
+    const configPath = process.cwd().replace(/\\/g, "/") + '/plugins/xiaoye-plugin/'
+    let file = configPath + `${type}/${name}.yaml`
+    try {
+      fs.writeFileSync(file, YAML.stringify(data), 'utf8')
+    } catch (error) {
+      logger.error(`[${type}] 写入失败 ${error}`)
+      return false
+    }
+    return true
   }
 
   /** 监听配置文件 */

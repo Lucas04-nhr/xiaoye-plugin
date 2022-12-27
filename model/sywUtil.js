@@ -1,5 +1,5 @@
 import syw from './readData.js'
-import cfg from './config.js'
+import cfg from './readConfig.js'
 
 let util = {
 

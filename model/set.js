@@ -1,6 +1,6 @@
-import cfg from './config.js'
+import cfg from './readConfig.js'
 import syw from './readData.js'
-import setList from '../def/set.js'
+import setList from '../resources/data/set.js'
 
 let setUtil = {
 

@@ -16,7 +16,7 @@ git clone https://gitee.com/xiaoye12123/xiaoye-plugin.git ./plugins/xiaoye-plug
 
 #### 自定义概率
 
-在xiaoye-plugin/config/config.yaml文件中修改
+  使用指令小叶设置查看详细
 
 #### 使用说明
 
@@ -27,9 +27,9 @@ git clone https://gitee.com/xiaoye12123/xiaoye-plugin.git ./plugins/xiaoye-plug
 #### 预计更新
 
 
-1.  通过指令设置概率
-2.  设置列表
-3.  保存圣遗物到本地,查看所有保存的圣遗物
+1.  适配锅巴
+2.  保存圣遗物到本地,查看所有保存的圣遗物
+3.  有建议可以提Issues
 
 
 #### 免责声明
