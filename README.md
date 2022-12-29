@@ -12,7 +12,7 @@
 ```base
 git clone https://gitee.com/xiaoye12123/xiaoye-plugin.git ./plugins/xiaoye-plugin/
 ```
-进行安装。建议使用上述命令进行安装，以便于后续更新。 管理员发送`#更新xiaoye-plugin`即可使用yunzi自带的更新
+进行安装。建议使用上述命令进行安装，以便于后续更新。 管理员发送`#小叶更新`即可进行更新
 
 #### 自定义概率
 
@@ -27,9 +27,8 @@ git clone https://gitee.com/xiaoye12123/xiaoye-plugin.git ./plugins/xiaoye-plug
 #### 预计更新
 
 
-1.  适配锅巴
-2.  保存圣遗物到本地,查看所有保存的圣遗物
-3.  有建议可以提Issues
+1.  保存圣遗物到本地,查看所有保存的圣遗物
+2.  有建议可以提Issues
 
 
 #### 免责声明
