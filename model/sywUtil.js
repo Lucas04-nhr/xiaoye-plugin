@@ -429,23 +429,6 @@ let util = {
         if (cfg.cd > 0) {
             await redis.set('xiaoye:syw:cd:qq:' + e.user_id, JSON.stringify('cd'), { EX: cfg.cd })
         }
-    },
-
-    async recall(msgRes, e) {
-        let recall = cfg.recall
-        if (recall != 0 && msgRes && msgRes.message_id) {
-            let target = null;
-            if (e.isGroup) {
-                target = e.group;
-            } else {
-                target = e.friend;
-            }
-            if (target != null) {
-                setTimeout(() => {
-                    target.recallMsg(msgRes.message_id);
-                }, recall * 1000);
-            }
-        }
     }
 }
 export default util

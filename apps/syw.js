@@ -1,7 +1,7 @@
 import plugin from '../../../lib/plugins/plugin.js'
 import puppeteer from "../../../lib/puppeteer/puppeteer.js";
-import { segment } from "oicq";
 import util from "../model/sywUtil.js"
+import cfg from '../model/readConfig.js'
 
 export class ssyw extends plugin {
     constructor() {
@@ -75,11 +75,9 @@ export class ssyw extends plugin {
             level: level
         }
         await redis.set('xiaoye:syw:qq:' + e.user_id, JSON.stringify(data), { EX: 86400 })
-        await util.setGayCD(e)
         let img = await puppeteer.screenshot("syw", data);
-        let msg = [segment.at(e.user_id), img]
-        let msgRes = await e.reply(msg);
-        await util.recall(msgRes, e)
+        await e.reply(img, false, { at: true, recallMsg: `${cfg.recall}` });
+        await util.setGayCD(e)
         return true;
 
     }
@@ -175,9 +173,7 @@ export class ssyw extends plugin {
         }
         await redis.set('xiaoye:syw:qq:' + e.user_id, JSON.stringify(newData), { EX: 86400 })
         let img = await puppeteer.screenshot("syw", newData);
-        let msg = [segment.at(e.user_id), img]
-        let msgRes = await e.reply(msg);
-        await util.recall(msgRes, e)
+        await e.reply(img, false, { at: true, recallMsg: `${cfg.recall}` });
         return true;
     }
 

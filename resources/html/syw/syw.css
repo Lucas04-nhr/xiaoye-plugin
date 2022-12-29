@@ -40,13 +40,13 @@ body {
 
 .img {
     position: absolute;
-    top: 90px;
-    left: 390px;
+    top: 100px;
+    left: 400px;
 }
 
 img {
-    width: 140%;
-    height: 140%;
+    width: 120%;
+    height: 120%;
 }
 
 

@@ -73,6 +73,11 @@ class Cfg {
     return this.getYaml('config', name)
   }
 
+  getAll() {
+    let cfg = this.getConfig('config')
+    return { ...cfg }
+  }
+
   /**
    * 获取配置yaml
    * @param type 默认跑配置-defSet，用户配置-config
@@ -117,7 +122,7 @@ class Cfg {
     watcher.on('change', path => {
       delete this.config[key]
       if (typeof Bot == 'undefined') return
-      logger.mark(`[修改配置文件][${type}][${name}]`)
+      logger.mark(`[修改配置文件][xiaoye-plugin/${type}][${name}]`)
       if (this[`change_${name}`]) {
         this[`change_${name}`]()
       }
