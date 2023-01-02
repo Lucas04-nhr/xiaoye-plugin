@@ -61,11 +61,12 @@ class Cfg {
 
   /** 撤回时间 */
   get recall() {
-    let recall = this.getConfig('config').recall
-    if (!recall) {
-      recall = 0
-    }
-    return recall
+    return this.getConfig('config').recall || 0
+  }
+
+  /** 每天使用次数 */
+  get cishu() {
+    return this.getConfig('config').cishu || 0
   }
 
   /** 用户配置 */

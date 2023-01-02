@@ -25,6 +25,8 @@ let setUtil = {
         let cd = cfg.cd
         //撤回时间
         let recall = cfg.recall
+        //使用次数
+        let cishu = cfg.cishu
 
         let config = [citiao, buwei, shizhisha, kongzhibei, lizhiguan, fucitiao, qianghua, fucitiaoqianghua]
 
@@ -46,7 +48,7 @@ let setUtil = {
         let data = [citiaoList, buweiList, shizhishazhucitiaoList, kongzhibeizhucitiaoList, lizhiguanzhucitiaoList, fucitiaoList, qianghuaList, fucitiaoList]
 
         //循环把desc替换成指定样式
-        for (let i = 0; i < setList[1].list.length - 2; i++) {
+        for (let i = 0; i < setList[1].list.length - 3; i++) {
             let ret = ""
             for (let k = 0; k < config[i].length; k++) {
                 ret = ret + data[i][k] + ":" + config[i][k] + " "
@@ -57,6 +59,7 @@ let setUtil = {
         }
         setList[1].list[8].desc = 'cd:' + cd
         setList[1].list[9].desc = '撤回时间:' + recall
+        setList[1].list[10].desc = '每天使用次数:' + cishu
         return setList
     }
 }

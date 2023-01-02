@@ -1,5 +1,6 @@
 import syw from './readData.js'
 import cfg from './readConfig.js'
+import moment from "moment";
 
 let util = {
 
@@ -249,11 +250,13 @@ let util = {
 
     //强化
     async qianghua(fucitiao, fucitiaoData, cishu) {
+        let guocheng = []
         for (let k = 0; k < cishu; k++) {
             //获得强化的词条
             let benci = await this.getQianghuacitiao(fucitiao)
             //获得强化的数值
             let fucitiaoUpData = await this.getQianghuashuzhi(benci)
+            guocheng.push(`${benci}+${await this.fucitiaoAddfuhao(benci, fucitiaoUpData)}`)
             //循环副词条找到这个副词条然后相加
             for (let j = 0; j < fucitiao.length; j++) {
                 if (fucitiao[j] == benci) {
@@ -264,7 +267,7 @@ let util = {
                 }
             }
         }
-        return fucitiaoData
+        return { fucitiaoData, guocheng }
     },
 
     //获得主词条数值
@@ -324,13 +327,21 @@ let util = {
     async fucitiaoAddfuhao(fucitiao, fucitiaoData) {
         let data = fucitiaoData
         let arr = ['攻击力', '防御力', '充能', '生命值', '暴击率', '暴击伤害']
-        for (let i = 0; i < fucitiaoData.length; i++) {
-            if (arr.includes(fucitiao[i])) {
-                data[i] = data[i] + '%'
-            } else {
-                data[i] = data[i] + ''
-            }
+        if (Array.isArray(data)) {
+            for (let i = 0; i < fucitiaoData.length; i++) {
+                if (arr.includes(fucitiao[i])) {
+                    data[i] = data[i] + '%'
+                } else {
+                    data[i] = data[i] + ''
+                }
 
+            }
+        } else if (typeof (data) == 'string') {
+            if (arr.includes(fucitiao)) {
+                data = data + '%'
+            } else {
+                data = data + ''
+            }
         }
         return data
     },
@@ -377,7 +388,7 @@ let util = {
             shengyiwu = await this.randomShengyiwu(buwei, syw.huaguan)
         } else if (fuben == '辰砂' || fuben == '来歆' || fuben == '余响') {
             shengyiwu = await this.randomShengyiwu(buwei, syw.chensha)
-        } else if (fuben == '草本' || fuben == '草套' || fuben == '饰金') {
+        } else if (fuben == '草本' || fuben == '草套' || fuben == '饰金' || fuben == '深林') {
             shengyiwu = await this.randomShengyiwu(buwei, syw.caoben)
         } else if (fuben == '乐团' || fuben == '角斗士') {
             shengyiwu = await this.randomShengyiwu(buwei, syw.qita)
@@ -415,6 +426,7 @@ let util = {
         return newArr;
     },
 
+    //获得cd
     async getGayCD(e) {
         if (cfg.cd > 0) {
             if (!e.isMaster) {
@@ -425,10 +437,34 @@ let util = {
         return 0
     },
 
+    //设置cd
     async setGayCD(e) {
         if (cfg.cd > 0) {
             await redis.set('xiaoye:syw:cd:qq:' + e.user_id, JSON.stringify('cd'), { EX: cfg.cd })
         }
+    },
+
+    //获得剩余次数
+    async cishu(e) {
+        if (cfg.cishu > 0) {
+            if (!e.isMaster) {
+                let time = moment(Date.now()).add(1, "days").format("YYYY-MM-DD 00:00:00");
+                // 到明日0点的剩余秒数
+                let exTime = Math.round(
+                    (new Date(time).getTime() - new Date().getTime()) / 1000
+                );
+                let data = await redis.get(`xiaoye:syw:cishu:qq:${e.user_id}`)
+                if (!data) {
+                    await redis.set(`xiaoye:syw:cishu:qq:${e.user_id}`, 1 * 1, { EX: exTime })
+                } else {
+                    if (data >= cfg.cishu) {
+                        return false
+                    }
+                    await redis.set(`xiaoye:syw:cishu:qq:${e.user_id}`, ++data, { EX: exTime })
+                }
+            }
+        }
+        return true
     }
 }
 export default util

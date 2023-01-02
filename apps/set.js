@@ -59,6 +59,10 @@ export class set extends plugin {
                     {
                         reg: '^#*小叶(插件)?设置撤回[0-9]+$',
                         fnc: 'setrecall'
+                    },
+                    {
+                        reg: '^#*小叶(插件)?设置(每(天|日))?(使用)?次数[0-9]+$',
+                        fnc: 'setcishu'
                     }
                 ]
             }
@@ -238,7 +242,7 @@ export class set extends plugin {
         }
         let data = await util.getData()
         let num = parseInt(e.msg.match(/\d+/g))
-        if (num > 110) {
+        if (num > 120) {
             return
         }
         data.recall = num
@@ -247,6 +251,15 @@ export class set extends plugin {
         return
     }
 
-
-    j
+    async setcishu(e) {
+        if (!e.isMaster) {
+            return
+        }
+        let data = await util.getData()
+        let num = parseInt(e.msg.match(/\d+/g))
+        data.cishu = num
+        await util.setYaml(data)
+        e.reply('成功!')
+        return
+    }
 }

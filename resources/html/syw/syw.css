@@ -44,9 +44,20 @@ body {
     left: 400px;
 }
 
-img {
+.sywimg {
     width: 120%;
     height: 120%;
+}
+
+.suo {
+    position: absolute;
+    top: 460px;
+    left: 650px;
+}
+
+.suoimg {
+    width: 140%;
+    height: 140%;
 }
 
 

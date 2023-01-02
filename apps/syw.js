@@ -27,9 +27,17 @@ export class ssyw extends plugin {
 
     //刷圣遗物
     async chuhuoba(e) {
+        //判断今天还有没有次数
+        let cishu = await util.cishu(e)
+        if (!cishu) {
+            await e.reply('今天次数已用完!', false, { at: true, recallMsg: cfg.recall })
+            return true
+        }
+
+        //判断cd
         let cd = await util.getGayCD(e)
         if (cd > 0) {
-            e.reply(`cd中,请${cd}秒后使用`)
+            await e.reply(`cd中,请${cd}秒后使用`, false, { at: true, recallMsg: cfg.recall })
             return true
         }
 
@@ -76,7 +84,7 @@ export class ssyw extends plugin {
         }
         await redis.set('xiaoye:syw:qq:' + e.user_id, JSON.stringify(data), { EX: 86400 })
         let img = await puppeteer.screenshot("syw", data);
-        await e.reply(img, false, { at: true, recallMsg: `${cfg.recall}` });
+        await e.reply(img, false, { at: true, recallMsg: cfg.recall });
         await util.setGayCD(e)
         return true;
 
@@ -126,6 +134,8 @@ export class ssyw extends plugin {
         //获取副词条数值
         let fucitiaoData = data.fucitiaoData
 
+        let guocheng = []
+
         //如果强化次数大于0
         if (cishu > 0) {
             //去掉%
@@ -135,8 +145,11 @@ export class ssyw extends plugin {
             //四词条
             if (fucitiao[3] && level != '20') {
 
+                let qianghua = await util.qianghua(fucitiao, fucitiaoData, cishu)
                 //强化
-                fucitiaoData = await util.qianghua(fucitiao, fucitiaoData, cishu)
+                fucitiaoData = qianghua.fucitiaoData
+
+                guocheng.push(...qianghua.guocheng)
 
             } else if (fucitiao[2] && level != '20') {
                 //先加个词条
@@ -144,11 +157,14 @@ export class ssyw extends plugin {
                 fucitiao.push(newCitiao)
                 let newShuzhi = await util.getOnefucitiaoData(newCitiao)
                 fucitiaoData.push(newShuzhi)
+                guocheng.push(`${newCitiao}+${await util.fucitiaoAddfuhao(newCitiao, newShuzhi)}`)
 
                 //要次数大于1才强化,不然就只加词条
                 if (cishu > 1) {
                     //有一次用来加词条了,所以要减1
-                    fucitiaoData = await util.qianghua(fucitiao, fucitiaoData, cishu - 1)
+                    let qianghua = await util.qianghua(fucitiao, fucitiaoData, cishu - 1)
+                    fucitiaoData = qianghua.fucitiaoData
+                    guocheng.push(...qianghua.guocheng)
                 }
             }
             //加上%
@@ -173,7 +189,8 @@ export class ssyw extends plugin {
         }
         await redis.set('xiaoye:syw:qq:' + e.user_id, JSON.stringify(newData), { EX: 86400 })
         let img = await puppeteer.screenshot("syw", newData);
-        await e.reply(img, false, { at: true, recallMsg: `${cfg.recall}` });
+        let str = guocheng.join(',')
+        await e.reply([img, '强化过程为:\n' + str], false, { at: true, recallMsg: cfg.recall });
         return true;
     }
 

@@ -32,6 +32,36 @@ export function supportGuoba() {
       // 配置项 schemas
       schemas: [
         {
+          field: 'cd',
+          label: 'cd',
+          bottomHelpMessage: 'cd,单位为秒',
+          component: 'InputNumber',
+        },
+        {
+          //分隔线
+          component: 'Divider',
+        },
+        {
+          field: 'recall',
+          label: '撤回时间',
+          bottomHelpMessage: '是否撤回,单位为秒,为0则不撤回',
+          component: 'InputNumber',
+        },
+        {
+          //分隔线
+          component: 'Divider',
+        },
+        {
+          field: 'cishu',
+          label: '每天使用次数',
+          bottomHelpMessage: '每天的使用次数,为0则无限制',
+          component: 'InputNumber',
+        },
+        {
+          //分隔线
+          component: 'Divider',
+        },
+        {
           field: 'sancitiao',
           label: '三词条',
           bottomHelpMessage: '词条数量概率',
@@ -388,27 +418,7 @@ export function supportGuoba() {
           label: '小防御',
           bottomHelpMessage: '副词条强化概率',
           component: 'InputNumber',
-        },
-        {
-          //分隔线
-          component: 'Divider',
-        },
-        {
-          field: 'cd',
-          label: 'cd',
-          bottomHelpMessage: 'cd,单位为秒',
-          component: 'InputNumber',
-        },
-        {
-          //分隔线
-          component: 'Divider',
-        },
-        {
-          field: 'recall',
-          label: '撤回时间',
-          bottomHelpMessage: '是否撤回,单位为秒,为0则不撤回',
-          component: 'InputNumber',
-        },
+        }
       ],
       // 获取配置数据方法（用于前端填充显示数据）
       getConfigData() {
@@ -470,7 +480,8 @@ export function supportGuoba() {
           xsmqh: config.fucitiaoqianghua[8],
           xfyqh: config.fucitiaoqianghua[9],
           cd: config.cd,
-          recall: config.recall || 0
+          recall: config.recall || 0,
+          cishu: config.cishu || 0
         }
       },
       // 设置配置的方法（前端点确定后调用的方法）
@@ -485,7 +496,8 @@ export function supportGuoba() {
         let fucitiaoqianghua = [data.bjlqh, data.bjshqh, data.gjlqh, data.jtqh, data.smzqh, data.fylqh, data.cnqh, data.xgjqh, data.xsmqh, data.xfyqh]
         let cd = data.cd
         let recall = data.recall
-        util.setYaml({ shizhisha, kongzhibei, lizhiguan, citiao, buwei, fucitiao, qianghua, fucitiaoqianghua, cd, recall })
+        let cishu = data.cishu
+        util.setYaml({ shizhisha, kongzhibei, lizhiguan, citiao, buwei, fucitiao, qianghua, fucitiaoqianghua, cd, recall, cishu })
         return Result.ok({}, '保存成功~')
       },
     },

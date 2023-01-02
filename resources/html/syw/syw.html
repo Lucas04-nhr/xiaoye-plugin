@@ -6,16 +6,21 @@
     <title></title>
     <link rel="preload" href="{{pluResPath}}/plugins/xiaoye-plugin/resources/font/genshin.ttf" as="font">
     <link rel="stylesheet" type="text/css" href="{{pluResPath}}/plugins/xiaoye-plugin/resources/html/syw/syw.css" />
+    <style>
+        
+    </style>
 </head>
 
 <body>
     <div class="body">
         <div class="name">{{shengyiwu[0]}}</div>
-        <div class="img"><img src="{{pluResPath}}/{{shengyiwu[1]}}"></div>
+        <div class="img"><img class="sywimg" src="{{pluResPath}}/{{shengyiwu[1]}}"></div>
         <div class="buwei">{{buwei}}</div>
         <div class="zhucitiao">{{zhucitiao}}</div>
         <div class="zhucitiaoData">{{zhucitiaoData}}</div>
         <div class="level">+{{level}}</div>
+        <div class="suo"><img class="suoimg" src="{{pluResPath}}/plugins/xiaoye-plugin/resources/html/syw/img/1.png"
+                alt=""></div>
         {{if fucitiao[3]}}
         <div class="fucitiao">
             <ul class="ul">
