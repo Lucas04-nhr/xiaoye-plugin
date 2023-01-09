@@ -85,33 +85,43 @@ lizhiguanzhucitiaoList:
 fucitiaoList: 
   - id: 'baojilv'
     display: '暴击率'
+    option: '暴击率'
     percentage: true
   - id: 'baojishanghai'
     display: '暴击伤害'
+    option: '暴击伤害'
     percentage: true
   - id: 'gongjili'
     display: '攻击力'
+    option: '攻击力'
     percentage: true
   - id: 'jingtong'
     display: '元素精通'
+    option: '元素精通'
     percentage: false
   - id: 'shengmingzhi'
     display: '生命值'
+    option: '生命值'
     percentage: true
   - id: 'fangyuli'
     display: '防御力'
+    option: '防御力'
     percentage: true
   - id: 'chongneng'
     display: '元素充能效率'
+    option: '元素充能效率'
     percentage: true
   - id: 'xiaogongji'
     display: '攻击力'
+    option: '小攻击'
     percentage: false
   - id: 'xiaoshengming'
     display: '生命值'
+    option: '小生命'
     percentage: false
   - id: 'xiaofangyu'
     display: '防御力'
+    option: '小防御'
     percentage: false
   
 

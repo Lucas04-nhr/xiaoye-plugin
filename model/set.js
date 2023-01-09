@@ -35,13 +35,13 @@ let setUtil = {
         //部位列表
         let buweiList = syw.buweiList
         //时之沙主词条列表
-        let shizhishazhucitiaoList = syw.shizhishazhucitiaoList
+        let shizhishazhucitiaoList = syw.shizhishazhucitiaoList.map(item => item.display);
         //空之杯主词条列表
-        let kongzhibeizhucitiaoList = syw.kongzhibeizhucitiaoList
+        let kongzhibeizhucitiaoList = syw.kongzhibeizhucitiaoList.map(item => item.display);
         //理之冠主词条列表
-        let lizhiguanzhucitiaoList = syw.lizhiguanzhucitiaoList
+        let lizhiguanzhucitiaoList = syw.lizhiguanzhucitiaoList.map(item => item.display);
         //副词条列表
-        let fucitiaoList = syw.fucitiaoList
+        let fucitiaoList = syw.fucitiaoList.map(item => item.option);
         //强化档位列表
         let qianghuaList = ['第一档', '第二档', '第三档', '第四档']
 

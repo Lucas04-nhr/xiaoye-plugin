@@ -29,7 +29,7 @@ export class set extends plugin {
                         fnc: 'setbuwei'
                     },
                     {
-                        reg: '^#*小叶(插件)?设置时之沙(攻击力|充能|精通|防御力|生命值)(概率)?[0-9]+$',
+                        reg: '^#*小叶(插件)?设置时之沙(攻击力|元素充能效率|元素精通|防御力|生命值)(概率)?[0-9]+$',
                         fnc: 'setshizhisha'
                     },
                     {
@@ -41,7 +41,7 @@ export class set extends plugin {
                         fnc: 'setlizhiguan'
                     },
                     {
-                        reg: '^#*小叶(插件)?设置副词条(暴击率|暴击伤害|攻击力|精通|生命值|防御力|充能|小攻击|小生命|小防御)(概率)?[0-9]+$',
+                        reg: '^#*小叶(插件)?设置副词条(暴击率|暴击伤害|攻击力|元素精通|生命值|防御力|元素充能效率|小攻击|小生命|小防御)(概率)?[0-9]+$',
                         fnc: 'setfucitiao'
                     },
                     {
@@ -124,7 +124,7 @@ export class set extends plugin {
         let data = await util.getData()
         let num = parseInt(e.msg.match(/\d+/g))
         for (let i = 0; i < shizhisha.length; i++) {
-            if (e.msg.includes(shizhisha[i])) {
+            if (e.msg.includes(shizhisha[i].display)) {
                 data.shizhisha[i] = num
                 break
             }
@@ -142,7 +142,7 @@ export class set extends plugin {
         let data = await util.getData()
         let num = parseInt(e.msg.match(/\d+/g))
         for (let i = 0; i < kongzhibei.length; i++) {
-            if (e.msg.includes(kongzhibei[i])) {
+            if (e.msg.includes(kongzhibei[i].display)) {
                 data.kongzhibei[i] = num
                 break
             }
@@ -160,7 +160,7 @@ export class set extends plugin {
         let data = await util.getData()
         let num = parseInt(e.msg.match(/\d+/g))
         for (let i = 0; i < lizhiguan.length; i++) {
-            if (e.msg.includes(lizhiguan[i])) {
+            if (e.msg.includes(lizhiguan[i].display)) {
                 data.lizhiguan[i] = num
                 break
             }
@@ -178,7 +178,7 @@ export class set extends plugin {
         let data = await util.getData()
         let num = parseInt(e.msg.match(/\d+/g))
         for (let i = 0; i < fucitiao.length; i++) {
-            if (e.msg.includes(fucitiao[i])) {
+            if (e.msg.includes(fucitiao[i].option)) {
                 data.fucitiao[i] = num
                 break
             }
