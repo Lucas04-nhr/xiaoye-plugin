@@ -157,7 +157,7 @@ export class ssyw extends plugin {
                 fucitiao.push(newCitiao)
                 let newShuzhi = await util.getOnefucitiaoData(newCitiao)
                 fucitiaoData.push(newShuzhi)
-                guocheng.push(`${newCitiao}+${await util.fucitiaoAddfuhao(newCitiao, newShuzhi)}`)
+                guocheng.push(`${newCitiao.display}+${await util.fucitiaoAddfuhao(newCitiao, newShuzhi)}`)
 
                 //要次数大于1才强化,不然就只加词条
                 if (cishu > 1) {

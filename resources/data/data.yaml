@@ -1,12 +1,119 @@
 buweiList : ['生之花', '死之羽', '时之沙', '空之杯', '理之冠']
 
-shizhishazhucitiaoList : ['攻击力', '充能', '精通', '防御力', '生命值']
+# shizhishazhucitiaoList : ['攻击力', '充能', '精通', '防御力', '生命值']
+shizhishazhucitiaoList: 
+  - id: 'gongjili'
+    display: '攻击力'
+    percentage: true
+  - id: 'chongneng'
+    display: '元素充能效率'
+    percentage: true
+  - id: 'jingtong'
+    display: '元素精通'
+    percentage: false
+  - id: 'fangyuli'
+    display: '防御力'
+    percentage: true
+  - id: 'shengmingzhi'
+    display: '生命值'
+    percentage: true
+    
+# kongzhibeizhucitiaoList : ['攻击力', '精通', '防御力', '生命值', '草元素伤害加成', '雷元素伤害加成', '风元素伤害加成', '岩元素伤害加成', '火元素伤害加成', '水元素伤害加成', '冰元素伤害加成','物理伤害加成']
+kongzhibeizhucitiaoList:
+  - id: 'gongjili'
+    display: '攻击力'
+    percentage: true
+  - id: 'jingtong'
+    display: '元素精通'
+    percentage: false
+  - id: 'fangyuli'
+    display: '防御力'
+    percentage: true
+  - id: 'shengmingzhi'
+    display: '生命值'
+    percentage: true
+  - id: 'caoshangjiacheng'
+    display: '草元素伤害加成'
+    percentage: true
+  - id: 'leishangjiacheng'
+    display: '雷元素伤害加成'
+    percentage: true
+  - id: 'fengshangjiacheng'
+    display: '风元素伤害加成'
+    percentage: true
+  - id: 'yanshangjiacheng'
+    display: '岩元素伤害加成'
+    percentage: true
+  - id: 'huoshangjiacheng'
+    display: '火元素伤害加成'
+    percentage: true
+  - id: 'shuishangjiacheng'
+    display: '水元素伤害加成'
+    percentage: true
+  - id: 'bingshangjiacheng'
+    display: '冰元素伤害加成'
+    percentage: true
+  - id: 'wulijiacheng'
+    display: '物理伤害加成'
+    percentage: true
 
-kongzhibeizhucitiaoList : ['攻击力', '精通', '防御力', '生命值', '草元素伤害加成', '雷元素伤害加成', '风元素伤害加成', '岩元素伤害加成', '火元素伤害加成', '水元素伤害加成', '冰元素伤害加成','物理伤害加成']
+# lizhiguanzhucitiaoList : ['攻击力', '精通', '防御力', '生命值', '暴击率', '暴击伤害', '治疗加成']
+lizhiguanzhucitiaoList: 
+  - id: 'gongjili'
+    display: '攻击力'
+    percentage: true
+  - id: 'jingtong'
+    display: '元素精通'
+    percentage: false
+  - id: 'fangyuli'
+    display: '防御力'
+    percentage: true
+  - id: 'shengmingzhi'
+    display: '生命值'
+    percentage: true
+  - id: 'baojilv'
+    display: '暴击率'
+    percentage: true
+  - id: 'baojishanghai'
+    display: '暴击伤害'
+    percentage: true
+  - id: 'zhiliaojiacheng'
+    display: '治疗加成'
+    percentage: true
 
-lizhiguanzhucitiaoList : ['攻击力', '精通', '防御力', '生命值', '暴击率', '暴击伤害', '治疗加成']
-
-fucitiaoList : ['暴击率', '暴击伤害','攻击力', '精通', '生命值','防御力','充能','小攻击','小生命', '小防御']
+# fucitiaoList : ['暴击率', '暴击伤害','攻击力', '精通', '生命值','防御力','充能','小攻击','小生命', '小防御']
+fucitiaoList: 
+  - id: 'baojilv'
+    display: '暴击率'
+    percentage: true
+  - id: 'baojishanghai'
+    display: '暴击伤害'
+    percentage: true
+  - id: 'gongjili'
+    display: '攻击力'
+    percentage: true
+  - id: 'jingtong'
+    display: '元素精通'
+    percentage: false
+  - id: 'shengmingzhi'
+    display: '生命值'
+    percentage: true
+  - id: 'fangyuli'
+    display: '防御力'
+    percentage: true
+  - id: 'chongneng'
+    display: '元素充能效率'
+    percentage: true
+  - id: 'xiaogongji'
+    display: '攻击力'
+    percentage: false
+  - id: 'xiaoshengming'
+    display: '生命值'
+    percentage: false
+  - id: 'xiaofangyu'
+    display: '防御力'
+    percentage: false
+  
 
 #暴击伤害
 baojishanghai : ['5.4', '6.2', '7.0', '7.8']

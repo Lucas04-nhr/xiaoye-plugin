@@ -36,9 +36,17 @@ let util = {
         let probability
 
         if (buwei == syw.buweiList[0]) {//生之花
-            zhucitiao = '生命值'
+            zhucitiao = {
+              id: "xiaoshengming",
+              display: "生命值",
+              percentage: false,
+            }
         } else if (buwei == syw.buweiList[1]) {//死之羽
-            zhucitiao = '攻击力'
+            zhucitiao = {
+              id: "xiaogongji",
+              display: "攻击力",
+              percentage: false,
+            }
         } else if (buwei == syw.buweiList[2]) {//时之沙
             //时之沙主词条的概率
             probability = cfg.shizhisha
@@ -77,9 +85,9 @@ let util = {
 
         //副词条中不能出现主词条,同时也要移除副词条概率中的值
         if (buwei == syw.buweiList[0]) {//生之花
-            fucitiaolist = await this.removeArr2(fucitiaolist, '小生命')
+            fucitiaolist = await this.removeArr2(fucitiaolist, 'xiaoshengming')
         } else if (buwei == syw.buweiList[1]) {//死之羽
-            fucitiaolist = await this.removeArr2(fucitiaolist, '小攻击')
+            fucitiaolist = await this.removeArr2(fucitiaolist, 'xiaogongji')
         } else {
             fucitiaolist = await this.removeArr2(fucitiaolist, zhucitiao)
         }
@@ -100,7 +108,7 @@ let util = {
                 sum = sum + fucitiaolist[j][1]
                 if (randomNumber <= sum) {
                     ret[i] = fucitiaolist[j][0]
-                    fucitiaolist = await this.removeArr2(fucitiaolist, fucitiaolist[j][0])
+                    fucitiaolist = await this.removeArr2(fucitiaolist, fucitiaolist[j][0].id)
                     break
                 }
             }
@@ -119,7 +127,7 @@ let util = {
             //判断强化第几档 [第一档最高,二,三,第四档最低]
             let j = await this.randomGetOne(qianghuadangwei)
             //然后获取这个圣遗物的强化数值
-            ret[i] = await this.getData(fucitiao[i], j)
+            ret[i] = await this.getData(fucitiao[i].id, j)
         }
         return ret
     },
@@ -132,7 +140,7 @@ let util = {
         //判断强化第几档 [第一档最高,二,三,第四档最低]
         let i = await this.randomGetOne(qianghuadangwei)
         //然后获取这个圣遗物的强化数值
-        let ret = await this.getData(fucitiao, i)
+        let ret = await this.getData(fucitiao.id, i)
         return ret
     },
 
@@ -151,15 +159,15 @@ let util = {
 
         //副词条中不能出现主词条,同时也要移除副词条概率中的值
         if (buwei == syw.buweiList[0]) {//生之花
-            fucitiaolist = await this.removeArr2(fucitiaolist, '小生命')
+            fucitiaolist = await this.removeArr2(fucitiaolist, 'xiaoshengming')
         } else if (buwei == syw.buweiList[1]) {//死之羽
-            fucitiaolist = await this.removeArr2(fucitiaolist, '小攻击')
+            fucitiaolist = await this.removeArr2(fucitiaolist, 'xiaofangyu')
         } else {
             fucitiaolist = await this.removeArr2(fucitiaolist, zhucitiao)
         }
         //移除已有的副词条
         for (let i = 0; i < fucitiao.length; i++) {
-            fucitiaolist = await this.removeArr2(fucitiaolist, fucitiao[i])
+            fucitiaolist = await this.removeArr2(fucitiaolist, fucitiao[i].id)
         }
         //返回值
         let ret
@@ -175,7 +183,7 @@ let util = {
             sum = sum + fucitiaolist[i][1]
             if (randomNumber <= sum) {
                 ret = fucitiaolist[i][0]
-                fucitiaolist = await this.removeArr2(fucitiaolist, fucitiaolist[i][0])
+                fucitiaolist = await this.removeArr2(fucitiaolist, fucitiaolist[i][0].id)
                 break
             }
         }
@@ -199,32 +207,32 @@ let util = {
         //判断强化第几档 [第一档最高,二,三,第四档最低]
         let i = await this.randomGetOne(qianghuadangwei)
         //然后获取这个圣遗物的强化数值
-        let ret = await this.getData(fucitiao, i)
+        let ret = await this.getData(fucitiao.id, i)
         return ret
     },
 
     //获得每种词条的强化数值
     async getData(fucitiao, i) {
         let ret
-        if (fucitiao == '精通') {
+        if (fucitiao == 'jingtong') {
             ret = syw.jingtong[i]
-        } else if (fucitiao == '攻击力') {
+        } else if (fucitiao == 'gongjili') {
             ret = syw.gongjili[i]
-        } else if (fucitiao == '防御力') {
+        } else if (fucitiao == 'fangyuli') {
             ret = syw.fangyuli[i]
-        } else if (fucitiao == '充能') {
+        } else if (fucitiao == 'chongneng') {
             ret = syw.chongneng[i]
-        } else if (fucitiao == '生命值') {
+        } else if (fucitiao == 'shengmingzhi') {
             ret = syw.shengmingzhi[i]
-        } else if (fucitiao == '暴击率') {
+        } else if (fucitiao == 'baojilv') {
             ret = syw.baojilv[i]
-        } else if (fucitiao == '暴击伤害') {
+        } else if (fucitiao == 'baojishanghai') {
             ret = syw.baojishanghai[i]
-        } else if (fucitiao == '小防御') {
+        } else if (fucitiao == 'xiaofangyu') {
             ret = syw.xiaofangyu[i]
-        } else if (fucitiao == '小生命') {
+        } else if (fucitiao == 'xiaoshengming') {
             ret = syw.xiaoshengming[i]
-        } else if (fucitiao == '小攻击') {
+        } else if (fucitiao == 'xiaogongji') {
             ret = syw.xiaogongji[i]
         }
         return ret
@@ -239,7 +247,7 @@ let util = {
             //循环总圣遗物副词条列表
             for (let j = 0; j < syw.fucitiaoList.length; j++) {
                 //如果当前正在循环的圣遗物等于总圣遗物副词条列表中的圣遗物
-                if (fucitiao[i] == syw.fucitiaoList[j]) {
+                if (fucitiao[i].id == syw.fucitiaoList[j].id) {
                     //总圣遗物列表中的循序和概率中的循序是一样的,所以直接赋值
                     ret[i] = qianghuagailv[j]
                 }
@@ -256,13 +264,14 @@ let util = {
             let benci = await this.getQianghuacitiao(fucitiao)
             //获得强化的数值
             let fucitiaoUpData = await this.getQianghuashuzhi(benci)
-            guocheng.push(`${benci}+${await this.fucitiaoAddfuhao(benci, fucitiaoUpData)}`)
+            guocheng.push(`${benci.display}+${await this.fucitiaoAddfuhao(benci, fucitiaoUpData)}`)
             //循环副词条找到这个副词条然后相加
             for (let j = 0; j < fucitiao.length; j++) {
                 if (fucitiao[j] == benci) {
                     fucitiaoData[j] = parseFloat(fucitiaoData[fucitiao.indexOf(benci)]) + parseFloat(fucitiaoUpData)
                     fucitiaoData[j] =
-                        ((fucitiaoData[j] + '').indexOf('.') != -1) ? fucitiaoData[j].toFixed(1) : fucitiaoData[j]
+                        // ((fucitiaoData[j] + '').indexOf('.') != -1) ? fucitiaoData[j].toFixed(1) : fucitiaoData[j]
+                        fucitiao[j].percentage ? fucitiaoData[j].toFixed(1) : fucitiaoData[j]
                     break
                 }
             }
@@ -278,23 +287,23 @@ let util = {
         } else if (buwei == '死之羽') {
             ret = syw.sizhiyuupdata[level]
         } else {
-            if (zhucitiao == '精通') {
+            if (zhucitiao.id == 'jingtong') {
                 ret = syw.jingtongupdata[level]
-            } else if (zhucitiao == '攻击力') {
+            } else if (zhucitiao.id == 'gongjili') {
                 ret = syw.gongjiliupdata[level] + '%'
-            } else if (zhucitiao == '防御力') {
+            } else if (zhucitiao.id == 'fangyuli') {
                 ret = syw.fangyuliupdata[level] + '%'
-            } else if (zhucitiao == '充能') {
+            } else if (zhucitiao.id == 'chongneng') {
                 ret = syw.chongnengupdata[level] + '%'
-            } else if (zhucitiao == '生命值') {
+            } else if (zhucitiao.id == 'shengmingzhi') {
                 ret = syw.shengmingzhiupdata[level] + '%'
-            } else if (zhucitiao == '暴击率') {
+            } else if (zhucitiao.id == 'baojilv') {
                 ret = syw.baojilvupdata[level] + '%'
-            } else if (zhucitiao == '暴击伤害') {
+            } else if (zhucitiao.id == 'baojishanghai') {
                 ret = syw.baojishanghaiupdata[level] + '%'
-            } else if (zhucitiao == '治疗加成') {
+            } else if (zhucitiao.id == 'zhiliaojiacheng') {
                 ret = syw.zhiliaoupdata[level] + '%'
-            } else if (zhucitiao == '物理伤害加成') {
+            } else if (zhucitiao.id == 'wulijiacheng') {
                 ret = syw.wulishanghaiupdata[level] + '%'
             } else {
                 ret = syw.shanghaijiachengupdata[level] + '%'
@@ -326,10 +335,10 @@ let util = {
     //给副词条加%
     async fucitiaoAddfuhao(fucitiao, fucitiaoData) {
         let data = fucitiaoData
-        let arr = ['攻击力', '防御力', '充能', '生命值', '暴击率', '暴击伤害']
+        // let arr = ['攻击力', '防御力', '充能', '生命值', '暴击率', '暴击伤害']
         if (Array.isArray(data)) {
             for (let i = 0; i < fucitiaoData.length; i++) {
-                if (arr.includes(fucitiao[i])) {
+                if (fucitiao[i].percentage) {
                     data[i] = data[i] + '%'
                 } else {
                     data[i] = data[i] + ''
@@ -337,7 +346,7 @@ let util = {
 
             }
         } else if (typeof (data) == 'string') {
-            if (arr.includes(fucitiao)) {
+            if (fucitiao.percentage) {
                 data = data + '%'
             } else {
                 data = data + ''
@@ -418,7 +427,7 @@ let util = {
 
     //移除数组中的元素
     async removeArr2(arr, removeItem) {
-        let index = arr.findIndex(item => item[0] == removeItem)
+        let index = arr.findIndex(item => item[0].id == removeItem)
         let newArr = arr
         if (index > -1) {
             newArr.splice(index, 1)
