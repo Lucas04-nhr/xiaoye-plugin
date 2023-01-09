@@ -50,7 +50,7 @@ let setUtil = {
         //循环把desc替换成指定样式
         for (let i = 0; i < setList[1].list.length - 3; i++) {
             let ret = ""
-            for (let k = 0; k < config[i].length; k++) {
+            for (let k = 0; k < data[i].length; k++) {
                 ret = ret + data[i][k] + ":" + config[i][k] + " "
             }
 
