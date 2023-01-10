@@ -2,6 +2,7 @@ import plugin from '../../../lib/plugins/plugin.js'
 import puppeteer from "../../../lib/puppeteer/puppeteer.js";
 import util from "../model/sywUtil.js"
 import cfg from '../model/readConfig.js'
+import syw from '../model/readData.js'
 
 export class ssyw extends plugin {
     constructor() {
@@ -42,13 +43,14 @@ export class ssyw extends plugin {
         }
 
         let fuben = e.msg.replace(/#|刷圣遗物/g, "").trim();
-        //获得一个部位
+        //获得一个部位 {name,id}
         let buwei = await util.getBuwei()
 
         //圣遗物名字
-        let shengyiwu = await util.shengyiwu(buwei, fuben)
+        let shengyiwu = await util.shengyiwu(buwei.id, fuben)
+
         if (!shengyiwu) {
-            e.reply("没有这个圣遗物")
+            await util.getAlias(e)
             return true
         }
 
@@ -56,13 +58,13 @@ export class ssyw extends plugin {
         let level = 0
 
         //确定主词条
-        let zhucitiao = await util.getZhucitiao(buwei)
+        let zhucitiao = await util.getZhucitiao(buwei.name)
 
         //给主词条加初始值
-        let zhucitiaoData = await util.getZhucitiaodata(zhucitiao, buwei, level)
+        let zhucitiaoData = await util.getZhucitiaodata(zhucitiao, buwei.name, level)
 
         //确定副词条
-        let fucitiao = await util.getFucitiao(zhucitiao, buwei)
+        let fucitiao = await util.getFucitiao(zhucitiao, buwei.name)
 
         //给副词条加初始值
         let fucitiaoData = await util.getFucitiaoData(fucitiao)
@@ -153,7 +155,7 @@ export class ssyw extends plugin {
 
             } else if (fucitiao[2] && level != '20') {
                 //先加个词条
-                let newCitiao = await util.getOneFucitiao(zhucitiao, fucitiao, buwei)
+                let newCitiao = await util.getOneFucitiao(zhucitiao, fucitiao, buwei.name)
                 fucitiao.push(newCitiao)
                 let newShuzhi = await util.getOnefucitiaoData(newCitiao)
                 fucitiaoData.push(newShuzhi)
@@ -174,7 +176,7 @@ export class ssyw extends plugin {
         //等级加一下
         level = level + up
         //设置主词条数据
-        zhucitiaoData = await util.getZhucitiaodata(zhucitiao, buwei, level)
+        zhucitiaoData = await util.getZhucitiaodata(zhucitiao, buwei.name, level)
         this._path = process.cwd().replace(/\\/g, "/");
         let newData = {
             tplFile: './plugins/xiaoye-plugin/resources/html//syw/syw.html',

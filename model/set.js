@@ -33,7 +33,7 @@ let setUtil = {
         //初始词条列表
         let citiaoList = ['三词条', '四词条']
         //部位列表
-        let buweiList = syw.buweiList
+        let buweiList = syw.buweiList.map(item => item.name)
         //时之沙主词条列表
         let shizhishazhucitiaoList = syw.shizhishazhucitiaoList.map(item => item.display);
         //空之杯主词条列表

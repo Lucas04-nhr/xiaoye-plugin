@@ -106,7 +106,7 @@ export class set extends plugin {
         let data = await util.getData()
         let num = parseInt(e.msg.match(/\d+/g))
         for (let i = 0; i < buwei.length; i++) {
-            if (e.msg.includes(buwei[i])) {
+            if (e.msg.includes(buwei[i].name)) {
                 data.buwei[i] = num
                 break
             }

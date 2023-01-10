@@ -35,29 +35,29 @@ let util = {
         //概率的数组
         let probability
 
-        if (buwei == syw.buweiList[0]) {//生之花
+        if (buwei == syw.buweiList[0].name) {//生之花
             zhucitiao = {
-              id: "xiaoshengming",
-              display: "生命值",
-              percentage: false,
+                id: "xiaoshengming",
+                display: "生命值",
+                percentage: false,
             }
-        } else if (buwei == syw.buweiList[1]) {//死之羽
+        } else if (buwei == syw.buweiList[1].name) {//死之羽
             zhucitiao = {
-              id: "xiaogongji",
-              display: "攻击力",
-              percentage: false,
+                id: "xiaogongji",
+                display: "攻击力",
+                percentage: false,
             }
-        } else if (buwei == syw.buweiList[2]) {//时之沙
+        } else if (buwei == syw.buweiList[2].name) {//时之沙
             //时之沙主词条的概率
             probability = cfg.shizhisha
             let i = await this.randomGetOne(probability)
             zhucitiao = syw.shizhishazhucitiaoList[i]
-        } else if (buwei == syw.buweiList[3]) {//空之杯
+        } else if (buwei == syw.buweiList[3].name) {//空之杯
             //空之杯主词条的概率
             probability = cfg.kongzhibei
             let i = await this.randomGetOne(probability)
             zhucitiao = syw.kongzhibeizhucitiaoList[i]
-        } else if (buwei == syw.buweiList[4]) {//理之冠
+        } else if (buwei == syw.buweiList[4].name) {//理之冠
             //理之冠主词条的概率
             probability = cfg.lizhiguan
             let i = await this.randomGetOne(probability)
@@ -84,12 +84,12 @@ let util = {
         }
 
         //副词条中不能出现主词条,同时也要移除副词条概率中的值
-        if (buwei == syw.buweiList[0]) {//生之花
-            fucitiaolist = await this.removeArr2(fucitiaolist, 'xiaoshengming')
-        } else if (buwei == syw.buweiList[1]) {//死之羽
-            fucitiaolist = await this.removeArr2(fucitiaolist, 'xiaogongji')
+        if (buwei == syw.buweiList[0].name) {//生之花
+            fucitiaolist = await this.removeArr(fucitiaolist, 'xiaoshengming')
+        } else if (buwei == syw.buweiList[1].name) {//死之羽
+            fucitiaolist = await this.removeArr(fucitiaolist, 'xiaogongji')
         } else {
-            fucitiaolist = await this.removeArr2(fucitiaolist, zhucitiao.id)
+            fucitiaolist = await this.removeArr(fucitiaolist, zhucitiao.id)
         }
 
         //返回值
@@ -108,7 +108,7 @@ let util = {
                 sum = sum + fucitiaolist[j][1]
                 if (randomNumber <= sum) {
                     ret[i] = fucitiaolist[j][0]
-                    fucitiaolist = await this.removeArr2(fucitiaolist, fucitiaolist[j][0].id)
+                    fucitiaolist = await this.removeArr(fucitiaolist, fucitiaolist[j][0].id)
                     break
                 }
             }
@@ -158,16 +158,16 @@ let util = {
         }
 
         //副词条中不能出现主词条,同时也要移除副词条概率中的值
-        if (buwei == syw.buweiList[0]) {//生之花
-            fucitiaolist = await this.removeArr2(fucitiaolist, 'xiaoshengming')
-        } else if (buwei == syw.buweiList[1]) {//死之羽
-            fucitiaolist = await this.removeArr2(fucitiaolist, 'xiaofangyu')
+        if (buwei == syw.buweiList[0].name) {//生之花
+            fucitiaolist = await this.removeArr(fucitiaolist, 'xiaoshengming')
+        } else if (buwei == syw.buweiList[1].name) {//死之羽
+            fucitiaolist = await this.removeArr(fucitiaolist, 'xiaofangyu')
         } else {
-            fucitiaolist = await this.removeArr2(fucitiaolist, zhucitiao.id)
+            fucitiaolist = await this.removeArr(fucitiaolist, zhucitiao.id)
         }
         //移除已有的副词条
         for (let i = 0; i < fucitiao.length; i++) {
-            fucitiaolist = await this.removeArr2(fucitiaolist, fucitiao[i].id)
+            fucitiaolist = await this.removeArr(fucitiaolist, fucitiao[i].id)
         }
         //返回值
         let ret
@@ -183,7 +183,7 @@ let util = {
             sum = sum + fucitiaolist[i][1]
             if (randomNumber <= sum) {
                 ret = fucitiaolist[i][0]
-                fucitiaolist = await this.removeArr2(fucitiaolist, fucitiaolist[i][0].id)
+                fucitiaolist = await this.removeArr(fucitiaolist, fucitiaolist[i][0].id)
                 break
             }
         }
@@ -312,6 +312,18 @@ let util = {
         return ret
     },
 
+    /**
+     * 获得副本别名
+     * @param {*} e 
+     */
+    async getAlias(e) {
+        let data = ['当前副本别名']
+        for (let i = 0; i < syw.fuben.length; i++) {
+            data.push(syw.fuben[i].name + '：' + syw.fuben[i].alias.join('，'))
+        }
+        await this.ForwardMsg(e, data)
+    },
+
     //发送转发消息
     //输入data一个数组,元素是字符串,每一个元素都是一条消息.
     async ForwardMsg(e, data) {
@@ -329,7 +341,7 @@ let util = {
         else {
             await e.reply(await Bot.makeForwardMsg(msgList));
         }
-        return;
+        return true;
     },
 
     //给副词条加%
@@ -374,40 +386,22 @@ let util = {
     },
 
     //确定圣遗物具体部位名字
-    async shengyiwu(buwei, fuben) {
-        let shengyiwu
+    async shengyiwu(id, fuben) {
+        let shengyiwu = {
+            name: '',
+            icon: ''
+        }
 
-        if (fuben == '火本' || fuben == '魔女' || fuben == '渡火' || fuben == '火套') {
-            shengyiwu = await this.randomShengyiwu(buwei, syw.huoben)
-        } else if (fuben == '冰本' || fuben == '冰套' || fuben == '水本' || fuben == '水套') {
-            shengyiwu = await this.randomShengyiwu(buwei, syw.binben)
-        } else if (fuben == '雷本' || fuben == '平雷' || fuben == '如雷' || fuben == '雷套') {
-            shengyiwu = await this.randomShengyiwu(buwei, syw.leiben)
-        } else if (fuben == '风本' || fuben == '风套' || fuben == '少女') {
-            shengyiwu = await this.randomShengyiwu(buwei, syw.fengben)
-        } else if (fuben == '岩本' || fuben == '磐岩' || fuben == '岩套' || fuben == '逆飞的流星') {
-            shengyiwu = await this.randomShengyiwu(buwei, syw.yanben)
-        } else if (fuben == '宗室' || fuben == '骑士') {
-            shengyiwu = await this.randomShengyiwu(buwei, syw.zongshi)
-        } else if (fuben == '千岩' || fuben == '苍白') {
-            shengyiwu = await this.randomShengyiwu(buwei, syw.qianyan)
-        } else if (fuben == '追忆' || fuben == '绝缘') {
-            shengyiwu = await this.randomShengyiwu(buwei, syw.jueyuan)
-        } else if (fuben == '华馆' || fuben == '海染' || fuben == '华冠' || fuben == '华倌') {
-            shengyiwu = await this.randomShengyiwu(buwei, syw.huaguan)
-        } else if (fuben == '辰砂' || fuben == '来歆' || fuben == '余响') {
-            shengyiwu = await this.randomShengyiwu(buwei, syw.chensha)
-        } else if (fuben == '草本' || fuben == '草套' || fuben == '饰金' || fuben == '深林') {
-            shengyiwu = await this.randomShengyiwu(buwei, syw.caoben)
-        } else if (fuben == '乐团' || fuben == '角斗士') {
-            shengyiwu = await this.randomShengyiwu(buwei, syw.qita)
-        } else if (fuben == '楼阁' || fuben == '乐园' || fuben == '沙上楼阁史话' || fuben == '乐园遗落之花') {
-            shengyiwu = await this.randomShengyiwu(buwei, syw.louge)
+        for (let i = 0; i < syw.fuben.length; i++) {
+            if (syw.fuben[i].alias.includes(fuben)) {
+                let num = Math.floor((Math.random() * 2))
+                shengyiwu.name = syw.fuben[i].buwei[id].name[num]
+                shengyiwu.icon = syw.fuben[i].buwei[id].icon[num]
+                return shengyiwu
+            }
+
         }
-        else {
-            return false
-        }
-        return shengyiwu
+        return false
     },
 
     //从数组中随机取一个值
@@ -417,16 +411,6 @@ let util = {
 
     //移除数组中的元素
     async removeArr(arr, removeItem) {
-        let index = arr.indexOf(removeItem)
-        let newArr = arr
-        if (index > -1) {
-            newArr.splice(index, 1)
-        }
-        return newArr;
-    },
-
-    //移除数组中的元素
-    async removeArr2(arr, removeItem) {
         let index = arr.findIndex(item => item[0].id == removeItem)
         let newArr = arr
         if (index > -1) {

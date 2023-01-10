@@ -88,6 +88,7 @@ class Cfg {
     const configPath = process.cwd().replace(/\\/g, "/") + '/plugins/xiaoye-plugin/'
     let file = configPath + `${type}/${name}.yaml`
     let key = `${type}.${name}`
+    if (this.config[key]) return this.config[key]
 
     this.config[key] = YAML.parse(
       fs.readFileSync(file, 'utf8')
