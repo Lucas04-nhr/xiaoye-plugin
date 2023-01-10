@@ -78,7 +78,7 @@ export class update extends plugin {
 
         this.oldCommitId = await this.getcommitId(plugin)
 
-        await this.reply(`开始${type}${this.typeName}`)
+        await this.reply(`开始执行${type}操作...`)
         uping = true
         let ret = await this.execSync(cm)
         uping = false
@@ -123,12 +123,12 @@ export class update extends plugin {
         }
 
         if (errMsg.includes('be overwritten by merge')) {
-            await this.reply(msg + `存在冲突：\n${errMsg}\n` + '请解决冲突后再更新，或者执行#强制更新，放弃本地修改')
+            await this.reply(msg + `存在冲突：\n${errMsg}\n` + '请解决冲突后再更新，或者执行#小叶强制更新，放弃本地修改')
             return
         }
 
         if (stdout.includes('CONFLICT')) {
-            await this.reply([msg + '存在冲突\n', errMsg, stdout, '\n请解决冲突后再更新，或者执行#强制更新，放弃本地修改'])
+            await this.reply([msg + '存在冲突\n', errMsg, stdout, '\n请解决冲突后再更新，或者执行#小叶强制更新，放弃本地修改'])
             return
         }
 

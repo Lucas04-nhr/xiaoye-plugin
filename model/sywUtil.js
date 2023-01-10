@@ -89,7 +89,7 @@ let util = {
         } else if (buwei == syw.buweiList[1]) {//死之羽
             fucitiaolist = await this.removeArr2(fucitiaolist, 'xiaogongji')
         } else {
-            fucitiaolist = await this.removeArr2(fucitiaolist, zhucitiao)
+            fucitiaolist = await this.removeArr2(fucitiaolist, zhucitiao.id)
         }
 
         //返回值
@@ -163,7 +163,7 @@ let util = {
         } else if (buwei == syw.buweiList[1]) {//死之羽
             fucitiaolist = await this.removeArr2(fucitiaolist, 'xiaofangyu')
         } else {
-            fucitiaolist = await this.removeArr2(fucitiaolist, zhucitiao)
+            fucitiaolist = await this.removeArr2(fucitiaolist, zhucitiao.id)
         }
         //移除已有的副词条
         for (let i = 0; i < fucitiao.length; i++) {
