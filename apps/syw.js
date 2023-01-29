@@ -20,7 +20,12 @@ export class ssyw extends plugin {
                     {
                         reg: '^#*强化圣遗物[0-9]*$',
                         fnc: 'qianghua'
-                    }
+                    },
+                    {
+                        reg: '^#*查看(副本|圣遗物)别名$',
+                        fnc: 'alias'
+                    },
+
                 ]
             }
         )
@@ -31,14 +36,14 @@ export class ssyw extends plugin {
         //判断今天还有没有次数
         let cishu = await util.cishu(e)
         if (!cishu) {
-            await e.reply('今天次数已用完!', false, { at: true, recallMsg: cfg.recall })
+            await e.reply('今天次数已用完!', false, { at: true })
             return true
         }
 
         //判断cd
         let cd = await util.getGayCD(e)
         if (cd > 0) {
-            await e.reply(`cd中,请${cd}秒后使用`, false, { at: true, recallMsg: cfg.recall })
+            await e.reply(`cd中,请${cd}秒后使用`, false, { at: true })
             return true
         }
 
@@ -50,7 +55,6 @@ export class ssyw extends plugin {
         let shengyiwu = await util.shengyiwu(buwei.id, fuben)
 
         if (!shengyiwu) {
-            await util.getAlias(e)
             return true
         }
 
@@ -82,7 +86,8 @@ export class ssyw extends plugin {
             buwei: buwei,
             zhucitiao: zhucitiao,
             zhucitiaoData: zhucitiaoData,
-            level: level
+            level: level,
+            isSave: false
         }
         await redis.set('xiaoye:syw:qq:' + e.user_id, JSON.stringify(data), { EX: 86400 })
         let img = await puppeteer.screenshot("syw", data);
@@ -179,7 +184,7 @@ export class ssyw extends plugin {
         zhucitiaoData = await util.getZhucitiaodata(zhucitiao, buwei.name, level)
         this._path = process.cwd().replace(/\\/g, "/");
         let newData = {
-            tplFile: './plugins/xiaoye-plugin/resources/html//syw/syw.html',
+            tplFile: './plugins/xiaoye-plugin/resources/html/syw/syw.html',
             pluResPath: `${this._path}`,
             fucitiao: fucitiao,
             fucitiaoData: fucitiaoData,
@@ -187,13 +192,19 @@ export class ssyw extends plugin {
             buwei: buwei,
             zhucitiao: zhucitiao,
             zhucitiaoData: zhucitiaoData,
-            level: level
+            level: level,
+            isSave: false
         }
         await redis.set('xiaoye:syw:qq:' + e.user_id, JSON.stringify(newData), { EX: 86400 })
         let img = await puppeteer.screenshot("syw", newData);
         let str = guocheng.join(',')
         await e.reply([img, '强化过程为:\n' + str], false, { at: true, recallMsg: cfg.recall });
         return true;
+    }
+
+    async alias(e) {
+        await util.getAlias(e)
+        return true
     }
 
 }

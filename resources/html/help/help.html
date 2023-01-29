@@ -18,10 +18,10 @@
         <div class="help">
 
             <div class="title">
-                <h2>{{helpList[0].group}}</h2>
+                <h2>{{helpList.group}}</h2>
             </div>
             <div class="help-text">
-                {{each helpList[0].list list}}
+                {{each helpList.list list}}
                 <div class="help-div">
                     <div>
                         <div class="img-div">
@@ -39,31 +39,6 @@
                 </div>
                 {{/each}}
 
-            </div>
-        </div>
-
-        <div class="help">
-            <div class="title">
-                <h2>{{helpList[1].group}}</h2>
-            </div>
-            <div class="help-text">
-                {{each helpList[1].list list}}
-                <div class="help-div2">
-                    <div>
-                        <div class="img-div">
-                            <img src="{{pluResPath}}/plugins/xiaoye-plugin/resources/html/help/img/{{list.icon}}.png">
-                        </div>
-                        <div class="text-div">
-                            <b class="text-title-div">
-                                {{list.title}}
-                            </b>
-                            <div>
-                                {{list.desc}}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {{/each}}
             </div>
         </div>
 

@@ -7,7 +7,7 @@
     <link rel="preload" href="{{pluResPath}}/plugins/xiaoye-plugin/resources/font/genshin.ttf" as="font">
     <link rel="stylesheet" type="text/css" href="{{pluResPath}}/plugins/xiaoye-plugin/resources/html/syw/syw.css" />
     <style>
-        
+
     </style>
 </head>
 
@@ -19,8 +19,13 @@
         <div class="zhucitiao">{{zhucitiao.display}}</div>
         <div class="zhucitiaoData">{{zhucitiaoData}}</div>
         <div class="level">+{{level}}</div>
+        {{if isSave}}
+        <div class="suo"><img class="suoimg" src="{{pluResPath}}/plugins/xiaoye-plugin/resources/html/syw/img/2.png"
+                alt=""></div>
+        {{else}}
         <div class="suo"><img class="suoimg" src="{{pluResPath}}/plugins/xiaoye-plugin/resources/html/syw/img/1.png"
                 alt=""></div>
+        {{/if}}
         {{if fucitiao[3]}}
         <div class="fucitiao">
             <ul class="ul">

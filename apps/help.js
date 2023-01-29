@@ -27,7 +27,7 @@ export class help extends plugin {
 
 
     async help(e) {
-        let helpList = helpUtil.getData()
+        let helpList = helpUtil.getList()
         let data = {
             tplFile: './plugins/xiaoye-plugin/resources/html/help/help.html',
             pluResPath: _path,
