@@ -7,7 +7,7 @@
     <link rel="preload" href="{{pluResPath}}/plugins/xiaoye-plugin/resources/font/genshin.ttf" as="font">
     <link rel="stylesheet" type="text/css" href="{{pluResPath}}/plugins/xiaoye-plugin/resources/html/syw/syw.css" />
     <style>
-
+        
     </style>
 </head>
 
@@ -18,6 +18,13 @@
         <div class="buwei">{{buwei.name}}</div>
         <div class="zhucitiao">{{zhucitiao.display}}</div>
         <div class="zhucitiaoData">{{zhucitiaoData}}</div>
+        <div class="star">
+            <img src="{{pluResPath}}/plugins/xiaoye-plugin/resources/html/syw/img/x.png" alt="">
+            <img src="{{pluResPath}}/plugins/xiaoye-plugin/resources/html/syw/img/x.png" alt="">
+            <img src="{{pluResPath}}/plugins/xiaoye-plugin/resources/html/syw/img/x.png" alt="">
+            <img src="{{pluResPath}}/plugins/xiaoye-plugin/resources/html/syw/img/x.png" alt="">
+            <img src="{{pluResPath}}/plugins/xiaoye-plugin/resources/html/syw/img/x.png" alt="">
+        </div>
         <div class="level">+{{level}}</div>
         {{if isSave}}
         <div class="suo"><img class="suoimg" src="{{pluResPath}}/plugins/xiaoye-plugin/resources/html/syw/img/2.png"
@@ -26,25 +33,25 @@
         <div class="suo"><img class="suoimg" src="{{pluResPath}}/plugins/xiaoye-plugin/resources/html/syw/img/1.png"
                 alt=""></div>
         {{/if}}
-        {{if fucitiao[3]}}
+
         <div class="fucitiao">
             <ul class="ul">
-                <li>{{fucitiao[0].display}}+{{fucitiaoData[0]}}</li>
-                <li>{{fucitiao[1].display}}+{{fucitiaoData[1]}}</li>
-                <li>{{fucitiao[2].display}}+{{fucitiaoData[2]}}</li>
-                <li>{{fucitiao[3].display}}+{{fucitiaoData[3]}}</li>
+                <li>
+                    <div class="dian">•&nbsp;</div>{{fucitiao[0].display}}+{{fucitiaoData[0]}}
+                </li>
+                <li>
+                    <div class="dian">•&nbsp;</div>{{fucitiao[1].display}}+{{fucitiaoData[1]}}
+                </li>
+                <li>
+                    <div class="dian">•&nbsp;</div>{{fucitiao[2].display}}+{{fucitiaoData[2]}}
+                </li>
+                {{if fucitiao[3]}}
+                <li>
+                    <div class="dian">•&nbsp;</div>{{fucitiao[3].display}}+{{fucitiaoData[3]}}
+                </li>
+                {{/if}}
             </ul>
         </div>
-        {{else}}
-        <div>
-            <ul class="ul">
-                <li>{{fucitiao[0].display}}+{{fucitiaoData[0]}}</li>
-                <li>{{fucitiao[1].display}}+{{fucitiaoData[1]}}</li>
-                <li>{{fucitiao[2].display}}+{{fucitiaoData[2]}}</li>
-
-            </ul>
-        </div>
-        {{/if}}
     </div>
 </body>
 

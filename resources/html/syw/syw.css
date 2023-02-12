@@ -13,27 +13,59 @@
 
 body {
     width: 746px;
-    height: 769px;
 }
 
 .body {
     width: 746px;
-    height: 769px;
     background: url(./img/bgimg.jpg) no-repeat;
 }
 
+
+.sywimg {
+    width: 120%;
+    height: 120%;
+}
+
+
+.suoimg {
+    width: 140%;
+    height: 140%;
+}
+
+.star img {
+    width: 40px;
+    height: 40px;
+    margin-right: 2px;
+}
+
+.fucitiao {
+    margin-top: 190px;
+    margin-left: 50px;
+    font-size: 0px;
+}
+
 .ul {
+    list-style: none;
     font-size: 40px;
     color: rgb(76, 85, 103);
-    position: absolute;
-    top: 530px;
-    left: 80px;
+}
+
+.dian {
+    position: relative;
+    bottom: 5px;
+    font-size: 30px;
+    display: inline-block;
+}
+
+.ul li {
+    height: 60px;
+    line-height: 60px;
+    list-style-position: inside;
 }
 
 .name {
-    position: absolute;
-    top: 12px;
-    left: 42px;
+    padding-top: 17px;
+    margin-left: 42px;
     color: rgb(255, 255, 255);
     font-size: 47px;
 }
@@ -44,45 +76,37 @@ body {
     left: 400px;
 }
 
-.sywimg {
-    width: 120%;
-    height: 120%;
-}
-
 .suo {
     position: absolute;
     top: 460px;
     left: 650px;
 }
 
-.suoimg {
-    width: 140%;
-    height: 140%;
-}
-
-
 .buwei {
-    position: absolute;
-    top: 100px;
-    left: 42px;
+    margin-top: 32px;
+    margin-left: 42px;
     color: white;
     font-size: 29px;
 }
 
 .zhucitiao {
-    position: absolute;
-    top: 230px;
-    left: 50px;
-    font-size: 28px;
+    margin-top: 100px;
+    margin-left: 42px;
+    font-size: 30px;
     color: rgb(192, 173, 165)
 }
 
 .zhucitiaoData {
-    position: absolute;
-    top: 260px;
-    left: 50px;
+    margin-top: 5px;
+    margin-left: 42px;
     color: white;
-    font-size: 65px;
+    font-size: 60px;
+}
+
+.star {
+    position: absolute;
+    top: 370px;
+    left: 42px;
 }
 
 .level {
@@ -93,6 +117,3 @@ body {
     font-size: 38px;
 }
 
-.ul li {
-    height: 60px;
-}
