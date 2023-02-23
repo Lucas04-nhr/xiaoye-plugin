@@ -26,11 +26,15 @@ git clone https://gitee.com/xiaoye12123/xiaoye-plugin.git ./plugins/xiaoye-plug
 3.  强化圣遗物 强化圣遗物4 后面可以接1-20的数字,代表强化多少级
 4.  保存圣遗物 查看圣遗物 删除圣遗物 把圣遗物保存在本地
 
-#### 预计更新
+#### 宣传下群
 
 
-1.  一次刷多个圣遗物
-2.  有建议可以提Issues
+欢迎各位大佬和萌新,遇到问题也可以来反馈: [154687817](https://jq.qq.com/?_wv=1027&k=rP4fjPex) 
+
+
+### 赞助
+
+[爱发电](https://afdian.net/a/xiaoye12123)
 
 
 #### 免责声明
