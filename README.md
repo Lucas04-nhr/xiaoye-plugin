@@ -32,7 +32,7 @@ git clone https://gitee.com/xiaoye12123/xiaoye-plugin.git ./plugins/xiaoye-plug
 欢迎各位大佬和萌新,遇到问题也可以来反馈: [154687817](https://jq.qq.com/?_wv=1027&k=rP4fjPex) 
 
 
-### 赞助
+#### 赞助
 
 [爱发电](https://afdian.net/a/xiaoye12123)
 
