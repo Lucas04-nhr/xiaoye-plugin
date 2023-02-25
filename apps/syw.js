@@ -11,7 +11,7 @@ export class ssyw extends plugin {
                 name: '刷圣遗物',
                 dsc: '刷指定副本的圣遗物和强化',
                 event: 'message',
-                priority: '5000',
+                priority: '5',
                 rule: [
                     {
                         reg: '^#*刷圣遗物.*$',
