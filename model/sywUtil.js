@@ -325,7 +325,6 @@ let util = {
     },
 
     //发送转发消息
-    //输入data一个数组,元素是字符串,每一个元素都是一条消息.
     async ForwardMsg(e, data) {
         let msgList = [];
         for (let i of data) {
@@ -339,7 +338,11 @@ let util = {
             await e.reply(msgList[0].message);
         }
         else {
-            await e.reply(await Bot.makeForwardMsg(msgList));
+            if (e.isGroup) {
+                await e.reply(await e.group.makeForwardMsg(msgList))
+            } else {
+                await e.reply(await e.friend.makeForwardMsg(msgList))
+            }
         }
         return true;
     },

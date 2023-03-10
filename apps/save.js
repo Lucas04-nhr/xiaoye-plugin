@@ -45,6 +45,7 @@ export class save extends plugin {
         }
         let newData = {
             tplFile: './plugins/xiaoye-plugin/resources/html/syw/syw.html',
+            imgType: 'png',
             pluResPath: `${path}`,
             fucitiao: data.fucitiao,
             fucitiaoData: data.fucitiaoData,
@@ -168,8 +169,6 @@ export class save extends plugin {
 
     }
 
-    //发送转发消息
-    //输入data一个数组,元素是字符串,每一个元素都是一条消息.
     async ForwardMsg(e, data) {
         let msgList = [];
         for (let i of data) {
@@ -183,7 +182,11 @@ export class save extends plugin {
             await e.reply(msgList[0].message);
         }
         else {
-            await e.reply(await Bot.makeForwardMsg(msgList));
+            if (e.isGroup) {
+                await e.reply(await e.group.makeForwardMsg(msgList))
+            } else {
+                await e.reply(await e.friend.makeForwardMsg(msgList))
+            }
         }
         return true;
     }
