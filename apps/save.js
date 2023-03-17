@@ -3,6 +3,8 @@ import puppeteer from "../../../lib/puppeteer/puppeteer.js";
 import fs from 'node:fs'
 import { segment } from "oicq"
 
+import { textToNumber, ForwardMsg } from "../model/index.js"
+
 const path = process.cwd().replace(/\\/g, "/");
 
 export class save extends plugin {
@@ -15,15 +17,15 @@ export class save extends plugin {
                 priority: '5000',
                 rule: [
                     {
-                        reg: '^#*保存圣遗物$',
+                        reg: '^#*保存圣遗物([一二三四五六七八九十]|[0-9])*$',
                         fnc: 'save'
                     },
                     {
-                        reg: '^#*查看圣遗物(第[0-9]*页)?$',
+                        reg: '^#*查看圣遗物(第([一二三四五六七八九十]|[0-9])+页)?$',
                         fnc: 'view'
                     },
                     {
-                        reg: '^#*删除圣遗物[0-9]+$',
+                        reg: '^#*删除圣遗物([一二三四五六七八九十]|[0-9])+$',
                         fnc: 'delete'
                     }
                 ]
@@ -33,27 +35,49 @@ export class save extends plugin {
 
     async save(e) {
         //先判断有没有圣遗物
-        let data = await redis.get('xiaoye:syw:qq:' + e.user_id)
-        if (!data) {
-            e.reply('当前没有圣遗物')
+        let dataList = await redis.get('xiaoye:syw:qq:' + e.user_id)
+        dataList = JSON.parse(dataList)
+        if (dataList == null) {
+            e.reply('还没有圣遗物哦,请先#刷圣遗物绝缘', true)
             return true
         }
-        data = JSON.parse(data)
-        if (data.isSave) {
-            e.reply('当前圣遗物已保存')
+        //默认保存第一个
+        let id = 1
+        //一次刷多个的话需要id
+        if (dataList.length > 1) {
+            let reg = new RegExp('(([一二三四五六七八九十]|[0-9])*)$')
+            if (reg.exec(e.msg)[1]) {
+                let regResult = reg.exec(e.msg)[1]
+                id = textToNumber(regResult)
+                if (id == -1) {
+                    id = 1
+                }
+            } else {
+                await e.reply('要保存圣遗物的id呢', true)
+                return true
+            }
+
+        }
+
+        if (!dataList[id - 1]) {
+            await e.reply(`没有id为${id}的圣遗物呢`, true)
+            return true
+        }
+        if (dataList[id - 1].isSave) {
+            e.reply('这个圣遗物已经保存了', true)
             return true
         }
         let newData = {
             tplFile: './plugins/xiaoye-plugin/resources/html/syw/syw.html',
             imgType: 'png',
             pluResPath: `${path}`,
-            fucitiao: data.fucitiao,
-            fucitiaoData: data.fucitiaoData,
-            shengyiwu: data.shengyiwu,
-            buwei: data.buwei,
-            zhucitiao: data.zhucitiao,
-            zhucitiaoData: data.zhucitiaoData,
-            level: data.level,
+            fucitiao: dataList[id - 1].fucitiao,
+            fucitiaoData: dataList[id - 1].fucitiaoData,
+            shengyiwu: dataList[id - 1].shengyiwu,
+            buwei: dataList[id - 1].buwei,
+            zhucitiao: dataList[id - 1].zhucitiao,
+            zhucitiaoData: dataList[id - 1].zhucitiaoData,
+            level: dataList[id - 1].level,
             isSave: false
         }
 
@@ -80,6 +104,7 @@ export class save extends plugin {
             }
 
             newData.isSave = true
+            dataList[id - 1] = newData
             let img = await puppeteer.screenshot("syw", newData);
 
             //保存图片
@@ -89,12 +114,13 @@ export class save extends plugin {
                 }
             });
         } catch (err) {
-            e.reply(`保存失败\n${err}`)
+            e.reply(`保存失败\n${err}`, true)
             newData.isSave = false
+            dataList[id - 1] = newData
             return true
         }
-        await redis.set('xiaoye:syw:qq:' + e.user_id, JSON.stringify(newData), { EX: 86400 })
-        await e.reply('保存成功~');
+        await redis.set('xiaoye:syw:qq:' + e.user_id, JSON.stringify(dataList), { EX: 86400 })
+        await e.reply('保存成功~', true);
         return true
     }
 
@@ -104,7 +130,7 @@ export class save extends plugin {
         let tempPic = `${path}/plugins/xiaoye-plugin/resources/userData/${e.user_id}`;
         //检查路径是否存在
         if (!fs.existsSync(tempPic)) {
-            e.reply('当前没有圣遗物')
+            e.reply('还没有保存圣遗物呢', true)
             return true
         }
         const files = fs.readdirSync(`${tempPic}/`).filter(file => file.endsWith('.png')).sort((a, b) => {
@@ -112,18 +138,21 @@ export class save extends plugin {
                 fs.statSync(`${tempPic}/${b}`).mtime.getTime();
         })
         if (!files.length) {
-            e.reply('当前没有圣遗物')
+            e.reply('还没有保存圣遗物呢', true)
             return true
         }
 
         let pageReg = new RegExp("^#*查看圣遗物(第(.*)页)*$")
         let page = pageReg.exec(e.msg)[2] || 1
-        page = Number(page)
+        page = textToNumber(page)
+        if (page == -1) {
+            page = 1
+        }
 
         // 计算页数（50条每页）
         let page_count = Math.ceil(files.length / 50);
         if (page > page_count) {
-            e.reply(`没有这么多页数呢`);
+            e.reply(`没有这么多页数呢`, true);
             return true
         }
 
@@ -137,14 +166,19 @@ export class save extends plugin {
             let img = segment.image(`${tempPic}/${file}`)
             msg.push([`id:${id}`, img])
         });
-        msg.unshift(`圣遗物列表,第${page}/${page_count}页,共${files.length}个\n可选择\n#查看圣遗物第1页\n#查看圣遗物第2页...`)
-        await this.ForwardMsg(e, msg)
+        msg.unshift(`圣遗物列表,第${page}/${page_count}页,共${files.length}个\n可选择\n#查看圣遗物第1页\n#查看圣遗物第2页\n#删除圣遗物1...`)
+        await e.reply(await ForwardMsg(e, msg))
         return true
     }
 
     async delete(e) {
         let tempPic = `${path}/plugins/xiaoye-plugin/resources/userData/${e.user_id}`;
         let targetId = e.msg.replace(/#|删除圣遗物/g, "").trim();
+        let id = textToNumber(targetId)
+        if (id == -1) {
+            e.reply('输入错误!', true)
+            return true
+        }
         try {
             //有这个id就删 没有就无响应
             const files = fs.readdirSync(`${tempPic}/`).filter(file => file.endsWith('.png'))
@@ -157,38 +191,15 @@ export class save extends plugin {
                             console.error(err);
                         }
                     });
-                    e.reply('删除成功~')
+                    e.reply('删除成功~', true)
                     return
                 }
             });
         } catch (err) {
-            e.reply(`删除失败\n${err}`)
+            e.reply(`删除失败\n${err}`, true)
             return true
         }
         return true
 
     }
-
-    async ForwardMsg(e, data) {
-        let msgList = [];
-        for (let i of data) {
-            msgList.push({
-                message: i,
-                nickname: Bot.nickname,
-                user_id: Bot.uin,
-            });
-        }
-        if (msgList.length == 1) {
-            await e.reply(msgList[0].message);
-        }
-        else {
-            if (e.isGroup) {
-                await e.reply(await e.group.makeForwardMsg(msgList))
-            } else {
-                await e.reply(await e.friend.makeForwardMsg(msgList))
-            }
-        }
-        return true;
-    }
-
 }

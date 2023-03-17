@@ -441,7 +441,20 @@ let util = {
     },
 
     //获得剩余次数
-    async cishu(e) {
+    async getCishu(e) {
+        if (cfg.cishu > 0) {
+            if (!e.isMaster) {
+                let data = await redis.get(`xiaoye:syw:cishu:qq:${e.user_id}`)
+                if (!data) {
+                    return cfg.cishu
+                } else {
+                    return cfg.cishu - data
+                }
+            }
+        }
+        return 999
+    },
+    async setCishu(e, i) {
         if (cfg.cishu > 0) {
             if (!e.isMaster) {
                 let time = moment(Date.now()).add(1, "days").format("YYYY-MM-DD 00:00:00");
@@ -451,16 +464,12 @@ let util = {
                 );
                 let data = await redis.get(`xiaoye:syw:cishu:qq:${e.user_id}`)
                 if (!data) {
-                    await redis.set(`xiaoye:syw:cishu:qq:${e.user_id}`, 1 * 1, { EX: exTime })
+                    await redis.set(`xiaoye:syw:cishu:qq:${e.user_id}`, i * 1, { EX: exTime })
                 } else {
-                    if (data >= cfg.cishu) {
-                        return false
-                    }
-                    await redis.set(`xiaoye:syw:cishu:qq:${e.user_id}`, ++data, { EX: exTime })
+                    await redis.set(`xiaoye:syw:cishu:qq:${e.user_id}`, Number(data) + i, { EX: exTime })
                 }
             }
         }
-        return true
     }
 }
 export default util

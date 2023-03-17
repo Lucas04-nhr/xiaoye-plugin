@@ -4,6 +4,8 @@ import util from "../model/sywUtil.js"
 import cfg from '../model/readConfig.js'
 import syw from '../model/readData.js'
 
+import { textToNumber, ForwardMsg } from "../model/index.js"
+
 export class ssyw extends plugin {
     constructor() {
         super(
@@ -18,14 +20,17 @@ export class ssyw extends plugin {
                         fnc: 'chuhuoba'
                     },
                     {
-                        reg: '^#*强化圣遗物[0-9]*$',
+                        reg: '^#*(一键)?强化圣遗物([一二三四五六七八九十]|[0-9])*([\+到至]([一二三四五六七八九十]|[0-9])+级?)?$',
                         fnc: 'qianghua'
                     },
                     {
                         reg: '^#*查看(副本|圣遗物)别名$',
                         fnc: 'alias'
                     },
-
+                    {
+                        reg: '^#*查看上次圣遗物$',
+                        fnc: 'viewLastTime'
+                    },
                 ]
             }
         )
@@ -33,100 +38,223 @@ export class ssyw extends plugin {
 
     //刷圣遗物
     async chuhuoba(e) {
-        //判断今天还有没有次数
-        let cishu = await util.cishu(e)
-        if (!cishu) {
-            await e.reply('今天次数已用完!', false, { at: true })
-            return true
-        }
-
         //判断cd
         let cd = await util.getGayCD(e)
         if (cd > 0) {
-            await e.reply(`cd中,请${cd}秒后使用`, false, { at: true })
+            await e.reply(`cd中,请${cd}秒后使用`, true)
             return true
         }
-
-        let fuben = e.msg.replace(/#|刷圣遗物/g, "").trim();
-        //获得一个部位 {name,id}
-        let buwei = await util.getBuwei()
-
-        //圣遗物名字
-        let shengyiwu = await util.shengyiwu(buwei.id, fuben)
-
-        if (!shengyiwu) {
-            return true
+        let reg = new RegExp('(([一二三四五六七八九十]|[0-9])+)[次个]$')
+        let sywNum = 1
+        if (reg.exec(e.msg)) {
+            let num = reg.exec(e.msg)[1]
+            num = textToNumber(num)
+            if (num > 20) {
+                num = 20
+            } else if (num == -1) {
+                num = 1
+            }
+            sywNum = num
+            e.msg = e.msg.replace(/([一二三四五六七八九十]|[0-9])+[次个]/g, "").trim()
         }
+        let cishu = await util.getCishu(e)
+        //看看剩余次数够不够
+        let target = cishu - sywNum
+        /* 
+            判断剩余次数够不够没写      √
+            刷一次没写                  √
+            设置次数没写                √
+            强化单个没写                √
+            一键强化没写                √
+            兼容保存没写                √
+            查看上次圣遗物              √
+        */
+        if (target >= 0) {
+            let fuben = e.msg.replace(/#|刷圣遗物/g, "").trim();
+            let msg = []
+            let dataList = []
 
-        //初始等级0
-        let level = 0
+            for (let i = 1; i <= sywNum; i++) {
+                //获得一个部位 {name,id}
+                let buwei = await util.getBuwei()
 
-        //确定主词条
-        let zhucitiao = await util.getZhucitiao(buwei.name)
+                //圣遗物名字
+                let shengyiwu = await util.shengyiwu(buwei.id, fuben)
 
-        //给主词条加初始值
-        let zhucitiaoData = await util.getZhucitiaodata(zhucitiao, buwei.name, level)
+                if (!shengyiwu) {
+                    return true
+                }
 
-        //确定副词条
-        let fucitiao = await util.getFucitiao(zhucitiao, buwei.name)
+                //初始等级0
+                let level = 0
 
-        //给副词条加初始值
-        let fucitiaoData = await util.getFucitiaoData(fucitiao)
+                //确定主词条
+                let zhucitiao = await util.getZhucitiao(buwei.name)
 
-        //加个符号%
-        fucitiaoData = await util.fucitiaoAddfuhao(fucitiao, fucitiaoData)
+                //给主词条加初始值
+                let zhucitiaoData = await util.getZhucitiaodata(zhucitiao, buwei.name, level)
 
-        this._path = process.cwd().replace(/\\/g, "/");
-        let data = {
-            tplFile: './plugins/xiaoye-plugin/resources/html/syw/syw.html',
-            pluResPath: this._path,
-            fucitiao: fucitiao,
-            fucitiaoData: fucitiaoData,
-            shengyiwu: shengyiwu,
-            buwei: buwei,
-            zhucitiao: zhucitiao,
-            zhucitiaoData: zhucitiaoData,
-            level: level,
-            isSave: false
+                //确定副词条
+                let fucitiao = await util.getFucitiao(zhucitiao, buwei.name)
+
+                //给副词条加初始值
+                let fucitiaoData = await util.getFucitiaoData(fucitiao)
+
+                this._path = process.cwd().replace(/\\/g, "/");
+                let data = {
+                    tplFile: './plugins/xiaoye-plugin/resources/html/syw/syw.html',
+                    pluResPath: this._path,
+                    fucitiao: fucitiao,
+                    fucitiaoData: fucitiaoData,
+                    shengyiwu: shengyiwu,
+                    buwei: buwei,
+                    zhucitiao: zhucitiao,
+                    zhucitiaoData: zhucitiaoData,
+                    level: level,
+                    isSave: false,
+                }
+                let img = await puppeteer.screenshot("syw", data);
+                msg.push([`id:${i}`, img])
+                dataList.push(data)
+            }
+            await redis.set('xiaoye:syw:qq:' + e.user_id, JSON.stringify(dataList), { EX: 86400 })
+            await util.setCishu(e, sywNum)
+            await util.setGayCD(e)
+            if (msg.length > 1) {
+                await e.reply(await ForwardMsg(e, msg), false, { at: false, recall: cfg.recall })
+            } else {
+                await e.reply(msg, true, { at: false, recall: cfg.recall })
+            }
+        } else {
+            await e.reply('今天的次数不够刷这么多次了', true, { at: false, recall: cfg.recall })
         }
-        await redis.set('xiaoye:syw:qq:' + e.user_id, JSON.stringify(data), { EX: 86400 })
-        let img = await puppeteer.screenshot("syw", data);
-        await e.reply(img, false, { at: true, recallMsg: cfg.recall });
-        await util.setGayCD(e)
-        return true;
-
+        return true
     }
 
     //强化
     async qianghua(e) {
-        let up = e.msg.replace(/#|强化圣遗物/g, "").trim();
-        up = parseInt(up)
-        if (up > 20) {
-            up = 20
-        }
+        let reg = new RegExp('^#*(一键)?强化圣遗物(([一二三四五六七八九十]|[0-9])*)([\+到至](([一二三四五六七八九十]|[0-9])+)级?)?$')
+        let regResult = reg.exec(e.msg)
+        //是否一键强化
+        let all = regResult[1] ? true : false
+        //默认强化第一个
+        let id = 1
+        //默认强化到20级
+        let up = 20
 
         //要强化的圣遗物数据
-        let data = await redis.get('xiaoye:syw:qq:' + e.user_id)
-        data = JSON.parse(data)
-        if (data == null) {
-            e.reply('当前没有圣遗物')
+        let dataList = await redis.get('xiaoye:syw:qq:' + e.user_id)
+        dataList = JSON.parse(dataList)
+        if (dataList == null) {
+            e.reply('还没有圣遗物哦,请先#刷圣遗物绝缘', true, { at: false, recall: cfg.recall })
             return true
         }
+        if (!all) {
+            //强化圣遗物2+20 如果后面带了参数
+            if (regResult[2]) {
+                //看看有没有+20 如果有+20就代表 2是id
+                if (regResult[5]) {
+                    //将中文数字转换成阿拉伯数字
+                    id = textToNumber(regResult[2])
+                    if (id == -1) {
+                        id = 1
+                    }
+                    up = textToNumber(regResult[5])
+                    if (up > 20 || up == -1) {
+                        up = 20
+                    }
+                }
+                //没有+20的话 如果一次刷了多个圣遗物那么 2就是id 只有一个圣遗物的话2就是等级
+                else {
+                    if (dataList.length > 1) {
+                        //将中文数字转换成阿拉伯数字
+                        id = textToNumber(regResult[2])
+                        if (id == -1) {
+                            id = 1
+                        }
+                    }
+                    else {
+                        up = textToNumber(regResult[2])
+                        if (up > 20 || up == -1) {
+                            up = 20
+                        }
+                    }
+                }
+            }
+        }
+        if (all) {
+            let data = {
+                data: [],
+                msg: []
+            }
+            for (let i = 0; i < dataList.length; i++) {
+                let result = await this.upgrade(dataList[i], up)
+                if (result.data) {
+                    data.data.push(result.data)
+                    data.msg.push([`id:${i + 1}`, ...result.msg])
+                } else {
+                    data.data.push(dataList[i])
+                    let img = await puppeteer.screenshot("syw", dataList[i]);
+                    data.msg.push([`id:${i + 1}`, img])
+                }
+            }
+            await e.reply(await ForwardMsg(e, data.msg), false, { at: false, recall: cfg.recall })
+            await redis.set('xiaoye:syw:qq:' + e.user_id, JSON.stringify(data.data), { EX: 86400 })
+        } else {
+            let data = await this.upgrade(dataList[id - 1], up)
+            if (data.data) {
+                dataList[id - 1] = data.data
+                await redis.set('xiaoye:syw:qq:' + e.user_id, JSON.stringify(dataList), { EX: 86400 })
+            }
+            await e.reply(data.msg, true, { at: false, recall: cfg.recall })
+        }
+        return true
+    }
+
+    async alias(e) {
+        await util.getAlias(e)
+        return true
+    }
+
+    async viewLastTime(e) {
+        let dataList = await redis.get('xiaoye:syw:qq:' + e.user_id)
+        dataList = JSON.parse(dataList)
+        if (dataList == null) {
+            e.reply('还没有圣遗物哦,请先#刷圣遗物绝缘', true, { at: false, recall: cfg.recall })
+            return true
+        }
+        if (dataList.length > 1) {
+            let img = []
+            for (let i = 0; i < dataList.length; i++) {
+                img.push([`id:${i + 1}`, await puppeteer.screenshot("syw", dataList[i])])
+            }
+            await e.reply(await ForwardMsg(e, img), false, { at: false, recall: cfg.recall })
+        } else {
+            let img = await puppeteer.screenshot("syw", dataList[0]);
+            await e.reply(img, true, { at: false, recall: cfg.recall })
+        }
+        return true
+    }
+
+    async upgrade(data, up) {
+        if (!data) {
+            return {
+                msg: '没有这么多圣遗物呢',
+                data: null
+            }
+        }
+
         //获得等级
         let level = data.level
         level = parseInt(level)
-        if (!up) {
-            up = 20 - level
-        }
         if (level == 20) {
-            e.reply('当前圣遗物已强化')
-            return true
+            return { msg: '圣遗物已经强化完了,还想强化难道是小攻击拉满了吗', data: null }
         } else if (level + up > 20) {
             up = 20 - level
         }
-
         //根据等级获得强化次数
         let cishu = parseInt((level % 4 + up) / 4)
+
 
         //获取圣遗物名字
         let shengyiwu = data.shengyiwu
@@ -145,10 +273,6 @@ export class ssyw extends plugin {
 
         //如果强化次数大于0
         if (cishu > 0) {
-            //去掉%
-            for (let i = 0; i < fucitiaoData.length; i++) {
-                fucitiaoData[i] = fucitiaoData[i].replace(/%/g, "").trim()
-            }
             //四词条
             if (fucitiao[3] && level != '20') {
 
@@ -174,8 +298,6 @@ export class ssyw extends plugin {
                     guocheng.push(...qianghua.guocheng)
                 }
             }
-            //加上%
-            fucitiaoData = await util.fucitiaoAddfuhao(fucitiao, fucitiaoData)
         }
 
         //等级加一下
@@ -193,18 +315,13 @@ export class ssyw extends plugin {
             zhucitiao: zhucitiao,
             zhucitiaoData: zhucitiaoData,
             level: level,
-            isSave: false
+            isSave: false,
+            img: data.img
         }
-        await redis.set('xiaoye:syw:qq:' + e.user_id, JSON.stringify(newData), { EX: 86400 })
         let img = await puppeteer.screenshot("syw", newData);
+        newData.img = data.img
         let str = guocheng.join(',')
-        await e.reply([img, '强化过程为:\n' + str], false, { at: true, recallMsg: cfg.recall });
-        return true;
-    }
-
-    async alias(e) {
-        await util.getAlias(e)
-        return true
+        return { data: newData, msg: [img, '强化过程为:\n' + str] }
     }
 
 }

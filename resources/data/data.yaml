@@ -93,42 +93,52 @@ fucitiaoList:
     display: '暴击率'
     option: '暴击率'
     percentage: true
+    suffix: true
   - id: 'baojishanghai'
     display: '暴击伤害'
     option: '暴击伤害'
     percentage: true
+    suffix: true
   - id: 'gongjili'
     display: '攻击力'
     option: '攻击力'
     percentage: true
+    suffix: true
   - id: 'jingtong'
     display: '元素精通'
     option: '元素精通'
     percentage: false
+    suffix: false
   - id: 'shengmingzhi'
     display: '生命值'
     option: '生命值'
     percentage: true
+    suffix: true
   - id: 'fangyuli'
     display: '防御力'
     option: '防御力'
     percentage: true
+    suffix: true
   - id: 'chongneng'
     display: '元素充能效率'
     option: '元素充能效率'
     percentage: true
+    suffix: true
   - id: 'xiaogongji'
     display: '攻击力'
     option: '小攻击'
     percentage: false
+    suffix: false
   - id: 'xiaoshengming'
     display: '生命值'
     option: '小生命'
     percentage: false
+    suffix: false
   - id: 'xiaofangyu'
     display: '防御力'
     option: '小防御'
     percentage: false
+    suffix: false
   
 
 #暴击伤害
