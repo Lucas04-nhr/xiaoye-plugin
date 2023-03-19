@@ -2,8 +2,8 @@ import plugin from '../../../lib/plugins/plugin.js'
 import setUtil from '../model/set.js'
 import util from '../model/setUtil.js'
 import puppeteer from "../../../lib/puppeteer/puppeteer.js";
-import cfg from '../model/readConfig.js'
-import syw from '../model/readData.js'
+
+import { sywData as syw } from '../model/index.js';
 
 const _path = process.cwd().replace(/\\/g, "/");
 
@@ -71,7 +71,7 @@ export class set extends plugin {
 
     async set(e) {
         if (!e.isMaster) {
-            return
+            return true
         }
         let setList = setUtil.getData()
         let data = {
@@ -87,20 +87,19 @@ export class set extends plugin {
 
     async setcitiao(e) {
         if (!e.isMaster) {
-            return
+            return true
         }
         let i = e.msg.includes('三词条') ? 0 : 1
         let data = await util.getData()
         let num = parseInt(e.msg.match(/\d+/g))
         data.citiao[i] = num
         await util.setYaml(data)
-        e.reply('成功!')
-        return
+        return await this.set(e)
     }
 
     async setbuwei(e) {
         if (!e.isMaster) {
-            return
+            return true
         }
         let buwei = syw.buweiList
         let data = await util.getData()
@@ -112,13 +111,12 @@ export class set extends plugin {
             }
         }
         await util.setYaml(data)
-        e.reply('成功!')
-        return
+        return await this.set(e)
     }
 
     async setshizhisha(e) {
         if (!e.isMaster) {
-            return
+            return true
         }
         let shizhisha = syw.shizhishazhucitiaoList
         let data = await util.getData()
@@ -130,13 +128,12 @@ export class set extends plugin {
             }
         }
         await util.setYaml(data)
-        e.reply('成功!')
-        return
+        return await this.set(e)
     }
 
     async setkongzhibei(e) {
         if (!e.isMaster) {
-            return
+            return true
         }
         let kongzhibei = syw.kongzhibeizhucitiaoList
         let data = await util.getData()
@@ -148,13 +145,12 @@ export class set extends plugin {
             }
         }
         await util.setYaml(data)
-        e.reply('成功!')
-        return
+        return await this.set(e)
     }
 
     async setlizhiguan(e) {
         if (!e.isMaster) {
-            return
+            return true
         }
         let lizhiguan = syw.lizhiguanzhucitiaoList
         let data = await util.getData()
@@ -166,13 +162,12 @@ export class set extends plugin {
             }
         }
         await util.setYaml(data)
-        e.reply('成功!')
-        return
+        return await this.set(e)
     }
 
     async setfucitiao(e) {
         if (!e.isMaster) {
-            return
+            return true
         }
         let fucitiao = syw.fucitiaoList
         let data = await util.getData()
@@ -184,13 +179,12 @@ export class set extends plugin {
             }
         }
         await util.setYaml(data)
-        e.reply('成功!')
-        return
+        return await this.set(e)
     }
 
     async setqianghua(e) {
         if (!e.isMaster) {
-            return
+            return true
         }
         let qianghua = ['第一档', '第二档', '第三档', '第四档']
         let data = await util.getData()
@@ -202,13 +196,12 @@ export class set extends plugin {
             }
         }
         await util.setYaml(data)
-        e.reply('成功!')
-        return
+        return await this.set(e)
     }
 
     async setfucitiaoqianghua(e) {
         if (!e.isMaster) {
-            return
+            return true
         }
         let fucitiao = syw.fucitiaoList
         let data = await util.getData()
@@ -220,46 +213,42 @@ export class set extends plugin {
             }
         }
         await util.setYaml(data)
-        e.reply('成功!')
-        return
+        return await this.set(e)
     }
 
     async setcd(e) {
         if (!e.isMaster) {
-            return
+            return true
         }
         let data = await util.getData()
         let num = parseInt(e.msg.match(/\d+/g))
         data.cd = num
         await util.setYaml(data)
-        e.reply('成功!')
-        return
+        return await this.set(e)
     }
 
     async setrecall(e) {
         if (!e.isMaster) {
-            return
+            return true
         }
         let data = await util.getData()
         let num = parseInt(e.msg.match(/\d+/g))
         if (num > 120) {
-            return
+            return true
         }
         data.recall = num
         await util.setYaml(data)
-        e.reply('成功!')
-        return
+        return await this.set(e)
     }
 
     async setcishu(e) {
         if (!e.isMaster) {
-            return
+            return true
         }
         let data = await util.getData()
         let num = parseInt(e.msg.match(/\d+/g))
         data.cishu = num
         await util.setYaml(data)
-        e.reply('成功!')
-        return
+        return await this.set(e)
     }
 }

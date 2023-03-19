@@ -1,10 +1,9 @@
 import plugin from '../../../lib/plugins/plugin.js'
 import puppeteer from "../../../lib/puppeteer/puppeteer.js";
-import util from "../model/sywUtil.js"
-import cfg from '../model/readConfig.js'
-import syw from '../model/readData.js'
 
-import { textToNumber, ForwardMsg } from "../model/index.js"
+import { textToNumber, ForwardMsg, syw as util, cfg } from "../model/index.js"
+
+let throttle = false
 
 export class ssyw extends plugin {
     constructor() {
@@ -38,10 +37,16 @@ export class ssyw extends plugin {
 
     //刷圣遗物
     async chuhuoba(e) {
+        if (throttle) {
+            return true
+        } else {
+            throttle = true
+        }
         //判断cd
         let cd = await util.getGayCD(e)
         if (cd > 0) {
             await e.reply(`cd中,请${cd}秒后使用`, true)
+            throttle = false
             return true
         }
         let reg = new RegExp('(([一二三四五六七八九十]|[0-9])+)[次个]$')
@@ -82,6 +87,7 @@ export class ssyw extends plugin {
                 let shengyiwu = await util.shengyiwu(buwei.id, fuben)
 
                 if (!shengyiwu) {
+                    throttle = false
                     return true
                 }
 
@@ -128,11 +134,17 @@ export class ssyw extends plugin {
         } else {
             await e.reply('今天的次数不够刷这么多次了', true, { at: false, recall: cfg.recall })
         }
+        throttle = false
         return true
     }
 
     //强化
     async qianghua(e) {
+        if (throttle) {
+            return true
+        } else {
+            throttle = true
+        }
         let reg = new RegExp('^#*(一键)?强化圣遗物(([一二三四五六七八九十]|[0-9])*)([\+到至](([一二三四五六七八九十]|[0-9])+)级?)?$')
         let regResult = reg.exec(e.msg)
         //是否一键强化
@@ -147,6 +159,7 @@ export class ssyw extends plugin {
         dataList = JSON.parse(dataList)
         if (dataList == null) {
             e.reply('还没有圣遗物哦,请先#刷圣遗物绝缘', true, { at: false, recall: cfg.recall })
+            throttle = false
             return true
         }
         if (!all) {
@@ -208,6 +221,7 @@ export class ssyw extends plugin {
             }
             await e.reply(data.msg, true, { at: false, recall: cfg.recall })
         }
+        throttle = false
         return true
     }
 
