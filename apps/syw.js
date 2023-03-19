@@ -65,15 +65,6 @@ export class ssyw extends plugin {
         let cishu = await util.getCishu(e)
         //看看剩余次数够不够
         let target = cishu - sywNum
-        /* 
-            判断剩余次数够不够没写      √
-            刷一次没写                  √
-            设置次数没写                √
-            强化单个没写                √
-            一键强化没写                √
-            兼容保存没写                √
-            查看上次圣遗物              √
-        */
         if (target >= 0) {
             let fuben = e.msg.replace(/#|刷圣遗物/g, "").trim();
             let msg = []
@@ -120,6 +111,9 @@ export class ssyw extends plugin {
                     isSave: false,
                 }
                 let img = await puppeteer.screenshot("syw", data);
+                if (!img) {
+                    img = await puppeteer.screenshot("syw", data);
+                }
                 msg.push([`id:${i}`, img])
                 dataList.push(data)
             }
@@ -208,6 +202,9 @@ export class ssyw extends plugin {
                 } else {
                     data.data.push(dataList[i])
                     let img = await puppeteer.screenshot("syw", dataList[i]);
+                    if (!img) {
+                        img = await puppeteer.screenshot("syw", dataList[i]);
+                    }
                     data.msg.push([`id:${i + 1}`, img])
                 }
             }
@@ -240,7 +237,11 @@ export class ssyw extends plugin {
         if (dataList.length > 1) {
             let img = []
             for (let i = 0; i < dataList.length; i++) {
-                img.push([`id:${i + 1}`, await puppeteer.screenshot("syw", dataList[i])])
+                let img2 = await puppeteer.screenshot("syw", dataList[i])
+                if (!img2) {
+                    img2 = await puppeteer.screenshot("syw", dataList[i])
+                }
+                img.push([`id:${i + 1}`, img2])
             }
             await e.reply(await ForwardMsg(e, img), false, { at: false, recall: cfg.recall })
         } else {
