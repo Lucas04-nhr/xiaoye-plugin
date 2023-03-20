@@ -114,19 +114,23 @@ export class ssyw extends plugin {
                 if (!img) {
                     img = await puppeteer.screenshot("syw", data);
                 }
-                msg.push([`id:${i}`, img])
+                if (sywNum > 1) {
+                    msg.push([`id:${i}`, img])
+                } else {
+                    msg.push(img)
+                }
                 dataList.push(data)
             }
             await redis.set('xiaoye:syw:qq:' + e.user_id, JSON.stringify(dataList), { EX: 86400 })
             await util.setCishu(e, sywNum)
             await util.setGayCD(e)
             if (msg.length > 1) {
-                await e.reply(await ForwardMsg(e, msg), false, { at: false, recall: cfg.recall })
+                await e.reply(await ForwardMsg(e, msg), false, { at: false, recallMsg: cfg.recall })
             } else {
-                await e.reply(msg, true, { at: false, recall: cfg.recall })
+                await e.reply(msg, true, { at: false, recallMsg: cfg.recall })
             }
         } else {
-            await e.reply('今天的次数不够刷这么多次了', true, { at: false, recall: cfg.recall })
+            await e.reply('今天的次数不够刷这么多次了', true, { at: false, recallMsg: cfg.recall })
         }
         throttle = false
         return true
@@ -152,7 +156,7 @@ export class ssyw extends plugin {
         let dataList = await redis.get('xiaoye:syw:qq:' + e.user_id)
         dataList = JSON.parse(dataList)
         if (dataList == null) {
-            e.reply('还没有圣遗物哦,请先#刷圣遗物绝缘', true, { at: false, recall: cfg.recall })
+            e.reply('还没有圣遗物哦,请先#刷圣遗物绝缘', true, { at: false, recallMsg: cfg.recall })
             throttle = false
             return true
         }
@@ -208,7 +212,7 @@ export class ssyw extends plugin {
                     data.msg.push([`id:${i + 1}`, img])
                 }
             }
-            await e.reply(await ForwardMsg(e, data.msg), false, { at: false, recall: cfg.recall })
+            await e.reply(await ForwardMsg(e, data.msg), false, { at: false, recallMsg: cfg.recall })
             await redis.set('xiaoye:syw:qq:' + e.user_id, JSON.stringify(data.data), { EX: 86400 })
         } else {
             let data = await this.upgrade(dataList[id - 1], up)
@@ -216,7 +220,7 @@ export class ssyw extends plugin {
                 dataList[id - 1] = data.data
                 await redis.set('xiaoye:syw:qq:' + e.user_id, JSON.stringify(dataList), { EX: 86400 })
             }
-            await e.reply(data.msg, true, { at: false, recall: cfg.recall })
+            await e.reply(data.msg, true, { at: false, recallMsg: cfg.recall })
         }
         throttle = false
         return true
@@ -231,7 +235,7 @@ export class ssyw extends plugin {
         let dataList = await redis.get('xiaoye:syw:qq:' + e.user_id)
         dataList = JSON.parse(dataList)
         if (dataList == null) {
-            e.reply('还没有圣遗物哦,请先#刷圣遗物绝缘', true, { at: false, recall: cfg.recall })
+            e.reply('还没有圣遗物哦,请先#刷圣遗物绝缘', true, { at: false, recallMsg: cfg.recall })
             return true
         }
         if (dataList.length > 1) {
@@ -243,10 +247,10 @@ export class ssyw extends plugin {
                 }
                 img.push([`id:${i + 1}`, img2])
             }
-            await e.reply(await ForwardMsg(e, img), false, { at: false, recall: cfg.recall })
+            await e.reply(await ForwardMsg(e, img), false, { at: false, recallMsg: cfg.recall })
         } else {
             let img = await puppeteer.screenshot("syw", dataList[0]);
-            await e.reply(img, true, { at: false, recall: cfg.recall })
+            await e.reply(img, true, { at: false, recallMsg: cfg.recall })
         }
         return true
     }
