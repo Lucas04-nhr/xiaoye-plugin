@@ -324,53 +324,6 @@ let util = {
         await this.ForwardMsg(e, data)
     },
 
-    //发送转发消息
-    async ForwardMsg(e, data) {
-        let msgList = [];
-        for (let i of data) {
-            msgList.push({
-                message: i,
-                nickname: Bot.nickname,
-                user_id: Bot.uin,
-            });
-        }
-        if (msgList.length == 1) {
-            await e.reply(msgList[0].message);
-        }
-        else {
-            if (e.isGroup) {
-                await e.reply(await e.group.makeForwardMsg(msgList))
-            } else {
-                await e.reply(await e.friend.makeForwardMsg(msgList))
-            }
-        }
-        return true;
-    },
-
-    //给副词条加%
-    async fucitiaoAddfuhao(fucitiao, fucitiaoData) {
-        let data = fucitiaoData
-        // let arr = ['攻击力', '防御力', '充能', '生命值', '暴击率', '暴击伤害']
-        if (Array.isArray(data)) {
-            for (let i = 0; i < fucitiaoData.length; i++) {
-                if (fucitiao[i].percentage) {
-                    data[i] = data[i] + '%'
-                } else {
-                    data[i] = data[i] + ''
-                }
-
-            }
-        } else if (typeof (data) == 'string') {
-            if (fucitiao.percentage) {
-                data = data + '%'
-            } else {
-                data = data + ''
-            }
-        }
-        return data
-    },
-
-
     //随机获得指定位置指定副本的套装之一
     async randomShengyiwu(buwei, fuben) {
         let shengyiwu
@@ -395,15 +348,28 @@ let util = {
             icon: ''
         }
 
+        let result = false
+        let fubenId = 0
+
+        if (fuben == '随机') {
+            fubenId = Math.floor((Math.random() * syw.fuben.length))
+            result = true
+        }
+
         for (let i = 0; i < syw.fuben.length; i++) {
             if (syw.fuben[i].alias.includes(fuben)) {
-                let num = Math.floor((Math.random() * 2))
-                shengyiwu.name = syw.fuben[i].buwei[id].name[num]
-                shengyiwu.icon = syw.fuben[i].buwei[id].icon[num]
-                return shengyiwu
+                fubenId = i
+                result = true
             }
-
         }
+
+        if (result) {
+            let num = Math.floor((Math.random() * 2))
+            shengyiwu.name = syw.fuben[fubenId].buwei[id].name[num]
+            shengyiwu.icon = syw.fuben[fubenId].buwei[id].icon[num]
+            return shengyiwu
+        }
+
         return false
     },
 

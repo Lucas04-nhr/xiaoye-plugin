@@ -4,7 +4,7 @@ const helpList =
   "list": [
     {
       "icon": 1,
-      "title": "刷圣遗物绝缘",
+      "title": "刷圣遗物绝缘 刷圣遗物随机",
       "desc": "随机获得一个当前副本的产物"
     },
     {
