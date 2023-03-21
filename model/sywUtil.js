@@ -264,7 +264,7 @@ let util = {
             let benci = await this.getQianghuacitiao(fucitiao)
             //获得强化的数值
             let fucitiaoUpData = await this.getQianghuashuzhi(benci)
-            guocheng.push(`${benci.display}+${await this.fucitiaoAddfuhao(benci, fucitiaoUpData)}`)
+            guocheng.push(`${benci.display}+${fucitiaoUpData}${benci.suffix ? '%' : ''}`)
             //循环副词条找到这个副词条然后相加
             for (let j = 0; j < fucitiao.length; j++) {
                 if (fucitiao[j] == benci) {
