@@ -1,7 +1,6 @@
 import plugin from '../../../lib/plugins/plugin.js'
 import puppeteer from "../../../lib/puppeteer/puppeteer.js";
 import fs from 'node:fs'
-import { segment } from "oicq"
 
 import { textToNumber, ForwardMsg } from "../model/index.js"
 
