@@ -4,6 +4,7 @@ import puppeteer from "../../../lib/puppeteer/puppeteer.js";
 import { textToNumber, ForwardMsg, syw as util, cfg } from "../model/index.js"
 
 let throttle = false
+let resetCount = 0
 
 export class ssyw extends plugin {
     constructor() {
@@ -37,6 +38,11 @@ export class ssyw extends plugin {
 
     //刷圣遗物
     async chuhuoba(e) {
+        resetCount = resetCount + 1
+        if (resetCount > 2) {
+            throttle = false
+            resetCount = 0
+        }
         if (throttle) {
             return true
         } else {
@@ -138,6 +144,11 @@ export class ssyw extends plugin {
 
     //强化
     async qianghua(e) {
+        resetCount = resetCount + 1
+        if (resetCount > 2) {
+            throttle = false
+            resetCount = 0
+        }
         if (throttle) {
             return true
         } else {
