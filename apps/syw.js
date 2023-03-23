@@ -39,7 +39,7 @@ export class ssyw extends plugin {
     //刷圣遗物
     async chuhuoba(e) {
         resetCount = resetCount + 1
-        if (resetCount > 2) {
+        if (resetCount > 1) {
             throttle = false
             resetCount = 0
         }
@@ -145,7 +145,7 @@ export class ssyw extends plugin {
     //强化
     async qianghua(e) {
         resetCount = resetCount + 1
-        if (resetCount > 2) {
+        if (resetCount > 1) {
             throttle = false
             resetCount = 0
         }
