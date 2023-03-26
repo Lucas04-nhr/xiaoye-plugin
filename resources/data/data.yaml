@@ -225,32 +225,32 @@ fuben :
           - 雷鸟的怜悯
           - 平雷之心
         icon :
-          - 'plugins/xiaoye-plugin/resources/img/如雷的盛怒/1.png'
-          - 'plugins/xiaoye-plugin/resources/img/平息鸣雷的尊者/1.png'
+          - 'plugins/xiaoye-plugin/resources/img/如雷的盛怒/1.webp'
+          - 'plugins/xiaoye-plugin/resources/img/平息鸣雷的尊者/1.webp'
       - name :
           - '雷灾的孑遗'
           - '平雷之羽'
         icon :
-          - 'plugins/xiaoye-plugin/resources/img/如雷的盛怒/2.png'
-          - 'plugins/xiaoye-plugin/resources/img/平息鸣雷的尊者/2.png'
+          - 'plugins/xiaoye-plugin/resources/img/如雷的盛怒/2.webp'
+          - 'plugins/xiaoye-plugin/resources/img/平息鸣雷的尊者/2.webp'
       - name :
           - '雷霆的时计'
           - '平雷之刻'
         icon : 
-          - 'plugins/xiaoye-plugin/resources/img/如雷的盛怒/3.png'
-          - 'plugins/xiaoye-plugin/resources/img/平息鸣雷的尊者/3.png'
+          - 'plugins/xiaoye-plugin/resources/img/如雷的盛怒/3.webp'
+          - 'plugins/xiaoye-plugin/resources/img/平息鸣雷的尊者/3.webp'
       - name :
           - '降雷的凶兆'
           - '平雷之器'
         icon :
-          - 'plugins/xiaoye-plugin/resources/img/如雷的盛怒/4.png'
-          - 'plugins/xiaoye-plugin/resources/img/平息鸣雷的尊者/4.png'
+          - 'plugins/xiaoye-plugin/resources/img/如雷的盛怒/4.webp'
+          - 'plugins/xiaoye-plugin/resources/img/平息鸣雷的尊者/4.webp'
       - name :
           - '唤雷的头冠'
           - '平雷之冠'
         icon :
-          - 'plugins/xiaoye-plugin/resources/img/如雷的盛怒/5.png'
-          - 'plugins/xiaoye-plugin/resources/img/平息鸣雷的尊者/5.png'
+          - 'plugins/xiaoye-plugin/resources/img/如雷的盛怒/5.webp'
+          - 'plugins/xiaoye-plugin/resources/img/平息鸣雷的尊者/5.webp'
   #副本名字
   - name : '铭记之谷'
     #别名
@@ -267,32 +267,32 @@ fuben :
           - 野花记忆的绿野
           - 远方的少女之心
         icon :
-          - 'plugins/xiaoye-plugin/resources/img/翠绿之影/1.png'
-          - 'plugins/xiaoye-plugin/resources/img/被怜爱的少女/1.png'
+          - 'plugins/xiaoye-plugin/resources/img/翠绿之影/1.webp'
+          - 'plugins/xiaoye-plugin/resources/img/被怜爱的少女/1.webp'
       - name :
           - '猎人青翠的箭羽'
           - '少女飘摇的思念'
         icon :
-          - 'plugins/xiaoye-plugin/resources/img/翠绿之影/2.png'
-          - 'plugins/xiaoye-plugin/resources/img/被怜爱的少女/2.png'
+          - 'plugins/xiaoye-plugin/resources/img/翠绿之影/2.webp'
+          - 'plugins/xiaoye-plugin/resources/img/被怜爱的少女/2.webp'
       - name :
           - '翠绿猎人的笃定'
           - '少女苦短的良辰'
         icon : 
-          - 'plugins/xiaoye-plugin/resources/img/翠绿之影/3.png'
-          - 'plugins/xiaoye-plugin/resources/img/被怜爱的少女/3.png'
+          - 'plugins/xiaoye-plugin/resources/img/翠绿之影/3.webp'
+          - 'plugins/xiaoye-plugin/resources/img/被怜爱的少女/3.webp'
       - name :
           - '翠绿猎人的容器'
           - '少女片刻的闲暇'
         icon :
-          - 'plugins/xiaoye-plugin/resources/img/翠绿之影/4.png'
-          - 'plugins/xiaoye-plugin/resources/img/被怜爱的少女/4.png'
+          - 'plugins/xiaoye-plugin/resources/img/翠绿之影/4.webp'
+          - 'plugins/xiaoye-plugin/resources/img/被怜爱的少女/4.webp'
       - name :
           - '翠绿的猎人之冠'
           - '少女易逝的芳颜'
         icon :
-          - 'plugins/xiaoye-plugin/resources/img/翠绿之影/5.png'
-          - 'plugins/xiaoye-plugin/resources/img/被怜爱的少女/5.png'
+          - 'plugins/xiaoye-plugin/resources/img/翠绿之影/5.webp'
+          - 'plugins/xiaoye-plugin/resources/img/被怜爱的少女/5.webp'
   #副本名字
   - name : '孤云凌霄之处'
     #别名
@@ -310,32 +310,32 @@ fuben :
           - '磐陀裂生之花'
           - '夏祭之花'
         icon :
-          - 'plugins/xiaoye-plugin/resources/img/悠古的磐岩/1.png'
-          - 'plugins/xiaoye-plugin/resources/img/逆飞的流星/1.png'
+          - 'plugins/xiaoye-plugin/resources/img/悠古的磐岩/1.webp'
+          - 'plugins/xiaoye-plugin/resources/img/逆飞的流星/1.webp'
       - name :
           - '嵯峨群峰之翼'
           - '夏祭终末'
         icon :
-          - 'plugins/xiaoye-plugin/resources/img/悠古的磐岩/2.png'
-          - 'plugins/xiaoye-plugin/resources/img/逆飞的流星/2.png'
+          - 'plugins/xiaoye-plugin/resources/img/悠古的磐岩/2.webp'
+          - 'plugins/xiaoye-plugin/resources/img/逆飞的流星/2.webp'
       - name :
           - '星罗圭璧之晷'
           - '夏祭之刻'
         icon : 
-          - 'plugins/xiaoye-plugin/resources/img/悠古的磐岩/3.png'
-          - 'plugins/xiaoye-plugin/resources/img/逆飞的流星/3.png'
+          - 'plugins/xiaoye-plugin/resources/img/悠古的磐岩/3.webp'
+          - 'plugins/xiaoye-plugin/resources/img/逆飞的流星/3.webp'
       - name :
           - '巉岩琢塑之樽'
           - '夏祭水玉'
         icon :
-          - 'plugins/xiaoye-plugin/resources/img/悠古的磐岩/4.png'
-          - 'plugins/xiaoye-plugin/resources/img/逆飞的流星/4.png'
+          - 'plugins/xiaoye-plugin/resources/img/悠古的磐岩/4.webp'
+          - 'plugins/xiaoye-plugin/resources/img/逆飞的流星/4.webp'
       - name :
           - '不动玄石之相'
           - '夏祭之面'
         icon :
-          - 'plugins/xiaoye-plugin/resources/img/悠古的磐岩/5.png'
-          - 'plugins/xiaoye-plugin/resources/img/逆飞的流星/5.png'
+          - 'plugins/xiaoye-plugin/resources/img/悠古的磐岩/5.webp'
+          - 'plugins/xiaoye-plugin/resources/img/逆飞的流星/5.webp'
   #副本名字
   - name : '无妄引咎密宫'
     #别名
@@ -353,32 +353,32 @@ fuben :
           - '魔女的炎之花'
           - '渡火者的决绝'
         icon :
-          - 'plugins/xiaoye-plugin/resources/img/炽烈的炎之魔女/1.png'
-          - 'plugins/xiaoye-plugin/resources/img/渡过烈火的贤人/1.png'
+          - 'plugins/xiaoye-plugin/resources/img/炽烈的炎之魔女/1.webp'
+          - 'plugins/xiaoye-plugin/resources/img/渡过烈火的贤人/1.webp'
       - name :
           - '魔女常燃之羽'
           - '渡火者的解脱'
         icon :
-          - 'plugins/xiaoye-plugin/resources/img/炽烈的炎之魔女/2.png'
-          - 'plugins/xiaoye-plugin/resources/img/渡过烈火的贤人/2.png'
+          - 'plugins/xiaoye-plugin/resources/img/炽烈的炎之魔女/2.webp'
+          - 'plugins/xiaoye-plugin/resources/img/渡过烈火的贤人/2.webp'
       - name :
           - '魔女破灭之时'
           - '渡火者的煎熬'
         icon : 
-          - 'plugins/xiaoye-plugin/resources/img/炽烈的炎之魔女/3.png'
-          - 'plugins/xiaoye-plugin/resources/img/渡过烈火的贤人/3.png'
+          - 'plugins/xiaoye-plugin/resources/img/炽烈的炎之魔女/3.webp'
+          - 'plugins/xiaoye-plugin/resources/img/渡过烈火的贤人/3.webp'
       - name :
           - '魔女的心之火'
           - '渡火者的醒悟'
         icon :
-          - 'plugins/xiaoye-plugin/resources/img/炽烈的炎之魔女/4.png'
-          - 'plugins/xiaoye-plugin/resources/img/渡过烈火的贤人/4.png'
+          - 'plugins/xiaoye-plugin/resources/img/炽烈的炎之魔女/4.webp'
+          - 'plugins/xiaoye-plugin/resources/img/渡过烈火的贤人/4.webp'
       - name :
           - '焦灼的魔女帽'
           - '渡火者的智慧'
         icon :
-          - 'plugins/xiaoye-plugin/resources/img/炽烈的炎之魔女/5.png'
-          - 'plugins/xiaoye-plugin/resources/img/渡过烈火的贤人/5.png'
+          - 'plugins/xiaoye-plugin/resources/img/炽烈的炎之魔女/5.webp'
+          - 'plugins/xiaoye-plugin/resources/img/渡过烈火的贤人/5.webp'
   #副本名字
   - name : '华池岩岫'
     #别名
@@ -394,32 +394,32 @@ fuben :
           - '染血的铁之心'
           - '宗室之花'
         icon :
-          - 'plugins/xiaoye-plugin/resources/img/染血的骑士道/1.png'
-          - 'plugins/xiaoye-plugin/resources/img/昔日宗室之仪/1.png'
+          - 'plugins/xiaoye-plugin/resources/img/染血的骑士道/1.webp'
+          - 'plugins/xiaoye-plugin/resources/img/昔日宗室之仪/1.webp'
       - name :
           - '染血的黑之羽'
           - '宗室之翎'
         icon :
-          - 'plugins/xiaoye-plugin/resources/img/染血的骑士道/2.png'
-          - 'plugins/xiaoye-plugin/resources/img/昔日宗室之仪/2.png'
+          - 'plugins/xiaoye-plugin/resources/img/染血的骑士道/2.webp'
+          - 'plugins/xiaoye-plugin/resources/img/昔日宗室之仪/2.webp'
       - name :
           - '骑士染血之时'
           - '宗室时计'
         icon : 
-          - 'plugins/xiaoye-plugin/resources/img/染血的骑士道/3.png'
-          - 'plugins/xiaoye-plugin/resources/img/昔日宗室之仪/3.png'
+          - 'plugins/xiaoye-plugin/resources/img/染血的骑士道/3.webp'
+          - 'plugins/xiaoye-plugin/resources/img/昔日宗室之仪/3.webp'
       - name :
           - '染血骑士之杯'
           - '宗室银瓮'
         icon :
-          - 'plugins/xiaoye-plugin/resources/img/染血的骑士道/4.png'
-          - 'plugins/xiaoye-plugin/resources/img/昔日宗室之仪/4.png'
+          - 'plugins/xiaoye-plugin/resources/img/染血的骑士道/4.webp'
+          - 'plugins/xiaoye-plugin/resources/img/昔日宗室之仪/4.webp'
       - name :
           - '染血的铁假面'
           - '宗室面具'
         icon :
-          - 'plugins/xiaoye-plugin/resources/img/染血的骑士道/5.png'
-          - 'plugins/xiaoye-plugin/resources/img/昔日宗室之仪/5.png'
+          - 'plugins/xiaoye-plugin/resources/img/染血的骑士道/5.webp'
+          - 'plugins/xiaoye-plugin/resources/img/昔日宗室之仪/5.webp'
   #副本名字
   - name : '芬德尼尔之顶'
     #别名
@@ -437,32 +437,32 @@ fuben :
           - '历经风雪的思念'
           - '饰金胸花'
         icon :
-          - 'plugins/xiaoye-plugin/resources/img/冰风迷途的勇士/1.png'
-          - 'plugins/xiaoye-plugin/resources/img/沉沦之心/1.png'
+          - 'plugins/xiaoye-plugin/resources/img/冰风迷途的勇士/1.webp'
+          - 'plugins/xiaoye-plugin/resources/img/沉沦之心/1.webp'
       - name :
           - '摧冰而行的执望'
           - '追忆之风'
         icon :
-          - 'plugins/xiaoye-plugin/resources/img/冰风迷途的勇士/2.png'
-          - 'plugins/xiaoye-plugin/resources/img/沉沦之心/2.png'
+          - 'plugins/xiaoye-plugin/resources/img/冰风迷途的勇士/2.webp'
+          - 'plugins/xiaoye-plugin/resources/img/沉沦之心/2.webp'
       - name :
           - '冰雪故园的终期'
           - '坚铜罗盘'
         icon : 
-          - 'plugins/xiaoye-plugin/resources/img/冰风迷途的勇士/3.png'
-          - 'plugins/xiaoye-plugin/resources/img/沉沦之心/3.png'
+          - 'plugins/xiaoye-plugin/resources/img/冰风迷途的勇士/3.webp'
+          - 'plugins/xiaoye-plugin/resources/img/沉沦之心/3.webp'
       - name :
           - '遍结寒霜的傲骨'
           - '沉波之盏'
         icon :
-          - 'plugins/xiaoye-plugin/resources/img/冰风迷途的勇士/4.png'
-          - 'plugins/xiaoye-plugin/resources/img/沉沦之心/4.png'
+          - 'plugins/xiaoye-plugin/resources/img/冰风迷途的勇士/4.webp'
+          - 'plugins/xiaoye-plugin/resources/img/沉沦之心/4.webp'
       - name :
           - '破冰踏雪的回音'
           - '酒渍船帽'
         icon :
-          - 'plugins/xiaoye-plugin/resources/img/冰风迷途的勇士/5.png'
-          - 'plugins/xiaoye-plugin/resources/img/沉沦之心/5.png'
+          - 'plugins/xiaoye-plugin/resources/img/冰风迷途的勇士/5.webp'
+          - 'plugins/xiaoye-plugin/resources/img/沉沦之心/5.webp'
   #副本名字
   - name : '山脊守望'
     #别名
@@ -478,32 +478,32 @@ fuben :
           - '勋绩之花'
           - '无垢之花'
         icon :
-          - 'plugins/xiaoye-plugin/resources/img/千岩牢固/1.png'
-          - 'plugins/xiaoye-plugin/resources/img/苍白之火/1.png'
+          - 'plugins/xiaoye-plugin/resources/img/千岩牢固/1.webp'
+          - 'plugins/xiaoye-plugin/resources/img/苍白之火/1.webp'
       - name :
           - '昭武翎羽'
           - '贤医之羽'
         icon :
-          - 'plugins/xiaoye-plugin/resources/img/千岩牢固/2.png'
-          - 'plugins/xiaoye-plugin/resources/img/苍白之火/2.png'
+          - 'plugins/xiaoye-plugin/resources/img/千岩牢固/2.webp'
+          - 'plugins/xiaoye-plugin/resources/img/苍白之火/2.webp'
       - name :
           - '金铜时晷'
           - '停摆之刻'
         icon : 
-          - 'plugins/xiaoye-plugin/resources/img/千岩牢固/3.png'
-          - 'plugins/xiaoye-plugin/resources/img/苍白之火/3.png'
+          - 'plugins/xiaoye-plugin/resources/img/千岩牢固/3.webp'
+          - 'plugins/xiaoye-plugin/resources/img/苍白之火/3.webp'
       - name :
           - '盟誓金爵'
           - '超越之盏'
         icon :
-          - 'plugins/xiaoye-plugin/resources/img/千岩牢固/4.png'
-          - 'plugins/xiaoye-plugin/resources/img/苍白之火/4.png'
+          - 'plugins/xiaoye-plugin/resources/img/千岩牢固/4.webp'
+          - 'plugins/xiaoye-plugin/resources/img/苍白之火/4.webp'
       - name :
           - '将帅兜鍪'
           - '嗤笑之面'
         icon :
-          - 'plugins/xiaoye-plugin/resources/img/千岩牢固/5.png'
-          - 'plugins/xiaoye-plugin/resources/img/苍白之火/5.png'
+          - 'plugins/xiaoye-plugin/resources/img/千岩牢固/5.webp'
+          - 'plugins/xiaoye-plugin/resources/img/苍白之火/5.webp'
   #副本名字
   - name : '椛染之庭'
     #别名
@@ -519,32 +519,32 @@ fuben :
           - '明威之镡'
           - '羁缠之花'
         icon :
-          - 'plugins/xiaoye-plugin/resources/img/绝缘之旗印/1.png'
-          - 'plugins/xiaoye-plugin/resources/img/追忆之注连/1.png'
+          - 'plugins/xiaoye-plugin/resources/img/绝缘之旗印/1.webp'
+          - 'plugins/xiaoye-plugin/resources/img/追忆之注连/1.webp'
       - name :
           - '切落之羽'
           - '思忆之矢'
         icon :
-          - 'plugins/xiaoye-plugin/resources/img/绝缘之旗印/2.png'
-          - 'plugins/xiaoye-plugin/resources/img/追忆之注连/2.png'
+          - 'plugins/xiaoye-plugin/resources/img/绝缘之旗印/2.webp'
+          - 'plugins/xiaoye-plugin/resources/img/追忆之注连/2.webp'
       - name :
           - '雷云之笼'
           - '朝露之时'
         icon : 
-          - 'plugins/xiaoye-plugin/resources/img/绝缘之旗印/3.png'
-          - 'plugins/xiaoye-plugin/resources/img/追忆之注连/3.png'
+          - 'plugins/xiaoye-plugin/resources/img/绝缘之旗印/3.webp'
+          - 'plugins/xiaoye-plugin/resources/img/追忆之注连/3.webp'
       - name :
           - '绯花之壶'
           - '祈望之心'
         icon :
-          - 'plugins/xiaoye-plugin/resources/img/绝缘之旗印/4.png'
-          - 'plugins/xiaoye-plugin/resources/img/追忆之注连/4.png'
+          - 'plugins/xiaoye-plugin/resources/img/绝缘之旗印/4.webp'
+          - 'plugins/xiaoye-plugin/resources/img/追忆之注连/4.webp'
       - name :
           - '华饰之兜'
           - '无常之面'
         icon :
-          - 'plugins/xiaoye-plugin/resources/img/绝缘之旗印/5.png'
-          - 'plugins/xiaoye-plugin/resources/img/追忆之注连/5.png'
+          - 'plugins/xiaoye-plugin/resources/img/绝缘之旗印/5.webp'
+          - 'plugins/xiaoye-plugin/resources/img/追忆之注连/5.webp'
   #副本名字
   - name : '沉眠之庭'
     #别名
@@ -561,32 +561,32 @@ fuben :
           - '荣花之期'
           - '海染之花'
         icon :
-          - 'plugins/xiaoye-plugin/resources/img/华馆梦醒形骸记/1.png'
-          - 'plugins/xiaoye-plugin/resources/img/海染砗磲/1.png'
+          - 'plugins/xiaoye-plugin/resources/img/华馆梦醒形骸记/1.webp'
+          - 'plugins/xiaoye-plugin/resources/img/海染砗磲/1.webp'
       - name :
           - '华馆之羽'
           - '渊宫之羽'
         icon :
-          - 'plugins/xiaoye-plugin/resources/img/华馆梦醒形骸记/2.png'
-          - 'plugins/xiaoye-plugin/resources/img/海染砗磲/2.png'
+          - 'plugins/xiaoye-plugin/resources/img/华馆梦醒形骸记/2.webp'
+          - 'plugins/xiaoye-plugin/resources/img/海染砗磲/2.webp'
       - name :
           - '众生之谣'
           - '离别之贝'
         icon : 
-          - 'plugins/xiaoye-plugin/resources/img/华馆梦醒形骸记/3.png'
-          - 'plugins/xiaoye-plugin/resources/img/海染砗磲/3.png'
+          - 'plugins/xiaoye-plugin/resources/img/华馆梦醒形骸记/3.webp'
+          - 'plugins/xiaoye-plugin/resources/img/海染砗磲/3.webp'
       - name :
           - '梦醒之瓢'
           - '真珠之笼'
         icon :
-          - 'plugins/xiaoye-plugin/resources/img/华馆梦醒形骸记/4.png'
-          - 'plugins/xiaoye-plugin/resources/img/海染砗磲/4.png'
+          - 'plugins/xiaoye-plugin/resources/img/华馆梦醒形骸记/4.webp'
+          - 'plugins/xiaoye-plugin/resources/img/海染砗磲/4.webp'
       - name :
           - '形骸之笠'
           - '海祇之冠'
         icon :
-          - 'plugins/xiaoye-plugin/resources/img/华馆梦醒形骸记/5.png'
-          - 'plugins/xiaoye-plugin/resources/img/海染砗磲/5.png'
+          - 'plugins/xiaoye-plugin/resources/img/华馆梦醒形骸记/5.webp'
+          - 'plugins/xiaoye-plugin/resources/img/海染砗磲/5.webp'
   #副本名字
   - name : '岩中幽谷'
     #别名
@@ -602,32 +602,32 @@ fuben :
           - '生灵之华'
           - '魂香之花'
         icon :
-          - 'plugins/xiaoye-plugin/resources/img/辰砂往生录/1.png'
-          - 'plugins/xiaoye-plugin/resources/img/来歆余响/1.png'
+          - 'plugins/xiaoye-plugin/resources/img/辰砂往生录/1.webp'
+          - 'plugins/xiaoye-plugin/resources/img/来歆余响/1.webp'
       - name :
           - '潜光片羽'
           - '垂玉之叶'
         icon :
-          - 'plugins/xiaoye-plugin/resources/img/辰砂往生录/2.png'
-          - 'plugins/xiaoye-plugin/resources/img/来歆余响/2.png'
+          - 'plugins/xiaoye-plugin/resources/img/辰砂往生录/2.webp'
+          - 'plugins/xiaoye-plugin/resources/img/来歆余响/2.webp'
       - name :
           - '阳辔之遗'
           - '祝祀之凭'
         icon : 
-          - 'plugins/xiaoye-plugin/resources/img/辰砂往生录/3.png'
-          - 'plugins/xiaoye-plugin/resources/img/来歆余响/3.png'
+          - 'plugins/xiaoye-plugin/resources/img/辰砂往生录/3.webp'
+          - 'plugins/xiaoye-plugin/resources/img/来歆余响/3.webp'
       - name :
           - '结契之刻'
           - '涌泉之盏'
         icon :
-          - 'plugins/xiaoye-plugin/resources/img/辰砂往生录/4.png'
-          - 'plugins/xiaoye-plugin/resources/img/来歆余响/4.png'
+          - 'plugins/xiaoye-plugin/resources/img/辰砂往生录/4.webp'
+          - 'plugins/xiaoye-plugin/resources/img/来歆余响/4.webp'
       - name :
           - '虺雷之姿'
           - '浮溯之珏'
         icon :
-          - 'plugins/xiaoye-plugin/resources/img/辰砂往生录/5.png'
-          - 'plugins/xiaoye-plugin/resources/img/来歆余响/5.png'
+          - 'plugins/xiaoye-plugin/resources/img/辰砂往生录/5.webp'
+          - 'plugins/xiaoye-plugin/resources/img/来歆余响/5.webp'
   #副本名字
   - name : '缘觉塔'
     #别名
@@ -645,32 +645,32 @@ fuben :
           - '迷宫的游人'
           - '梦中的铁花'
         icon :
-          - 'plugins/xiaoye-plugin/resources/img/深林的记忆/1.png'
-          - 'plugins/xiaoye-plugin/resources/img/饰金之梦/1.png'
+          - 'plugins/xiaoye-plugin/resources/img/深林的记忆/1.webp'
+          - 'plugins/xiaoye-plugin/resources/img/饰金之梦/1.webp'
       - name :
           - '翠蔓的智者'
           - '裁断的翎羽'
         icon :
-          - 'plugins/xiaoye-plugin/resources/img/深林的记忆/2.png'
-          - 'plugins/xiaoye-plugin/resources/img/饰金之梦/2.png'
+          - 'plugins/xiaoye-plugin/resources/img/深林的记忆/2.webp'
+          - 'plugins/xiaoye-plugin/resources/img/饰金之梦/2.webp'
       - name :
           - '贤智的定期'
           - '沉金的岁月'
         icon : 
-          - 'plugins/xiaoye-plugin/resources/img/深林的记忆/3.png'
-          - 'plugins/xiaoye-plugin/resources/img/饰金之梦/3.png'
+          - 'plugins/xiaoye-plugin/resources/img/深林的记忆/3.webp'
+          - 'plugins/xiaoye-plugin/resources/img/饰金之梦/3.webp'
       - name :
           - '迷误者之灯'
           - '如蜜的终宴'
         icon :
-          - 'plugins/xiaoye-plugin/resources/img/深林的记忆/4.png'
-          - 'plugins/xiaoye-plugin/resources/img/饰金之梦/4.png'
+          - 'plugins/xiaoye-plugin/resources/img/深林的记忆/4.webp'
+          - 'plugins/xiaoye-plugin/resources/img/饰金之梦/4.webp'
       - name :
           - '月桂的宝冠'
           - '沙王的投影'
         icon :
-          - 'plugins/xiaoye-plugin/resources/img/深林的记忆/5.png'
-          - 'plugins/xiaoye-plugin/resources/img/饰金之梦/5.png'
+          - 'plugins/xiaoye-plugin/resources/img/深林的记忆/5.webp'
+          - 'plugins/xiaoye-plugin/resources/img/饰金之梦/5.webp'
   #副本名字
   - name : '赤金的城墟'
     #别名
@@ -686,32 +686,32 @@ fuben :
           - '月女的华彩'
           - '众王之都的开端'
         icon :
-          - 'plugins/xiaoye-plugin/resources/img/乐园遗落之花/1.png'
-          - 'plugins/xiaoye-plugin/resources/img/沙上楼阁史话/1.png'
+          - 'plugins/xiaoye-plugin/resources/img/乐园遗落之花/1.webp'
+          - 'plugins/xiaoye-plugin/resources/img/沙上楼阁史话/1.webp'
       - name :
           - '谢落的筵席'
           - '黄金邦国的结末'
         icon :
-          - 'plugins/xiaoye-plugin/resources/img/乐园遗落之花/2.png'
-          - 'plugins/xiaoye-plugin/resources/img/沙上楼阁史话/2.png'
+          - 'plugins/xiaoye-plugin/resources/img/乐园遗落之花/2.webp'
+          - 'plugins/xiaoye-plugin/resources/img/沙上楼阁史话/2.webp'
       - name :
           - '凝结的时刻'
           - '迷醉长梦的守护'
         icon : 
-          - 'plugins/xiaoye-plugin/resources/img/乐园遗落之花/3.png'
-          - 'plugins/xiaoye-plugin/resources/img/沙上楼阁史话/3.png'
+          - 'plugins/xiaoye-plugin/resources/img/乐园遗落之花/3.webp'
+          - 'plugins/xiaoye-plugin/resources/img/沙上楼阁史话/3.webp'
       - name :
           - '守秘的魔瓶'
           - '失落迷途的机芯'
         icon :
-          - 'plugins/xiaoye-plugin/resources/img/乐园遗落之花/4.png'
-          - 'plugins/xiaoye-plugin/resources/img/沙上楼阁史话/4.png'
+          - 'plugins/xiaoye-plugin/resources/img/乐园遗落之花/4.webp'
+          - 'plugins/xiaoye-plugin/resources/img/沙上楼阁史话/4.webp'
       - name :
           - '紫晶的花冠'
           - '流沙贵嗣的遗宝'
         icon :
-          - 'plugins/xiaoye-plugin/resources/img/乐园遗落之花/5.png'
-          - 'plugins/xiaoye-plugin/resources/img/沙上楼阁史话/5.png'
+          - 'plugins/xiaoye-plugin/resources/img/乐园遗落之花/5.webp'
+          - 'plugins/xiaoye-plugin/resources/img/沙上楼阁史话/5.webp'
   #副本名字
   - name : 'BOSS掉落'
     #别名
@@ -726,29 +726,29 @@ fuben :
           - '角斗士的留恋'
           - '乐团的晨光'
         icon :
-          - 'plugins/xiaoye-plugin/resources/img/角斗士的终幕礼/1.png'
-          - 'plugins/xiaoye-plugin/resources/img/流浪大地的乐团/1.png'
+          - 'plugins/xiaoye-plugin/resources/img/角斗士的终幕礼/1.webp'
+          - 'plugins/xiaoye-plugin/resources/img/流浪大地的乐团/1.webp'
       - name :
           - '角斗士的归宿'
           - '琴师的箭羽'
         icon :
-          - 'plugins/xiaoye-plugin/resources/img/角斗士的终幕礼/2.png'
-          - 'plugins/xiaoye-plugin/resources/img/流浪大地的乐团/2.png'
+          - 'plugins/xiaoye-plugin/resources/img/角斗士的终幕礼/2.webp'
+          - 'plugins/xiaoye-plugin/resources/img/流浪大地的乐团/2.webp'
       - name :
           - '角斗士的希冀'
           - '终幕的时计'
         icon : 
-          - 'plugins/xiaoye-plugin/resources/img/角斗士的终幕礼/3.png'
-          - 'plugins/xiaoye-plugin/resources/img/流浪大地的乐团/3.png'
+          - 'plugins/xiaoye-plugin/resources/img/角斗士的终幕礼/3.webp'
+          - 'plugins/xiaoye-plugin/resources/img/流浪大地的乐团/3.webp'
       - name :
           - '角斗士的酣醉'
           - '吟游者之壶'
         icon :
-          - 'plugins/xiaoye-plugin/resources/img/角斗士的终幕礼/4.png'
-          - 'plugins/xiaoye-plugin/resources/img/流浪大地的乐团/4.png'
+          - 'plugins/xiaoye-plugin/resources/img/角斗士的终幕礼/4.webp'
+          - 'plugins/xiaoye-plugin/resources/img/流浪大地的乐团/4.webp'
       - name :
           - '角斗士的凯旋'
           - '指挥的礼帽'
         icon :
-          - 'plugins/xiaoye-plugin/resources/img/角斗士的终幕礼/5.png'
-          - 'plugins/xiaoye-plugin/resources/img/流浪大地的乐团/5.png'
+          - 'plugins/xiaoye-plugin/resources/img/角斗士的终幕礼/5.webp'
+          - 'plugins/xiaoye-plugin/resources/img/流浪大地的乐团/5.webp'
