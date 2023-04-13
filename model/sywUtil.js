@@ -326,7 +326,7 @@ let util = {
         for (let i = 0; i < syw.fuben.length; i++) {
             data.push(syw.fuben[i].name + '：' + syw.fuben[i].alias.join('，'))
         }
-        await ForwardMsg(e, data)
+        await e.reply(await ForwardMsg(e, msg))
     },
 
     //随机获得指定位置指定副本的套装之一
