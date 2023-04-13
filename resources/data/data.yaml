@@ -713,6 +713,49 @@ fuben :
           - 'plugins/xiaoye-plugin/resources/img/乐园遗落之花/5.webp'
           - 'plugins/xiaoye-plugin/resources/img/沙上楼阁史话/5.webp'
   #副本名字
+  - name : '熔铁的孤塞'
+    #别名
+    alias : 
+      - 水仙
+      - 新水套
+      - 花海
+      - 甘露
+      - 水仙之梦
+      - 花海甘露之光
+      - 熔铁的孤塞
+    #部位 0:生之花 1:死之羽 2:时之沙 3:空之杯 4:理之冠
+    buwei : 
+      - name : 
+          - '旅途中的鲜花'
+          - '灵光源起之蕊'
+        icon :
+          - 'plugins/xiaoye-plugin/resources/img/水仙之梦/1.webp'
+          - 'plugins/xiaoye-plugin/resources/img/花海甘露之光/1.webp'
+      - name :
+          - '坏巫师的羽杖'
+          - '琦色灵彩之羽'
+        icon :
+          - 'plugins/xiaoye-plugin/resources/img/水仙之梦/2.webp'
+          - 'plugins/xiaoye-plugin/resources/img/花海甘露之光/2.webp'
+      - name :
+          - '水仙的时时刻刻'
+          - '久远花落之时'
+        icon : 
+          - 'plugins/xiaoye-plugin/resources/img/水仙之梦/3.webp'
+          - 'plugins/xiaoye-plugin/resources/img/花海甘露之光/3.webp'
+      - name :
+          - '勇者们的茶会'
+          - '无边酣乐之筵'
+        icon :
+          - 'plugins/xiaoye-plugin/resources/img/水仙之梦/4.webp'
+          - 'plugins/xiaoye-plugin/resources/img/花海甘露之光/4.webp'
+      - name :
+          - '恶龙的单片镜'
+          - '灵光明烁之心'
+        icon :
+          - 'plugins/xiaoye-plugin/resources/img/水仙之梦/5.webp'
+          - 'plugins/xiaoye-plugin/resources/img/花海甘露之光/5.webp'
+  #副本名字
   - name : 'BOSS掉落'
     #别名
     alias : 
