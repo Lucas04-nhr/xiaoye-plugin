@@ -63,7 +63,11 @@ let util = {
             let i = await this.randomGetOne(probability)
             zhucitiao = syw.lizhiguanzhucitiaoList[i]
         }
-        return zhucitiao;
+        return zhucitiao || {
+                id: "xiaoshengming",
+                display: "生命值",
+                percentage: false,
+        };
     },
 
     //获得副词条
