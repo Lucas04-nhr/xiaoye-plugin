@@ -1,6 +1,7 @@
 import syw from './readData.js'
 import cfg from './readConfig.js'
 import moment from "moment";
+import { ForwardMsg } from "./index.js"
 
 let util = {
 
@@ -325,7 +326,7 @@ let util = {
         for (let i = 0; i < syw.fuben.length; i++) {
             data.push(syw.fuben[i].name + '：' + syw.fuben[i].alias.join('，'))
         }
-        await this.ForwardMsg(e, data)
+        await ForwardMsg(e, data)
     },
 
     //随机获得指定位置指定副本的套装之一
