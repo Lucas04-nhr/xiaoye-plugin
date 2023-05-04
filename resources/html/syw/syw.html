@@ -12,11 +12,13 @@
 
 <body>
     <div class="body">
-        <div class="name">{{shengyiwu.name}}</div>
-        <div class="img"><div class="sywimg"><img src="{{pluResPath}}/{{shengyiwu.icon}}"><span id="block"></span></div></div>
-        <div class="buwei">{{buwei.name}}</div>
-        <div class="zhucitiao">{{zhucitiao.display}}</div>
-        <div class="zhucitiaoData">{{zhucitiaoData}}</div>
+        <div class="name">{{ArtifactName.name}}</div>
+        <div class="img">
+            <div class="sywimg"><img src="{{pluResPath}}/{{ArtifactName.icon}}"><span id="block"></span></div>
+        </div>
+        <div class="buwei">{{Artifact.name}}</div>
+        <div class="zhucitiao">{{main.display}}</div>
+        <div class="zhucitiaoData">{{mainData}}{{main.suffix}}</div>
         <div class="star">
             <img src="{{pluResPath}}/plugins/xiaoye-plugin/resources/html/syw/img/x.png" alt="">
             <img src="{{pluResPath}}/plugins/xiaoye-plugin/resources/html/syw/img/x.png" alt="">
@@ -35,10 +37,9 @@
 
         <div class="fucitiao">
             <ul class="ul">
-                {{each fucitiao list i}}
+                {{each vice list i}}
                 <li>
-                    <div class="dian">•&nbsp;</div>{{list.display}}+{{fucitiaoData[i]}}{{if
-                    list.suffix}}%{{/if}}
+                    <div class="dian">•&nbsp;</div>{{list.display}}+{{viceData[i].display}}{{list.suffix}}
                 </li>
                 {{/each}}
             </ul>

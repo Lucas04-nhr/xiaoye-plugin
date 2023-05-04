@@ -1,7 +1,6 @@
 import cfg from './readConfig.js'
-import syw from './readData.js'
 import setList from '../resources/data/set.js'
-
+import sywData from "../resources/data/data.js"
 let setUtil = {
 
     getData() {
@@ -33,15 +32,15 @@ let setUtil = {
         //初始词条列表
         let citiaoList = ['三词条', '四词条']
         //部位列表
-        let buweiList = syw.buweiList.map(item => item.name)
+        let buweiList = sywData.Artifacts.map(item => item.name)
         //时之沙主词条列表
-        let shizhishazhucitiaoList = syw.shizhishazhucitiaoList.map(item => item.display);
+        let shizhishazhucitiaoList = sywData.Artifacts[2].mainList.map(item => item.display);
         //空之杯主词条列表
-        let kongzhibeizhucitiaoList = syw.kongzhibeizhucitiaoList.map(item => item.display);
+        let kongzhibeizhucitiaoList = sywData.Artifacts[3].mainList.map(item => item.display);
         //理之冠主词条列表
-        let lizhiguanzhucitiaoList = syw.lizhiguanzhucitiaoList.map(item => item.display);
+        let lizhiguanzhucitiaoList = sywData.Artifacts[4].mainList.map(item => item.display);
         //副词条列表
-        let fucitiaoList = syw.fucitiaoList.map(item => item.option);
+        let fucitiaoList = sywData.viceList.map(item => item.option);
         //强化档位列表
         let qianghuaList = ['第一档', '第二档', '第三档', '第四档']
 

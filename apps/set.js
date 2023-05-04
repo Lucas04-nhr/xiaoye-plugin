@@ -1,13 +1,11 @@
 import plugin from '../../../lib/plugins/plugin.js'
-import setUtil from '../model/set.js'
-import util from '../model/setUtil.js'
 import puppeteer from "../../../lib/puppeteer/puppeteer.js";
-
-import { sywData as syw } from '../model/index.js';
+import sywData from "../resources/data/data.js"
+import { set, setUtil } from "../model/index.js"
 
 const _path = process.cwd().replace(/\\/g, "/");
 
-export class set extends plugin {
+export class xiaoyeSet extends plugin {
     constructor() {
         super(
             {
@@ -73,7 +71,7 @@ export class set extends plugin {
         if (!e.isMaster) {
             return true
         }
-        let setList = setUtil.getData()
+        let setList = set.getData()
         let data = {
             tplFile: './plugins/xiaoye-plugin/resources/html/set/set.html',
             pluResPath: _path,
@@ -90,10 +88,10 @@ export class set extends plugin {
             return true
         }
         let i = e.msg.includes('三词条') ? 0 : 1
-        let data = await util.getData()
+        let data = await setUtil.getData()
         let num = parseInt(e.msg.match(/\d+/g))
         data.citiao[i] = num
-        await util.setYaml(data)
+        await setUtil.setYaml(data)
         return await this.set(e)
     }
 
@@ -101,16 +99,15 @@ export class set extends plugin {
         if (!e.isMaster) {
             return true
         }
-        let buwei = syw.buweiList
-        let data = await util.getData()
+        let data = await setUtil.getData()
         let num = parseInt(e.msg.match(/\d+/g))
-        for (let i = 0; i < buwei.length; i++) {
-            if (e.msg.includes(buwei[i].name)) {
+        for (let i = 0; i < sywData.Artifacts.length; i++) {
+            if (e.msg.includes(sywData.Artifacts[i].name)) {
                 data.buwei[i] = num
                 break
             }
         }
-        await util.setYaml(data)
+        await setUtil.setYaml(data)
         return await this.set(e)
     }
 
@@ -118,16 +115,15 @@ export class set extends plugin {
         if (!e.isMaster) {
             return true
         }
-        let shizhisha = syw.shizhishazhucitiaoList
-        let data = await util.getData()
+        let data = await setUtil.getData()
         let num = parseInt(e.msg.match(/\d+/g))
-        for (let i = 0; i < shizhisha.length; i++) {
-            if (e.msg.includes(shizhisha[i].display)) {
+        for (let i = 0; i < sywData.Artifacts[2].mainList.length; i++) {
+            if (e.msg.includes(sywData.Artifacts[2].mainList[i].display)) {
                 data.shizhisha[i] = num
                 break
             }
         }
-        await util.setYaml(data)
+        await setUtil.setYaml(data)
         return await this.set(e)
     }
 
@@ -135,16 +131,15 @@ export class set extends plugin {
         if (!e.isMaster) {
             return true
         }
-        let kongzhibei = syw.kongzhibeizhucitiaoList
-        let data = await util.getData()
+        let data = await setUtil.getData()
         let num = parseInt(e.msg.match(/\d+/g))
-        for (let i = 0; i < kongzhibei.length; i++) {
-            if (e.msg.includes(kongzhibei[i].display)) {
+        for (let i = 0; i < sywData.Artifacts[3].mainList.length; i++) {
+            if (e.msg.includes(sywData.Artifacts[3].mainList[i].display)) {
                 data.kongzhibei[i] = num
                 break
             }
         }
-        await util.setYaml(data)
+        await setUtil.setYaml(data)
         return await this.set(e)
     }
 
@@ -152,16 +147,15 @@ export class set extends plugin {
         if (!e.isMaster) {
             return true
         }
-        let lizhiguan = syw.lizhiguanzhucitiaoList
-        let data = await util.getData()
+        let data = await setUtil.getData()
         let num = parseInt(e.msg.match(/\d+/g))
-        for (let i = 0; i < lizhiguan.length; i++) {
-            if (e.msg.includes(lizhiguan[i].display)) {
+        for (let i = 0; i < sywData.Artifacts[4].mainList.length; i++) {
+            if (e.msg.includes(sywData.Artifacts[4].mainList[i].display)) {
                 data.lizhiguan[i] = num
                 break
             }
         }
-        await util.setYaml(data)
+        await setUtil.setYaml(data)
         return await this.set(e)
     }
 
@@ -169,16 +163,15 @@ export class set extends plugin {
         if (!e.isMaster) {
             return true
         }
-        let fucitiao = syw.fucitiaoList
-        let data = await util.getData()
+        let data = await setUtil.getData()
         let num = parseInt(e.msg.match(/\d+/g))
-        for (let i = 0; i < fucitiao.length; i++) {
-            if (e.msg.includes(fucitiao[i].option)) {
+        for (let i = 0; i < sywData.viceList.length; i++) {
+            if (e.msg.includes(sywData.viceList[i].option)) {
                 data.fucitiao[i] = num
                 break
             }
         }
-        await util.setYaml(data)
+        await setUtil.setYaml(data)
         return await this.set(e)
     }
 
@@ -187,7 +180,7 @@ export class set extends plugin {
             return true
         }
         let qianghua = ['第一档', '第二档', '第三档', '第四档']
-        let data = await util.getData()
+        let data = await setUtil.getData()
         let num = parseInt(e.msg.match(/\d+/g))
         for (let i = 0; i < qianghua.length; i++) {
             if (e.msg.includes(qianghua[i])) {
@@ -195,7 +188,7 @@ export class set extends plugin {
                 break
             }
         }
-        await util.setYaml(data)
+        await setUtil.setYaml(data)
         return await this.set(e)
     }
 
@@ -203,16 +196,15 @@ export class set extends plugin {
         if (!e.isMaster) {
             return true
         }
-        let fucitiao = syw.fucitiaoList
-        let data = await util.getData()
+        let data = await setUtil.getData()
         let num = parseInt(e.msg.match(/\d+/g))
-        for (let i = 0; i < fucitiao.length; i++) {
-            if (e.msg.includes(fucitiao[i])) {
+        for (let i = 0; i < sywData.viceList.length; i++) {
+            if (e.msg.includes(sywData.viceList[i])) {
                 data.fucitiaoqianghua[i] = num
                 break
             }
         }
-        await util.setYaml(data)
+        await setUtil.setYaml(data)
         return await this.set(e)
     }
 
@@ -220,10 +212,10 @@ export class set extends plugin {
         if (!e.isMaster) {
             return true
         }
-        let data = await util.getData()
+        let data = await setUtil.getData()
         let num = parseInt(e.msg.match(/\d+/g))
         data.cd = num
-        await util.setYaml(data)
+        await setUtil.setYaml(data)
         return await this.set(e)
     }
 
@@ -231,13 +223,13 @@ export class set extends plugin {
         if (!e.isMaster) {
             return true
         }
-        let data = await util.getData()
+        let data = await setUtil.getData()
         let num = parseInt(e.msg.match(/\d+/g))
         if (num > 120) {
             return true
         }
         data.recall = num
-        await util.setYaml(data)
+        await setUtil.setYaml(data)
         return await this.set(e)
     }
 
@@ -245,10 +237,10 @@ export class set extends plugin {
         if (!e.isMaster) {
             return true
         }
-        let data = await util.getData()
+        let data = await setUtil.getData()
         let num = parseInt(e.msg.match(/\d+/g))
         data.cishu = num
-        await util.setYaml(data)
+        await setUtil.setYaml(data)
         return await this.set(e)
     }
 }

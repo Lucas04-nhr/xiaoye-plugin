@@ -1,10 +1,11 @@
 import plugin from '../../../lib/plugins/plugin.js'
 import puppeteer from "../../../lib/puppeteer/puppeteer.js";
 
-import { textToNumber, ForwardMsg, syw as util, cfg } from "../model/index.js"
+import { textToNumber, ForwardMsg, syw, cfg } from "../model/index.js"
 
 let throttle = false
 let resetCount = 0
+const path = process.cwd();
 
 export class ssyw extends plugin {
     constructor() {
@@ -49,7 +50,7 @@ export class ssyw extends plugin {
             throttle = true
         }
         //判断cd
-        let cd = await util.getGayCD(e)
+        let cd = await syw.getCD(e)
         if (cd > 0) {
             await e.reply(`cd中,请${cd}秒后使用`, true)
             throttle = false
@@ -68,53 +69,55 @@ export class ssyw extends plugin {
             sywNum = num
             e.msg = e.msg.replace(/([一二三四五六七八九十]|[0-9])+[次个]/g, "").trim()
         }
-        let cishu = await util.getCishu(e)
+        let cishu = await syw.getCishu(e)
         //看看剩余次数够不够
         let target = cishu - sywNum
         if (target >= 0) {
-            let fuben = e.msg.replace(/#|刷圣遗物/g, "").trim();
+            const DomainName = e.msg.replace(/#|刷圣遗物/g, "").trim();
+
             let msg = []
             let dataList = []
 
             for (let i = 1; i <= sywNum; i++) {
-                //获得一个部位 {name,id}
-                let buwei = await util.getBuwei()
-
-                //圣遗物名字
-                let shengyiwu = await util.shengyiwu(buwei.id, fuben)
-
-                if (!shengyiwu) {
+                //先看看有没有这个副本
+                const ArtifactsDomain = await syw.getArtifactsDomain(DomainName)
+                if (!ArtifactsDomain) {
                     throttle = false
                     return true
                 }
 
+                //获得一个部位 {name : '生之花' ,id : 'FlowerOfLife'  mainList:[]}
+                const Artifact = await syw.getArtifact()
+
+                //圣遗物名字 {name : '雷鸟的怜悯' ,icom : '图片地址'}
+                const ArtifactName = await syw.getArtifactName(Artifact.id, ArtifactsDomain)
+
                 //初始等级0
-                let level = 0
+                const level = 0
 
-                //确定主词条
-                let zhucitiao = await util.getZhucitiao(buwei.name)
+                //确定主词条 {id: 'HealthFlat',display: '生命值',percentage: false,suffix: ''}
+                const main = await syw.getMain(Artifact.id, Artifact.mainList)
 
-                //给主词条加初始值
-                let zhucitiaoData = await util.getZhucitiaodata(zhucitiao, buwei.name, level)
+                //给主词条加初始值 717
+                const mainData = await syw.getMaindata(main.id, level)
 
                 //确定副词条
-                let fucitiao = await util.getFucitiao(zhucitiao, buwei.name)
+                let vice = await syw.getVice(main.id)
 
                 //给副词条加初始值
-                let fucitiaoData = await util.getFucitiaoData(fucitiao)
+                let viceData = await syw.getViceData(vice)
 
-                this._path = process.cwd().replace(/\\/g, "/");
                 let data = {
                     tplFile: './plugins/xiaoye-plugin/resources/html/syw/syw.html',
-                    pluResPath: this._path,
-                    fucitiao: fucitiao,
-                    fucitiaoData: fucitiaoData,
-                    shengyiwu: shengyiwu,
-                    buwei: buwei,
-                    zhucitiao: zhucitiao,
-                    zhucitiaoData: zhucitiaoData,
-                    level: level,
-                    isSave: false,
+                    pluResPath: path,
+                    Artifact,       //部位
+                    ArtifactName,   //名字
+                    level,          //等级
+                    main,           //主词条
+                    mainData,       //主词条数值
+                    vice,           //副词条
+                    viceData,       //副词条数值
+                    isSave: false   //是否保存
                 }
                 let img = await puppeteer.screenshot("syw", data);
                 if (!img) {
@@ -128,8 +131,8 @@ export class ssyw extends plugin {
                 dataList.push(data)
             }
             await redis.set('xiaoye:syw:qq:' + e.user_id, JSON.stringify(dataList), { EX: 86400 })
-            await util.setCishu(e, sywNum)
-            await util.setGayCD(e)
+            await syw.setCishu(e, sywNum)
+            await syw.setCD(e)
             if (msg.length > 1) {
                 await e.reply(await ForwardMsg(e, msg), false, { at: false, recallMsg: cfg.recall })
             } else {
@@ -238,7 +241,7 @@ export class ssyw extends plugin {
     }
 
     async alias(e) {
-        await util.getAlias(e)
+        await syw.getAlias(e)
         return true
     }
 
@@ -285,47 +288,46 @@ export class ssyw extends plugin {
         //根据等级获得强化次数
         let cishu = parseInt((level % 4 + up) / 4)
 
-
         //获取圣遗物名字
-        let shengyiwu = data.shengyiwu
+        let ArtifactName = data.ArtifactName
         //获取部位
-        let buwei = data.buwei
+        let Artifact = data.Artifact
         //获取主词条名字
-        let zhucitiao = data.zhucitiao
+        let main = data.main
         //获取主词条数据
-        let zhucitiaoData = data.zhucitiaoData
+        let mainData = data.mainData
         //获取副词条
-        let fucitiao = data.fucitiao
+        let vice = data.vice
         //获取副词条数值
-        let fucitiaoData = data.fucitiaoData
+        let viceData = data.viceData
 
-        let guocheng = []
+        let procedure = []
 
         //如果强化次数大于0
         if (cishu > 0) {
             //四词条
-            if (fucitiao[3] && level != '20') {
+            if (vice.length == 4) {
 
-                let qianghua = await util.qianghua(fucitiao, fucitiaoData, cishu)
+                let enhanceResult = await syw.enhance(vice, viceData, cishu)
                 //强化
-                fucitiaoData = qianghua.fucitiaoData
+                viceData = enhanceResult.viceData
 
-                guocheng.push(...qianghua.guocheng)
+                procedure.push(...enhanceResult.procedure)
 
-            } else if (fucitiao[2] && level != '20') {
+            } else if (vice.length == 3) {
                 //先加个词条
-                let newCitiao = await util.getOneFucitiao(zhucitiao, fucitiao, buwei.name)
-                fucitiao.push(newCitiao)
-                let newShuzhi = await util.getOnefucitiaoData(newCitiao)
-                fucitiaoData.push(newShuzhi)
-                guocheng.push(`${newCitiao.display}+${newShuzhi}${newCitiao.suffix ? '%' : ''}`)
+                let newVice = await syw.getNewVice(main, vice)
+                vice.push(newVice)
+                let newViceData = (await syw.getViceData([newVice]))[0]
+                viceData.push(newViceData)
+                procedure.push(`${newVice.display}+${newViceData.display}${newVice.suffix}`)
 
                 //要次数大于1才强化,不然就只加词条
                 if (cishu > 1) {
                     //有一次用来加词条了,所以要减1
-                    let qianghua = await util.qianghua(fucitiao, fucitiaoData, cishu - 1)
-                    fucitiaoData = qianghua.fucitiaoData
-                    guocheng.push(...qianghua.guocheng)
+                    let enhanceResult = await syw.enhance(vice, viceData, cishu - 1)
+                    viceData = enhanceResult.viceData
+                    procedure.push(...enhanceResult.procedure)
                 }
             }
         }
@@ -333,24 +335,21 @@ export class ssyw extends plugin {
         //等级加一下
         level = level + up
         //设置主词条数据
-        zhucitiaoData = await util.getZhucitiaodata(zhucitiao, buwei.name, level)
-        this._path = process.cwd().replace(/\\/g, "/");
+        mainData = await syw.getMaindata(main.id, level)
         let newData = {
             tplFile: './plugins/xiaoye-plugin/resources/html/syw/syw.html',
-            pluResPath: `${this._path}`,
-            fucitiao: fucitiao,
-            fucitiaoData: fucitiaoData,
-            shengyiwu: shengyiwu,
-            buwei: buwei,
-            zhucitiao: zhucitiao,
-            zhucitiaoData: zhucitiaoData,
-            level: level,
-            isSave: false,
-            img: data.img
+            pluResPath: path,
+            Artifact,       //部位
+            ArtifactName,   //名字
+            level,          //等级
+            main,           //主词条
+            mainData,       //主词条数值
+            vice,           //副词条
+            viceData,       //副词条数值
+            isSave: false   //是否保存
         }
         let img = await puppeteer.screenshot("syw", newData);
-        newData.img = data.img
-        let str = guocheng.join(',')
+        let str = procedure.join(',')
         return { data: newData, msg: [img, '强化过程为:\n' + str] }
     }
 

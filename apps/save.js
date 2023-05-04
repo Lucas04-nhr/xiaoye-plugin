@@ -4,7 +4,7 @@ import fs from 'node:fs'
 
 import { textToNumber, ForwardMsg } from "../model/index.js"
 
-const path = process.cwd().replace(/\\/g, "/");
+const path = process.cwd();
 
 export class save extends plugin {
     constructor() {
@@ -69,15 +69,15 @@ export class save extends plugin {
         let newData = {
             tplFile: './plugins/xiaoye-plugin/resources/html/syw/syw.html',
             imgType: 'png',
-            pluResPath: `${path}`,
-            fucitiao: dataList[id - 1].fucitiao,
-            fucitiaoData: dataList[id - 1].fucitiaoData,
-            shengyiwu: dataList[id - 1].shengyiwu,
-            buwei: dataList[id - 1].buwei,
-            zhucitiao: dataList[id - 1].zhucitiao,
-            zhucitiaoData: dataList[id - 1].zhucitiaoData,
+            pluResPath: path,
+            Artifact: dataList[id - 1].Artifact,
+            ArtifactName: dataList[id - 1].ArtifactName,
             level: dataList[id - 1].level,
-            isSave: false
+            main: dataList[id - 1].main,
+            mainData: dataList[id - 1].mainData,
+            vice: dataList[id - 1].vice,
+            viceData: dataList[id - 1].viceData,
+            isSave: dataList[id - 1].isSave,
         }
 
         try {
