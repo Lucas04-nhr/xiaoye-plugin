@@ -1260,6 +1260,70 @@ const ArtifactsDomains = [
         }
     },
     {
+        name: '罪祸的终末',
+        alias: [
+            "逐影猎人",
+            "黄金剧团",
+            "逐影",
+            "猎人",
+            "黄金",
+            "剧团",
+            "罪祸的终末"
+        ],
+        Artifacts: {
+            FlowerOfLife: {
+                name: [
+                    "猎人的胸花",
+                    "黄金乐曲的变奏"
+                ],
+                icon: [
+                    "plugins/xiaoye-plugin/resources/img/逐影猎人/1.webp",
+                    "plugins/xiaoye-plugin/resources/img/黄金剧团/1.webp"
+                ]
+            },
+            PlumeOfDeath: {
+                name: [
+                    "杰作的序曲",
+                    "黄金飞鸟的落羽"
+                ],
+                icon: [
+                    "plugins/xiaoye-plugin/resources/img/逐影猎人/2.webp",
+                    "plugins/xiaoye-plugin/resources/img/黄金剧团/2.webp"
+                ]
+            },
+            SandsOfEon: {
+                name: [
+                    "裁判的时刻",
+                    "黄金时代的先声"
+                ],
+                icon: [
+                    "plugins/xiaoye-plugin/resources/img/逐影猎人/3.webp",
+                    "plugins/xiaoye-plugin/resources/img/黄金剧团/3.webp"
+                ]
+            },
+            GobletOfEonothem: {
+                name: [
+                    "遗忘的容器",
+                    "黄金之夜的喧嚣"
+                ],
+                icon: [
+                    "plugins/xiaoye-plugin/resources/img/逐影猎人/4.webp",
+                    "plugins/xiaoye-plugin/resources/img/黄金剧团/4.webp"
+                ]
+            },
+            CircletOfLogos: {
+                name: [
+                    "老兵的容颜",
+                    "黄金剧团的奖赏"
+                ],
+                icon: [
+                    "plugins/xiaoye-plugin/resources/img/逐影猎人/5.webp",
+                    "plugins/xiaoye-plugin/resources/img/黄金剧团/5.webp"
+                ]
+            }
+        }
+    },
+    {
         name: 'BOSS掉落',
         alias: [
             '乐团',
