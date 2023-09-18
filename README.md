@@ -30,7 +30,7 @@ git clone https://gitee.com/xiaoye12123/xiaoye-plugin.git ./plugins/xiaoye-plug
 #### 宣传下群
 
 
-欢迎各位大佬和萌新,遇到问题也可以来反馈: [154687817](https://jq.qq.com/?_wv=1027&k=rP4fjPex) 
+欢迎各位大佬和萌新,遇到问题也可以来反馈: [698673296](http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=0xSHDCUDrVbiOKe7ksEi5xpxdmJj8VRT&authKey=gnMoAHGtaQcqlGg50M%2B6QvIvKsyzMrPymK0FjIxCe7mdzUM8rSIi2jvxWczaZEU5&noverify=0&group_code=698673296)
 
 
 #### 赞助
