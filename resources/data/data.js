@@ -1324,6 +1324,69 @@ const ArtifactsDomains = [
         }
     },
     {
+        name: '临瀑之城',
+        alias: [
+            "昔时之歌",
+            "回声之林夜话",
+            "昔时",
+            "回声",
+            "回声之林",
+            "临瀑之城"
+        ],
+        Artifacts: {
+            FlowerOfLife: {
+                name: [
+                    "昔时遗落之誓",
+                    "无私的妆饰花"
+                ],
+                icon: [
+                    "plugins/xiaoye-plugin/resources/img/昔时之歌/1.webp",
+                    "plugins/xiaoye-plugin/resources/img/回声之林夜话/1.webp"
+                ]
+            },
+            PlumeOfDeath: {
+                name: [
+                    "昔时浮想之思",
+                    "诚恳的蘸水笔"
+                ],
+                icon: [
+                    "plugins/xiaoye-plugin/resources/img/昔时之歌/2.webp",
+                    "plugins/xiaoye-plugin/resources/img/回声之林夜话/2.webp"
+                ]
+            },
+            SandsOfEon: {
+                name: [
+                    "昔时回映之音",
+                    "忠实的砂时计"
+                ],
+                icon: [
+                    "plugins/xiaoye-plugin/resources/img/昔时之歌/3.webp",
+                    "plugins/xiaoye-plugin/resources/img/回声之林夜话/3.webp"
+                ]
+            },
+            GobletOfEonothem: {
+                name: [
+                    "昔时应许之梦",
+                    "慷慨的墨水瓶"
+                ],
+                icon: [
+                    "plugins/xiaoye-plugin/resources/img/昔时之歌/4.webp",
+                    "plugins/xiaoye-plugin/resources/img/回声之林夜话/4.webp"
+                ]
+            },
+            CircletOfLogos: {
+                name: [
+                    "昔时传奏之诗",
+                    "慈爱的淑女帽"
+                ],
+                icon: [
+                    "plugins/xiaoye-plugin/resources/img/昔时之歌/5.webp",
+                    "plugins/xiaoye-plugin/resources/img/回声之林夜话/5.webp"
+                ]
+            }
+        }
+    },
+    {
         name: 'BOSS掉落',
         alias: [
             '乐团',
