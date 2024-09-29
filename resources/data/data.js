@@ -1387,6 +1387,132 @@ const ArtifactsDomains = [
         }
     },
     {
+        name: '褪色的剧场',
+        alias: [
+            "谐律异想断章",
+            "未竟的遐思",
+            "谐律",
+            "遐思",
+            "褪色的剧场"
+        ],
+        Artifacts: {
+            FlowerOfLife: {
+                name: [
+                    "谐律交响的前奏",
+                    "暗结的明花"
+                ],
+                icon: [
+                    "plugins/xiaoye-plugin/resources/img/谐律异想断章/1.webp",
+                    "plugins/xiaoye-plugin/resources/img/未竟的遐思/1.webp"
+                ]
+            },
+            PlumeOfDeath: {
+                name: [
+                    "古海玄幽的夜想",
+                    "褪光的翠尾"
+                ],
+                icon: [
+                    "plugins/xiaoye-plugin/resources/img/谐律异想断章/2.webp",
+                    "plugins/xiaoye-plugin/resources/img/未竟的遐思/2.webp"
+                ]
+            },
+            SandsOfEon: {
+                name: [
+                    "命途轮转的谐谑",
+                    "举业的识刻"
+                ],
+                icon: [
+                    "plugins/xiaoye-plugin/resources/img/谐律异想断章/3.webp",
+                    "plugins/xiaoye-plugin/resources/img/未竟的遐思/3.webp"
+                ]
+            },
+            GobletOfEonothem: {
+                name: [
+                    "灵露倾洒的狂诗",
+                    "筹谋的共樽"
+                ],
+                icon: [
+                    "plugins/xiaoye-plugin/resources/img/谐律异想断章/4.webp",
+                    "plugins/xiaoye-plugin/resources/img/未竟的遐思/4.webp"
+                ]
+            },
+            CircletOfLogos: {
+                name: [
+                    "异想零落的圆舞",
+                    "失冕的宝冠"
+                ],
+                icon: [
+                    "plugins/xiaoye-plugin/resources/img/谐律异想断章/5.webp",
+                    "plugins/xiaoye-plugin/resources/img/未竟的遐思/5.webp"
+                ]
+            }
+        }
+    },
+    {
+        name: '虹灵的净土',
+        alias: [
+            "烬城勇者绘卷",
+            "黑曜秘典",
+            "烬城",
+            "秘典",
+            "黑曜",
+            "勇者",
+            "虹灵的净土"
+        ],
+        Artifacts: {
+            FlowerOfLife: {
+                name: [
+                    "驯兽师的护符",
+                    "异种的期许"
+                ],
+                icon: [
+                    "plugins/xiaoye-plugin/resources/img/烬城勇者绘卷/1.webp",
+                    "plugins/xiaoye-plugin/resources/img/黑曜秘典/1.webp"
+                ]
+            },
+            PlumeOfDeath: {
+                name: [
+                    "巡山客的信标",
+                    "灵髓的根脉"
+                ],
+                icon: [
+                    "plugins/xiaoye-plugin/resources/img/烬城勇者绘卷/2.webp",
+                    "plugins/xiaoye-plugin/resources/img/黑曜秘典/2.webp"
+                ]
+            },
+            SandsOfEon: {
+                name: [
+                    "秘术家的金盘",
+                    "夜域的迷思"
+                ],
+                icon: [
+                    "plugins/xiaoye-plugin/resources/img/烬城勇者绘卷/3.webp",
+                    "plugins/xiaoye-plugin/resources/img/黑曜秘典/3.webp"
+                ]
+            },
+            GobletOfEonothem: {
+                name: [
+                    "游学者的爪杯",
+                    "纷争的前宴"
+                ],
+                icon: [
+                    "plugins/xiaoye-plugin/resources/img/烬城勇者绘卷/4.webp",
+                    "plugins/xiaoye-plugin/resources/img/黑曜秘典/4.webp"
+                ]
+            },
+            CircletOfLogos: {
+                name: [
+                    "魔战士的羽面",
+                    "诸圣的礼冠"
+                ],
+                icon: [
+                    "plugins/xiaoye-plugin/resources/img/烬城勇者绘卷/5.webp",
+                    "plugins/xiaoye-plugin/resources/img/黑曜秘典/5.webp"
+                ]
+            }
+        }
+    },
+    {
         name: 'BOSS掉落',
         alias: [
             '乐团',
